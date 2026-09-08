@@ -4,9 +4,8 @@
 
 ## GitHub에서 받은 뒤 준비
 
-저장소를 받은 뒤 [V11 데이터 Release](https://github.com/CallMeDemian/credit-rating-recourse-reproduction-v11/releases/tag/v11.0.0)에서 다음 ZIP 4개를 다운로드합니다.
+저장소를 받은 뒤 [V11 데이터 Release](https://github.com/CallMeDemian/credit-rating-recourse-reproduction-v11/releases/tag/v11.0.0)에서 다음 ZIP 4개를 다운로드합니다.(단, `credit-rating-recourse-v11_raw-data.zip` raw data는 필요시 요청주시면 따로 제공합니다.)
 
-- `credit-rating-recourse-v11_raw-data.zip`
 - `credit-rating-recourse-v11_frozen-core.zip`
 - `credit-rating-recourse-v11_frozen-stage2-projection.zip`
 - `credit-rating-recourse-v11_frozen-llm-analysis.zip`
