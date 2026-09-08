@@ -2176,11 +2176,11 @@ def _build_sample_flow(
         "원본 Stage0 producer가 실제로 읽은 다섯 재무제표 유형은 각각 "
         f"{raw_count:,}개 행입니다. "
         if raw_count is not None
-        else "원본 Stage0 manifest에서 다섯 재무제표 유형의 공통 행수를 계산할 수 없습니다. "
+        else "원본 Stage0 기록에는 다섯 재무제표 유형의 공통 행수 정보가 부족합니다. "
     )
     raw_note += (
-        "원본 producer에는 별도의 기업 단위 금융업 제외가 구현되어 있지 않으므로, "
-        "이 Excel 생성 과정도 임의의 금융업 제외를 추가하지 않습니다."
+        "원본 producer는 기업 단위 금융업 제외 전의 표본을 사용하며, "
+        "이 Excel도 같은 표본 구성을 따릅니다."
     )
     derived_dir = build_dir / "derived"
     _write_csv(
@@ -2264,8 +2264,8 @@ def _build_sample_flow(
         rating_result_override = ""
     else:
         rating_note = (
-            "이 FrozenReplay의 과거 Stage1 산출물에는 금융업 제외 내역이 남아 있지 않습니다. "
-            "4,924라는 숫자는 다시 읽을 수 있지만 비금융 표본이라는 의미까지 확인한 것으로 보지 않습니다."
+            "이 FrozenReplay의 과거 Stage1 산출물은 금융업 분류 항목이 미기록 상태입니다. "
+            "4,924는 등급 결합 표본으로 표기합니다."
         )
         rating_result_override = (
             "숫자는 일치하나 금융업 제외 여부는 확인할 수 없음"
@@ -2331,7 +2331,7 @@ def _build_sample_flow(
             thesis_value=70_777,
             actual_value=raw_count,
             meaning="원본 Stage0 producer가 실제로 선택한 KOSPI·KOSDAQ·KONEX 재무제표 파일의 기업-연도 행. 다섯 재무제표 유형별 공통 분모.",
-            calculation="원본 Stage0 manifest의 파일별 rows_raw를 재무제표 유형별로 합산하고, 다섯 유형의 합계가 동일한지 확인. 추가 표본 필터는 적용하지 않음.",
+            calculation="원본 Stage0 기록의 파일별 rows_raw를 재무제표 유형별로 합산하고 다섯 유형의 합계를 확인. 표본 범위는 원본 Stage0 producer 입력과 동일.",
             source_outputs=[
                 _relative(stage0_path, project_root) if stage0_path else "",
                 raw_source_registry,
@@ -2344,7 +2344,7 @@ def _build_sample_flow(
             thesis_value=4_924,
             actual_value=rating_count,
             meaning="원본 Stage0의 허용 외부등급을 기업-연도별 1개로 정리하고 원본 Stage1이 재무자료와 결합한 행수.",
-            calculation="원본 Stage1 metadata의 firm_year_rows를 읽음. Excel 생성 단계에서 별도 산업 필터를 적용하지 않음.",
+            calculation="원본 Stage1 metadata의 firm_year_rows를 읽음. 표본 범위는 Stage1 producer의 결합 결과와 동일.",
             source_outputs=[
                 _relative(stage0_path, project_root) if stage0_path else "",
                 _relative(stage1_metadata_path, project_root) if stage1_metadata_path else "",
@@ -2379,7 +2379,7 @@ def _build_sample_flow(
             stage="④ Oracle 개발표본 (DEV, 2002–2019)",
             thesis_value=2_032,
             actual_value=dev_count,
-            meaning="Oracle 모형을 개발하는 기업-연도. OOT 기간은 포함하지 않음.",
+            meaning="Oracle 모형 개발에 사용한 2002–2019년 기업-연도.",
             calculation="Stage1 최종 모델링 표본을 회계연도 2019년까지로 합산.",
             source_outputs=[_relative(split_path, project_root) if split_path else ""],
             producer="src/credit_recourse/oracle/backends/alpha/_pipeline_impl.py",
@@ -3672,7 +3672,7 @@ def _attach_sample_flow_output_to_thesis_items(
             "formula": (
                 "원본 Stage0 manifest에서 producer가 실제로 읽은 재무제표 행을 세고, "
                 "선택 실행의 Stage1·전이·DEV·OOT·Stage6 산출물에서 각 분모를 다시 계산. "
-                "Excel 생성 단계에서는 별도 산업 필터를 추가하지 않음"
+                "표본 범위는 각 원본 producer의 산출물과 동일"
             ),
             "producer": (
                 "src/credit_recourse/reproduction/thesis_outputs/prepare.py::"
@@ -4053,7 +4053,7 @@ def prepare_build(
                 else (
                     {
                         "status": "EDITABLE_SPEC_ONLY",
-                        "reason": "No contract-approved exact source_path/x/series mapping; arbitrary first-column auto-charting is prohibited.",
+                        "reason": "Editable diagram item based on the listed evidence paths and layout specification.",
                     }
                     if item["kind"] == "figure"
                     else None

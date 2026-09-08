@@ -199,7 +199,7 @@ function Initialize-FrozenWorkingCopy([string]$Root, [string]$RunRoot) {
         Move-WorkingSetAside $Root $RunRoot 'FrozenReplay 시작 전 기존 clean/unknown 작업본 보관'
     }
     if ((Get-ChildItem -LiteralPath $target -Force -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
-        Write-Host '보존 산출물을 data/final_freeze 작업본으로 복사합니다. 원본은 변경하지 않습니다.' -ForegroundColor Cyan
+        Write-Host '보존 산출물을 data/final_freeze 작업본으로 복사합니다.' -ForegroundColor Cyan
         & robocopy.exe $source $target /E /COPY:DAT /DCOPY:DAT /R:2 /W:1 /XJ /NFL /NDL /NJH /NJS /NP
         if ($LASTEXITCODE -ge 8) { throw "보존 산출물 복사 실패 (robocopy=$LASTEXITCODE)" }
         Set-Content -LiteralPath $marker -Value 'FROZEN_SNAPSHOT' -Encoding ASCII

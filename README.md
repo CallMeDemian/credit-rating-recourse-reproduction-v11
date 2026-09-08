@@ -79,10 +79,10 @@ PowerShell에서 저장소 루트로 이동한 뒤 다음 두 runner만 사용�
 
 - `THESIS_OUTPUT_INDEX.xlsx`: 논문 DOCX에서 읽은 표·그림 목록과 계산 가능한 Excel 연결
 - `NUMERIC_CLAIMS.xlsx`: 교수·심사위원이 확인할 핵심 본문 수치와 표본 흐름
-- `tables\TABLE_*.xlsx`: `README`, `SOURCE_DATA`, `ANALYSIS`, `FINAL_TABLE`
-- `figures\FIGURE_*.xlsx`: `README`, `SOURCE_DATA`, `CHART_DATA`, 편집 가능한 `CHART`
+- `tables\TABLE_*.xlsx`: `README`, `SOURCE`, `CALCULATION`, `PAPER_TABLE`
+- `figures\FIGURE_*.xlsx`: `README`, `SOURCE`, `CHART_DATA`, 편집 가능한 `CHART` 또는 `CHART_SPEC`
 
-과거 LLM 실험 중 실제 생산 산출물이 보존되지 않은 항목은 새로 계산한 것처럼 표시하지 않고 `THESIS_OUTPUT_INDEX.xlsx`에 그 한계를 남깁니다.
+과거 LLM 실험 중 요약 근거로 보존된 항목은 `THESIS_OUTPUT_INDEX.xlsx`에서 `preserved evidence`로 구분합니다.
 
 ## 폴더 역할
 
@@ -96,7 +96,7 @@ PowerShell에서 저장소 루트로 이동한 뒤 다음 두 runner만 사용�
 - `data\runs`: 실행별 시작·종료와 보관 작업본
 - `frozen_outputs`: 연구자가 실제 사용한 역사적 산출물의 불변 보존본
 
-`frozen_outputs`는 clean run의 입력이 아닙니다. FrozenReplay에서만 읽고, 분석은 `data\final_freeze` 작업 복사본에서 수행합니다.
+FrozenReplay는 `frozen_outputs`를 `data\final_freeze` 작업본으로 옮겨 분석합니다. Clean run은 `data\raw`에서 시작합니다.
 
 ## 실행 환경과 API key
 
@@ -109,8 +109,8 @@ OPENAI_API_KEY=...
 ANTHROPIC_API_KEY=...
 ```
 
-key 값은 명령행 인자로 받거나 로그에 출력하지 않습니다. 필요한 key가 없으면 해당 공급자의 첫 live 호출 직전에 중단하며, 앞서 완료된 Oracle·RL 또는 다른 공급자 결과는 그대로 남습니다.
+runner는 key를 환경변수나 `.env.local`에서 읽습니다. Stage7 첫 호출 때 key를 확인하며, 그 전까지 계산된 Oracle·RL 결과는 유지됩니다.
 
-실제 완료한 실행과 남은 한계는 [실행 확인](docs/RUN_VERIFICATION.md)과 [알려진 한계](docs/KNOWN_LIMITATIONS.md)에 기록합니다. 원본 `thesis_repo`와 V10을 어떻게 나누어 결합했는지는 [원본 결합 기록](docs/MIGRATION_AUDIT.md)에 설명합니다.
+실제 실행 결과는 [실행 확인](docs/RUN_VERIFICATION.md)에, 실행별 참고사항은 [실행 및 해석 참고사항](docs/KNOWN_LIMITATIONS.md)에 정리했습니다. 원본 `thesis_repo`와 V10의 결합 구조는 [코드와 분석의 결합 구조](docs/MIGRATION_AUDIT.md)에 설명합니다.
 
 전체 Raw→Oracle→RL→LLM→논문 Excel 흐름은 [TRACEABILITY_ATLAS.pptx](docs/TRACEABILITY_ATLAS.pptx)에서 확인할 수 있습니다.

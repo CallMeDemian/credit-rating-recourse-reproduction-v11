@@ -150,7 +150,7 @@ def add_readme(workbook: Workbook, payload: dict[str, Any], item: dict[str, Any]
     elif item.get("class") == "NON_EMPIRICAL":
         subtitle = "경험적 수치 계산 대상이 아니며, 설계·설정 근거와 생산 코드를 확인하는 Excel입니다."
     else:
-        subtitle = "원 생산자 snapshot 또는 명시적 계산 자료가 보존되지 않은 항목입니다. 새 계산으로 가장하지 않고 남은 근거와 한계를 표시합니다."
+        subtitle = "이 항목은 preserved evidence입니다. 남아 있는 근거와 적용 범위를 정리했습니다."
     title_block(
         sheet,
         title,
@@ -195,7 +195,7 @@ def add_source_data(workbook: Workbook, item: dict[str, Any]) -> list[dict[str, 
     elif item.get("class") == "NON_EMPIRICAL":
         subtitle = "설계·설정 근거의 경로·해시와 제한된 미리보기입니다. 경험적 계산 입력이 아닙니다."
     else:
-        subtitle = "남아 있는 증거의 경로·해시와 제한된 미리보기입니다. 원 생산자 snapshot의 fresh regeneration으로 주장하지 않습니다."
+        subtitle = "보존된 근거의 경로·해시와 미리보기입니다. 원 생산자 snapshot 범위는 preserved evidence로 구분합니다."
     title_block(
         sheet,
         f"{item['item_id']} · 실제 입력 산출물",
@@ -600,7 +600,7 @@ def add_chart_spec_data(workbook: Workbook, item: dict[str, Any]) -> None:
         ["생산 코드", item.get("producer", "")],
         ["실제 근거 경로", "\n".join(source.get("path", "") for source in item.get("source_tables", []))],
         ["편집 spec", json.dumps(item.get("chart_spec") or {}, ensure_ascii=False, sort_keys=True)],
-        ["한계·설명", item.get("contract_note", "") or item.get("selector_reason", "")],
+        ["해석·설명", item.get("contract_note", "") or item.get("selector_reason", "")],
     ]
     append_rows(sheet, 4, rows)
     set_widths(sheet, [30, 110])
@@ -611,7 +611,7 @@ def add_chart_spec(workbook: Workbook, item: dict[str, Any]) -> None:
     title_block(
         sheet,
         f"{item['item_id']} · 편집 가능한 그림 명세",
-        "이 시트의 텍스트와 근거 경로를 사용해 도식 또는 그림을 편집합니다. 경험적 결과가 없는 경우 수치를 임의로 만들지 않습니다.",
+        "이 시트의 텍스트와 근거 경로를 사용해 도식 또는 그림을 편집합니다. 경험적 결과가 없는 항목은 설계 근거로 표시합니다.",
         8,
     )
     rows = [
@@ -621,7 +621,7 @@ def add_chart_spec(workbook: Workbook, item: dict[str, Any]) -> None:
         ["구성 근거", item.get("contract_note", "")],
         ["생산 코드", item.get("producer", "")],
         ["입력 경로", "\n".join(source.get("path", "") for source in item.get("source_tables", []))],
-        ["재생성 주장", "하지 않음"],
+        ["자료 구분", "설계 근거 또는 preserved evidence"],
     ]
     append_rows(sheet, 4, rows)
     set_widths(sheet, [30, 110])
@@ -873,12 +873,12 @@ def build_numeric_claims(payload: dict[str, Any], output_root: Path) -> None:
         [
             ["항목", "설명"],
             ["정책가치", "같은 기업에서 해당 행동의 Oracle 점수 − 무행동 Oracle 점수"],
-            ["논문 표시값", "대조용이며 재계산값을 찾거나 선택하는 입력으로 사용하지 않음"],
+            ["논문 표시값", "대조용; 재계산은 선택 run의 산출물에서 수행"],
             [
                 "기업별 계산행",
                 "CANDIDATE_IQL_ROWS, ACTION_ROWS, REPEATABILITY_ROWS, C4_C4R_C6_ROWS, E2_E3_ROWS에서 입력행과 Excel 계산식을 직접 확인",
             ],
-            ["보존되지 않은 산출물", "새 계산값으로 가장하지 않고 계산 불가 사유를 그대로 표시"],
+            ["보존 자료", "원 생산자 snapshot 범위에 따라 preserved evidence로 구분"],
             ["선택 실행", f"{payload['selected_run']['run_id']} ({payload['selected_run']['mode']})"],
         ],
     )

@@ -18,7 +18,7 @@
       "description": "Fresh-training contract for a newly trained Stage3-5 lineage from the packaged Stage2 substrate.",
       "c0_noop_enforcement": "hard",
       "candidate_iql_enforcement": "advisory",
-      "interpretation_boundary": "The no-op anchors remain hard checks of the 575-firm cohort and Oracle/evaluator substrate. Historical Candidate-IQL point differences are recorded as checkpoint-lineage drift and do not alone fail a fresh stochastic retraining. This mode does not claim frozen-checkpoint point parity."
+      "interpretation_boundary": "The no-op anchors remain hard checks of the 575-firm cohort and Oracle/evaluator substrate. Historical Candidate-IQL point differences are recorded as checkpoint-lineage drift. Frozen-checkpoint point parity applies to frozen_replay mode."
     }
   },
   "frozen_rl_lineage": {

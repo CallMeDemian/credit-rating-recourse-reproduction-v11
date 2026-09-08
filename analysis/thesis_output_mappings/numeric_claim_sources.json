@@ -1,6 +1,6 @@
 {
   "schema_version": "numeric_claim_selectors_v11",
-  "authority": "Explicit semantic claim selectors over already-declared thesis item selector outputs. Thesis display values are comparison references and are never lookup keys.",
+  "authority": "Explicit semantic claim selectors operate on declared thesis-item outputs. Thesis display values serve as comparison references; calculations use selected-run outputs.",
   "key": ["claim_id", "paragraph_text_sha256", "token_index"],
   "prohibited_resolution": [
     "THESIS_VALUE_LOOKUP",

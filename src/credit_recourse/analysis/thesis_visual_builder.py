@@ -900,7 +900,7 @@ def _handle_diagram(ctx: BuildContext, run: AssetRun) -> None:
     else:
         nodes = [('전제 검증\n표본·분할·계약·동결', 0.05, 0.58, 0.24, 0.2), ('검사 1\nOracle 외부 정렬성', 0.38, 0.58, 0.24, 0.2), ('검사 2\nSimulator 구조·행동 속성', 0.71, 0.58, 0.24, 0.2), ('통과/경계 기록', 0.39, 0.22, 0.22, 0.14), ('정책 상대비교', 0.71, 0.22, 0.22, 0.14)]
         edges = [(0, 1, ''), (1, 2, ''), (1, 3, 'gate'), (2, 4, 'scope')]
-        footer = '검증 실패를 숨기지 않고 사용 가능한 주장 범위를 함께 기록한다.'
+        footer = '확인 결과와 적용 가능한 주장 범위를 함께 기록한다.'
     _build_diagram(ctx, run, nodes, edges, footer)
 
 def _handler(ctx: BuildContext, run: AssetRun) -> None:

@@ -246,7 +246,7 @@
         {"selector_id": "reference_quality_alpha", "source_pattern": "data/analysis/paper_repro/02_llm_hypothesis_tests/reference_quality_acceptance/reference_quality_acceptance_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}], "row_keys": ["information_condition", "revision_condition", "mode"], "columns": ["information_condition", "revision_condition", "mode", "oracle_backend", "n_rows", "reference_better_fraction", "mean_reference_advantage", "mean_adoption_reference_better", "mean_adoption_reference_not_better", "adoption_group_gap", "mean_revision_gain_reference_better", "mean_revision_gain_reference_not_better", "revision_gain_group_gap"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["oracle_backend", "n_rows", "reference_better_fraction", "mean_reference_advantage", "mean_adoption_reference_better", "mean_adoption_reference_not_better", "adoption_group_gap", "mean_revision_gain_reference_better", "mean_revision_gain_reference_not_better", "revision_gain_group_gap"], "row_count": {"min": 18, "max": 18}}
       ]
     },
-    "TG-1": {"status": "UNRESOLVED", "reason": "The registered extension reproduction manifest is absent from the selected-run analysis root; execution history must not be inferred from preserved paths."},
+    "TG-1": {"status": "UNRESOLVED", "reason": "The selected-run analysis root has no registered extension reproduction record; preserved paths are catalog references rather than execution records."},
     "TG-2": {
       "status": "ACTIVE",
       "paper_selector": "independent_repeat_contrasts",
