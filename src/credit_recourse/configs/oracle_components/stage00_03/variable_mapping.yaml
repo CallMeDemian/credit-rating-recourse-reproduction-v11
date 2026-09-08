@@ -1,0 +1,65 @@
+# variable_mapping.yaml — KIS-VALUE item code 매핑
+# ----------------------------------------------------
+# Stage 1B cleaned_statement_panels의 컬럼명에서 사용되는 KIS 자체 코드.
+# 컬럼 형식: [U01XXXXXXXXX] 항목명 (... 추가 메타)
+# 본 매핑은 코드 prefix만 명시 — find_col() 함수가 실제 컬럼명 탐색.
+
+financial_items:
+  # 재무상태표 (Balance Sheet)
+  자산총계:
+    code: "U01A100000000"
+    statement: "재무상태표"
+    description: "자산 총계"
+  자본:
+    code: "U01A600000000"
+    statement: "재무상태표"
+    description: "자본 총계 (자기자본)"
+  자본금:
+    code: "U01A611000000"
+    statement: "재무상태표"
+    description: "납입자본금"
+
+  # 손익계산서 (Income Statement)
+  매출액:
+    code: "U01B100000000"
+    statement: "손익계산서"
+    description: "매출액(수익)"
+  영업이익:
+    code: "U01B430000000"
+    statement: "손익계산서"
+    description: "정상영업손익(계산수치)"
+  당기순이익:
+    code: "U01B840000000"
+    statement: "손익계산서"
+    description: "당기순이익(손실)"
+
+# ============================================================
+# Raw 비재무 컬럼 → variable mapping (참고용)
+# ============================================================
+nonfinancial_columns:
+  general_info:
+    firm_id: "거래소코드"
+    firm_name: "회사명"
+    extraction_period: "회계년도"
+    industry_code: "산업코드"
+    industry_name: "산업명"
+    employee_count: "종업원"
+    incorporation_date: "설립일"
+    listing_date: "상장일"
+    delisting_date: "상장폐지일"
+
+  capital_change:
+    event_date: "변동일"
+    event_type: "증자유형"
+    event_text: "변동내역"
+    event_ratio: "증자비율"
+
+  ma_events:
+    event_date: "일자"
+    event_text: "내역(합병-영업양수도)"
+
+  lawsuit:
+    period_month: "회계년월"
+    role: "구분(10-피고 20-원고 90-기타)"
+    counterparty: "소송상대방"
+    amount_thousands_won: "소송가액(천원)"

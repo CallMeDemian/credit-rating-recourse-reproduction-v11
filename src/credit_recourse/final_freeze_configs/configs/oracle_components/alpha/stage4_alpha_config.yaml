@@ -1,0 +1,9 @@
+backend: alpha
+random_seed: 42
+dev_end_year: 2019
+oot_start_year: 2020
+acceptance:
+  spearman_min_abs: 0.45
+  within1_min: 0.70
+  oot_psi_max: 0.30
+  oot_kl_max: 0.10

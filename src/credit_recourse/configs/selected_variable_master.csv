@@ -1,0 +1,12 @@
+﻿category,variable_id,variable_name,source,rank,score,direction,direction_weak,spearman_rho,canonical_variable_id,is_canonical_ratio
+수익성,R006,R006,financial,1,0.9141052295393595,value_up_good,False,-0.356113874145623,R006,True
+안정성,R064,R064,financial,1,0.9150263815091102,value_up_good,False,-0.49261389492450613,R064,True
+부채상환능력,R085,R085,financial,1,0.9211659165217501,value_down_good,False,0.40122068453168275,R085,True
+유동성,R133,R133,financial,1,0.569563664210025,value_up_good,False,-0.2371484930494599,R133,True
+활동성,R157,R157,financial,1,0.9600000000000001,value_up_good,False,-0.392371233846569,R157,True
+성장성,R182,R182,financial,1,0.6255464147770485,value_up_good,False,-0.11700867527425418,R182,True
+산업위험,industry_avg_rating_lag1_self_excl,industry_avg_rating_lag1_self_excl,nonfinancial,1,0.5801653230919644,value_down_good,False,0.23605407641391035,industry_avg_rating_lag1_self_excl,True
+경영위험,cap_change_count_3y,cap_change_count_3y,nonfinancial,1,1.0,value_down_good,False,0.24716545429294223,cap_change_count_3y,True
+영업위험,log_assets,log_assets,nonfinancial,1,1.0,value_up_good,False,-0.47180168277853535,log_assets,True
+재무위험,operating_loss_freq_3y,operating_loss_freq_3y,nonfinancial,1,0.9,value_down_good,False,0.38219960065199404,operating_loss_freq_3y,True
+신뢰도,ratio_missing_rate,ratio_missing_rate,nonfinancial,1,0.7026675262852002,value_down_good,True,0.017420949064222688,ratio_missing_rate,True

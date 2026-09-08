@@ -1,0 +1,53 @@
+{
+  "schema_version": "paper_analysis_profiles_v1",
+  "default_profile": "current_comprehensive",
+  "profiles": {
+    "current_comprehensive": {
+      "catalog_mode": "discover_current",
+      "n5m_required": false,
+      "n5m_paper_use": "historical",
+      "manifest_task_order": [
+        "required-inputs",
+        "b2-gap",
+        "test3",
+        "structural-slice",
+        "postfreeze-ablation",
+        "postfreeze-holm",
+        "main-harness-backend-decomposition",
+        "reference-quality",
+        "n5-holm",
+        "n5-frontier-holm",
+        "signflip",
+        "frontier",
+        "winrate",
+        "icc-probe",
+        "final-contract"
+      ]
+    },
+    "historical_20260715": {
+      "catalog_mode": "explicit_snapshot",
+      "n5m_required": true,
+      "n5m_paper_use": "primary",
+      "manifest_task_order": [
+        "required-inputs",
+        "b2-gap",
+        "test3",
+        "structural-slice",
+        "postfreeze-ablation",
+        "postfreeze-holm",
+        "main-harness-backend-decomposition",
+        "reference-quality",
+        "n5-holm",
+        "n5-frontier-holm",
+        "n5-matched-frontier-holm",
+        "n5m-posthoc",
+        "signflip",
+        "frontier",
+        "winrate",
+        "icc-probe",
+        "paper-assets",
+        "final-contract"
+      ]
+    }
+  }
+}

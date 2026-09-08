@@ -1,0 +1,116 @@
+{
+  "R003": {
+    "canonical_ratio_id": "R002",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "정상영업이익률 duplicates 영업이익률 under current source mapping."
+  },
+  "R004": {
+    "canonical_ratio_id": "R002",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "EBIT마진 duplicates 영업이익률 under current source mapping."
+  },
+  "R014": {
+    "canonical_ratio_id": "R013",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "EBIT/총자산 duplicates 영업이익/총자산."
+  },
+  "R080": {
+    "canonical_ratio_id": "R079",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "EBIT 이자보상배율 duplicates 이자보상배율 under current EBIT mapping."
+  },
+  "R086": {
+    "canonical_ratio_id": "R085",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "이자비용/매출액 uses the same numerator item code as 금융비용부담률."
+  },
+  "R088": {
+    "canonical_ratio_id": "R089",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "이자비용/EBITDA uses the same numerator item code as 금융비용/EBITDA; keep financial-cost wording."
+  },
+  "R114": {
+    "canonical_ratio_id": "R102",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "순차입금상환가능기간 duplicates 순차입금/EBITDA."
+  },
+  "R118": {
+    "canonical_ratio_id": "R076",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "순운전자본비율 duplicates 순운전자본/총자산."
+  },
+  "R119": {
+    "canonical_ratio_id": "R077",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "순운전자본/매출액 duplicates 운전자본/매출액."
+  },
+  "R127": {
+    "canonical_ratio_id": "R117",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "현금성자산/유동부채 duplicates 현금비율."
+  },
+  "R131": {
+    "canonical_ratio_id": "R094",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "OCF/유동부채 duplicates debt-service OCF/유동부채."
+  },
+  "R163": {
+    "canonical_ratio_id": "R159",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "재고보유기간 duplicates 재고자산회전일수."
+  },
+  "R164": {
+    "canonical_ratio_id": "R158",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "매출채권회수기간 duplicates 매출채권회전일수."
+  },
+  "R165": {
+    "canonical_ratio_id": "R160",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "매입채무지급기간 duplicates 매입채무회전일수."
+  },
+  "R172": {
+    "canonical_ratio_id": "R171",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "정상영업이익증가율 duplicates 영업이익증가율 under current source mapping."
+  },
+  "R173": {
+    "canonical_ratio_id": "R171",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "EBIT증가율 duplicates 영업이익증가율 under current source mapping."
+  },
+  "R210": {
+    "canonical_ratio_id": "R076",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "Altman 운전자본/총자산 duplicates 순운전자본/총자산."
+  },
+  "R211": {
+    "canonical_ratio_id": "R064",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "Altman 이익잉여금/총자산 duplicates 이익잉여금/총자산."
+  },
+  "R216": {
+    "canonical_ratio_id": "R010",
+    "duplicate_alias_type": "exact_value_alias",
+    "stage3_exclude": true,
+    "reason": "OCF/매출액 duplicates 영업현금흐름마진."
+  }
+}

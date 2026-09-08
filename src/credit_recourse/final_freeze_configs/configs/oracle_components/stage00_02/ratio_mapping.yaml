@@ -1,0 +1,71 @@
+# ratio_mapping.yaml — Stage 2 ratio formula 정책
+# ----------------------------------------------------
+
+# ============================================================
+# Formula syntax — Excel candidate 표현식 정규화 정책
+# ============================================================
+formula_syntax:
+  # candidate Excel의 'formula' 컬럼 형식 처리
+  # 예: "영업이익 / 매출액", "(영업이익 + 감가상각비) / 매출액"
+  operators:
+    - "+"
+    - "-"
+    - "*"
+    - "/"
+    - "("
+    - ")"
+  pct_multiplier_terms:
+    - "%"  # %로 끝나면 결과 × 100
+  growth_indicators:
+    - "증가율"
+    - "성장률"
+    - "growth"
+
+# ============================================================
+# Term lookup priority — 자동 매핑 시 fallback 순서
+# ============================================================
+term_lookup:
+  # 1순위: stage_config.yaml의 manual_override
+  # 2순위: statement item inventory에서 item_name exact match
+  # 3순위: item_name fuzzy match (rapidfuzz 없으면 substring contains)
+  # 4순위: 못 찾으면 NaN + log
+  priority: [manual_override, exact_name, contains_name, fail]
+
+# ============================================================
+# Item inventory 정책
+# ============================================================
+inventory:
+  # cleaned wide panel에서 [U코드]item_name 형식 컬럼 추출
+  column_pattern: "^\\[([^\\]]+)\\]\\s*(.+)$"
+  preserve_unit: true
+
+# ============================================================
+# Lag retrieval 정책
+# ============================================================
+lag:
+  # firm_year_panel에 (firm, year-1)이 없을 때만 raw에서 추출
+  match_keys: ["거래소코드", "year"]
+  raw_key_columns: ["거래소코드", "회계년도"]
+
+# ============================================================
+# Audit 정책
+# ============================================================
+audit:
+  # NICE 재무비율_clean.parquet의 비율과 우리 산출값 비교
+  # NICE 컬럼: "[code]비율명(%)(IFRS)" 형식
+  match_method: "name_substring"
+  # 결과 분류
+  classes:
+    - pass               # 1% 이내
+    - pass_with_scale_adjustment  # 5% 이내 + 단위 보정
+    - investigate_formula         # 5% 초과
+    - no_match                    # NICE에 해당 비율 없음
+
+# ============================================================
+# Output naming 정책
+# ============================================================
+output_naming:
+  # ratio 컬럼명: "<category>_<short_name>_pct" 또는 "<category>_<short_name>_ratio"
+  separator: "_"
+  pct_suffix: "_pct"
+  ratio_suffix: "_ratio"

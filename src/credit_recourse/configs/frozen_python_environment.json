@@ -1,0 +1,73 @@
+{
+  "contract_id": "frozen_python_environment_portable_v2",
+  "python_major_minor": "3.12",
+  "minimum_package_count": 11,
+  "packages": [
+    {
+      "distribution": "PyYAML",
+      "module": "yaml",
+      "version": "6.0.3",
+      "module_relative_path": "yaml/__init__.py"
+    },
+    {
+      "distribution": "numpy",
+      "module": "numpy",
+      "version": "2.4.4",
+      "module_relative_path": "numpy/__init__.py"
+    },
+    {
+      "distribution": "pandas",
+      "module": "pandas",
+      "version": "3.0.2",
+      "module_relative_path": "pandas/__init__.py"
+    },
+    {
+      "distribution": "scipy",
+      "module": "scipy",
+      "version": "1.17.1",
+      "module_relative_path": "scipy/__init__.py"
+    },
+    {
+      "distribution": "scikit-learn",
+      "module": "sklearn",
+      "version": "1.8.0",
+      "module_relative_path": "sklearn/__init__.py"
+    },
+    {
+      "distribution": "pyarrow",
+      "module": "pyarrow",
+      "version": "24.0.0",
+      "module_relative_path": "pyarrow/__init__.py"
+    },
+    {
+      "distribution": "matplotlib",
+      "module": "matplotlib",
+      "version": "3.11.0",
+      "module_relative_path": "matplotlib/__init__.py"
+    },
+    {
+      "distribution": "statsmodels",
+      "module": "statsmodels",
+      "version": "0.14.6",
+      "module_relative_path": "statsmodels/__init__.py"
+    },
+    {
+      "distribution": "openpyxl",
+      "module": "openpyxl",
+      "version": "3.1.5",
+      "module_relative_path": "openpyxl/__init__.py"
+    },
+    {
+      "distribution": "joblib",
+      "module": "joblib",
+      "version": "1.5.3",
+      "module_relative_path": "joblib/__init__.py"
+    },
+    {
+      "distribution": "torch",
+      "module": "torch",
+      "version": "2.6.0+cu124",
+      "module_relative_path": "torch/__init__.py"
+    }
+  ]
+}

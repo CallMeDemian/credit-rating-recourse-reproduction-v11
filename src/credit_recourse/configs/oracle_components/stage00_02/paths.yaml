@@ -1,0 +1,34 @@
+﻿inputs:
+  stage1b:
+    panel: C:\Users\Demian\Desktop\thesis_repo\data\final_freeze\stage00_01_rating_statement_integration\firm_year_panel_v1.parquet
+    cleaned_dir: C:\Users\Demian\Desktop\thesis_repo\data\final_freeze\stage00_01_rating_statement_integration\cleaned_statement_panels
+    raw_long: C:\Users\Demian\Desktop\thesis_repo\data\final_freeze\stage00_01_rating_statement_integration\financial_statement_items_raw.parquet
+
+  reference:
+    candidates_xlsx: C:\Users\Demian\Desktop\thesis_repo\src\credit_recourse\oracle\pipelines\stage00_sample_variable_foundation\02_financial_ratio_engineering\candidate_ratio_master.xlsx
+    candidates_sheet: 후보_재무비율
+
+  raw:
+    dir: C:\Users\Demian\Desktop\thesis_repo\data\raw\raw_all
+    patterns:
+      재무상태표: "*재무상태표*.xlsx"
+      손익계산서: "*손익계산서*.xlsx"
+      현금흐름표: "*현금흐름표*.xlsx"
+      자본변동표: "*자본변동표*.xlsx"
+      이익잉여금처분계산서: "*이익잉여금*.xlsx"
+      재무비율: "*재무비율*.xlsx"
+
+outputs:
+  results: C:\Users\Demian\Desktop\thesis_repo\data\final_freeze\stage00_02_financial_ratio_engineering
+  run_log: C:\Users\Demian\Desktop\thesis_repo\runs\oracle\stage00_02_financial_ratio_engineering
+
+acceptance:
+  ratios_calculated_min: 150
+  quality_pass_min: 100
+  candidates_total_draft_min: 150
+
+growth_ratio:
+  base_year_offset: 1
+  positive_base_only: true
+  cap_extreme: 100.0
+

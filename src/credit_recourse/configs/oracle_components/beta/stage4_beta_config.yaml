@@ -1,0 +1,25 @@
+model:
+  name: Beta Ordered Logistic Rating Benchmark
+  version: stage4_beta_ordered_logit_v1.0
+  modeled_grades:
+  - AAA
+  - AA
+  - A
+  - BBB
+  - BB
+  - B
+  - CCC
+  - CC
+  - C
+  - D
+  tail_fold_target: null
+split:
+  dev:
+  - 2002
+  - 2019
+  oot:
+  - 2020
+  - 2023
+cross_oracle:
+  spearman_band_low: 0.55
+  spearman_band_high: 0.9

@@ -1,0 +1,15 @@
+schema_version: phase_gamma_grid_v1
+description: "Stage 5 IQL sweep grid."
+frozen_settings: {gamma: 0.5, cql_alpha: 0.0, rho_sector_phi: 0.3}
+grid:
+  expectile_tau: [0.5, 0.7, 0.8, 0.9]
+  awr_beta: [1.0, 3.0, 10.0]
+  magnitude_quantile: [P50, P65, P75, P85]
+  encoder_finetune: [frozen, lr_scale_0.1]
+selection:
+  metric: inner_dev_q_mean
+  direction: higher_is_better
+  tie_break: [awr_beta_lower, expectile_tau_lower, encoder_finetune_frozen_first, magnitude_quantile_lower]
+final_refit:
+  window: train_transition_year_max
+  init_from: stage4_bc_final_refit__{winner_magnitude_quantile}__{winner_encoder_finetune}.pt

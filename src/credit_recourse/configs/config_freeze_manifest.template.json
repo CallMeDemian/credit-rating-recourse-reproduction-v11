@@ -1,0 +1,39 @@
+{
+  "manifest_type": "config_freeze_manifest",
+  "run_id": "final_oracle_rl_<YYYYMMDD>",
+  "status": "template_requires_fill_before_final_rerun",
+  "source_of_truth_precedence": [
+    "final_oracle_rl_contract.json",
+    "configs_frozen/*",
+    "generated_stage_configs",
+    "previous_defaults_explicitly_declared"
+  ],
+  "entries": [
+    {
+      "final_stage": "Stage 1",
+      "config": "oracle_alpha_regeneration_grid.yaml",
+      "path": "configs_frozen/sweep/oracle_alpha_regeneration_grid.yaml",
+      "sha256": null
+    },
+    {
+      "final_stage": "Stage 5",
+      "config": "stage5_candidate_iql.yaml",
+      "path": "configs_frozen/rl/stage5_candidate_iql.yaml",
+      "sha256": null
+    },
+    {
+      "final_stage": "Stage 6",
+      "config": "stage6_multi_oracle_eval.yaml",
+      "path": "configs_frozen/rl/stage6_multi_oracle_eval.yaml",
+      "sha256": null
+    }
+  ],
+  "required_frozen_artifacts": [
+    "data/final_freeze/configs/final_action_contract.yaml",
+    "configs_frozen/schema/final_avs129_acd_feature_schema_expected.json",
+    "configs_frozen/oracle/oracle_alpha_expected_grid_selection.json",
+    "configs_frozen/oracle/oracle_backend_expected_metrics.json",
+    "configs_frozen/candidates/heuristic_action_library_final.yaml",
+    "configs_frozen/candidates/candidate_library_metadata_final.json"
+  ]
+}

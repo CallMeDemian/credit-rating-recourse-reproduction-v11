@@ -1,0 +1,12 @@
+schema_version: seed_protocol_v1
+phase_alpha:
+  holdout_split: 90001
+  training: 30001
+stage4_sweep:
+  training: 40001
+phase_gamma:
+  training: 50001
+final_refit:
+  stage3: 30100
+  stage4: 40100
+  stage5: 50100

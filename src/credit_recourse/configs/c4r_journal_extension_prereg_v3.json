@@ -1,0 +1,142 @@
+{
+  "schema_version": "c4r_journal_extension_prereg_v3",
+  "design_status": "LOCKED_SECOND_AMENDMENT_AFTER_GEMINI35_PROVIDER_FEASIBILITY_FAILURE_BEFORE_FLASHLITE_LIVE_API",
+  "public_timestamp_status": "PENDING_USER_PUBLIC_COMMIT_OR_OSF_REGISTRATION",
+  "amends": {
+    "schema_version": "c4r_journal_extension_prereg_v2",
+    "reason": "The amended Gemini 3.5 Flash 0.75 pilot preserved the raw L1 budget on all 520 simulator-routed C4 responses but failed provider feasibility under the frozen thinking-low/maxOutputTokens-1200 generation contract. The checkpoint contains 534 C4 records, including 14 translational failures, 917 recorded provider attempts, and no C4R or C6 records; the live runner then terminated after four additional MAX_TOKENS attempts for row_id=20. The failed run remains immutable and is excluded from matched inference.",
+    "failed_cohort_id": "gemini35flash",
+    "failed_budget_label": "0p75",
+    "failed_run_label": "C4RXJ_C4C4RC6_L1_0p75_ICb_gemini35flash_p50_seed1_20260717_185951",
+    "failed_checkpoint_filename": "checkpoint_C4RXJ_C4C4RC6_L1_0p75_ICb_gemini35flash_p50_seed1_20260717_185951.jsonl",
+    "observed_checkpoint_rows": 534,
+    "observed_condition_rows": {
+      "C4": 534,
+      "C4R": 0,
+      "C6": 0
+    },
+    "observed_simulator_routed_rows": 520,
+    "observed_translational_failure_rows": 14,
+    "observed_recorded_provider_attempts": 917,
+    "observed_successful_raw_budget_compliance": 1.0,
+    "terminal_failure": "provider_call_failed after four attempts: gemini_incomplete finish_reason='MAX_TOKENS' for row_id=20, condition=C4, mode=free_form_10d",
+    "replacement_policy": "Replace the failed Gemini 3.5 Flash replication cohort with stable Gemini 3.1 Flash-Lite using thinking level low and maxOutputTokens 4096. Preserve all prompts, information conditions, budget definitions, row universe, parser, simulator, Oracle evaluators, quality gates, and multiplicity contracts. Reuse the four completed GPT-5.4-mini archives without new OpenAI calls. Do not reuse any Gemini 3.5 checkpoint rows because the backend identity and generation contract change."
+  },
+  "primary_claim": "The sign and magnitude of reference-free self-revision and conditional reference-content increments vary with generation-time action capacity.",
+  "information_condition": "IC-b",
+  "conditions": [
+    "C4",
+    "C4R",
+    "C6"
+  ],
+  "mode": "free_form_10d",
+  "firm_count_per_arm": 575,
+  "candidate_library_quantile": 50,
+  "budgets": [
+    {
+      "label": "0p75",
+      "l1_budget": 0.75
+    },
+    {
+      "label": "1p27",
+      "l1_budget": 1.27
+    },
+    {
+      "label": "2p00",
+      "l1_budget": 2.0
+    },
+    {
+      "label": "unbounded",
+      "l1_budget": null
+    }
+  ],
+  "cohorts": [
+    {
+      "cohort_id": "gpt54mini",
+      "backend": "openai:gpt-5.4-mini",
+      "run_role": "paper_c4r_journal_ext_gpt54mini",
+      "execution_policy": "reuse_required",
+      "api_mode": "responses",
+      "reasoning_effort": "low",
+      "max_output_tokens": 1200,
+      "temperature": 0.0
+    },
+    {
+      "cohort_id": "gemini31flashlite",
+      "backend": "gemini:gemini-3.1-flash-lite",
+      "run_role": "paper_c4r_journal_ext_gemini31flashlite",
+      "execution_policy": "generate",
+      "api_mode": "generateContent",
+      "thinking_level": "low",
+      "max_output_tokens": 4096,
+      "response_mime_type": "application/json",
+      "timeout_seconds": 180.0,
+      "temperature": null
+    }
+  ],
+  "seed_protocol": {
+    "run_contract_seed": 1,
+    "reference_draw_seed": 1,
+    "provider_generation_seed_passed": false,
+    "interpretation": "Seed fields identify run/reference metadata only; provider stochasticity remains residual."
+  },
+  "contrasts": [
+    "C4R-C4 reference-free self-revision",
+    "C6-C4R conditional Candidate-IQL reference-content increment",
+    "C6-C4 full reference-plus-revision package"
+  ],
+  "interaction_reference_arm": "unbounded",
+  "primary_multiplicity": {
+    "test": "two-sided Wilcoxon signed-rank, zero-discard",
+    "family": "within cohort x finite arm x component, Holm across alpha/beta/gamma",
+    "family_size": 3
+  },
+  "sensitivity_multiplicity": {
+    "family": "within cohort x component, Holm across 3 finite arms x 3 Oracles",
+    "family_size": 9
+  },
+  "equivalence": {
+    "primary_oracle": "alpha",
+    "method": "TOST",
+    "raw_score_margin": 0.109,
+    "basis": "frozen thesis alpha C3-vs-C2 firm-paired MDE80",
+    "boundary": "No beta/gamma equivalence claim is made until scale-specific margins are separately frozen."
+  },
+  "quality_gates": {
+    "stage7_stage8_stage9_boundary_verifiers": "PASS_REQUIRED",
+    "prompt_payload_archive_status": "FULL_PAYLOAD_ARCHIVED",
+    "expected_stage8_rows_per_arm": 1725,
+    "expected_stage9_revision_rows_per_arm": 1150,
+    "finite_arm_raw_budget_compliance_aggregate_min": 0.95,
+    "finite_arm_raw_budget_compliance_each_condition_min": 0.9,
+    "c4_c4r_c6_row_alignment": "HARD_FAIL",
+    "additive_identity_tolerance": 1e-12
+  },
+  "stopping_rule": "Stop before the next newly generated live arm if any required payload archive, row-alignment, candidate-library version, or finite-arm compliance gate fails. Reused archives must satisfy the same arm requirements before entering the second amended grid. Do not reuse Gemini 3.5 rows under the Flash-Lite contract. Do not change prompts, thinking level, maxOutputTokens, or exclusions after observing Flash-Lite outcomes; issue a new amendment instead.",
+  "pooling_policy": "Analyze each backend cohort separately. Cross-backend output is a replication table, not a pooled treatment estimate.",
+  "replacement_pilot_policy": {
+    "recommended_first_arm": "gemini31flashlite/0p75",
+    "pilot_may_run_as_partial_grid": true,
+    "pilot_pass_condition": "The existing arm QC verifier must PASS without relaxed thresholds, including 1725 Stage7 rows, zero translational failures, and the frozen finite-arm raw-budget gates.",
+    "completion_policy": "A later full second-amended grid may reuse the successful Flash-Lite 0.75 pilot archive and the four frozen GPT-5.4-mini archives; remaining Flash-Lite arms are newly generated."
+  },
+  "planned_new_live_request_count": 6900,
+  "combined_matched_analysis_request_count": 13800,
+  "excluded_feasibility_cohorts": [
+    {
+      "cohort_id": "haiku45",
+      "reason": "Pre-specified 0.75 quality gate failure",
+      "analysis_status": "PROVIDER_FEASIBILITY_FAILURE_NOT_INCLUDED_IN_MATCHED_INFERENCE"
+    },
+    {
+      "cohort_id": "gemini35flash",
+      "reason": "Frozen thinking-low/maxOutputTokens-1200 provider-feasibility failure with MAX_TOKENS truncation before completion of C4",
+      "analysis_status": "PROVIDER_FEASIBILITY_FAILURE_NOT_INCLUDED_IN_MATCHED_INFERENCE"
+    }
+  ],
+  "analysis_modules": {
+    "primary": "credit_recourse.analysis.c4r_matched_inference_v3",
+    "axis_attribution": "credit_recourse.analysis.n5m_axis_swap_intervention",
+    "equivalence": "credit_recourse.analysis.llm_tost_equivalence"
+  }
+}

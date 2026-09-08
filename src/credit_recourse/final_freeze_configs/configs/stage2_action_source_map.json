@@ -1,0 +1,6 @@
+{
+  "contract_version": "stage2_action_source_map_v1",
+  "policy": "Exact raw item-code/name bindings only; proxy fallback is forbidden.",
+  "source_bindings": {},
+  "notes": "Populate this file with project-specific exact raw item bindings if Stage2 raw-action source precompute reports missing sources."
+}

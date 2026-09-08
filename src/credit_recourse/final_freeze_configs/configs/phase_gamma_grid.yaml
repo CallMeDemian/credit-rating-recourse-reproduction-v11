@@ -1,0 +1,22 @@
+# Active v3 Phase gamma (Stage5 IQL) selection grid. This is the binding
+# selection contract. The legacy rl_oat_sweep_matrix.csv is optional
+# sensitivity-only and must not be used for active winner selection.
+phase_gamma_grid:
+  expectile_tau: [0.5, 0.7, 0.8, 0.9]
+  awr_beta: [1.0, 3.0, 10.0]
+  magnitude_quantile: [P50, P65, P75, P85]
+  encoder_finetune: [frozen, lr_scale_0.1]
+  total_configurations: 96
+selection_metric: inner_dev_q_mean
+selection_window:
+  train: fiscal_year <= 2022
+  dev: fiscal_year == 2023
+final_refit_window:
+  train: fiscal_year <= 2023
+stage6_policy_checkpoint: models/final_freeze/stage5_candidate_iql_final_refit_fulltrain.pt
+oracle_outcomes_policy: winner_only_on_phase_eval_non_winners_forbidden
+
+reporting_policy:
+  phase_gamma_grid: inner_dev_q_mean_sensitivity_only
+  stage6_oracle_outcomes: final_refit_winner_only
+  non_winner_phase_eval_evaluation: forbidden

@@ -1,0 +1,109 @@
+{
+  "schema_version": "n5m_adaptive_selection_contract_v1",
+  "status": "ACTIVE",
+  "created_utc": "2026-07-19T00:00:00+00:00",
+  "research_section": "9.8",
+  "evidence_tier": "EVALUATOR_ONLY_EXPLORATORY_OOF",
+  "budget_order": [
+    "0p75",
+    "1p27",
+    "2p00",
+    "unbounded"
+  ],
+  "oracle_backend": "alpha",
+  "adaptive_budget": {
+    "model": "ridge_regression_per_policy_per_budget",
+    "outer_folds": 5,
+    "repeats": 5,
+    "seed": 20260718,
+    "ridge_alpha": 10.0,
+    "group_key": "row_id",
+    "fixed_budget_baseline_label": "2p00",
+    "numeric_exact_candidates": [
+      "derived__debt_to_assets",
+      "derived__equity_to_assets",
+      "derived__current_ratio",
+      "derived__cash_ratio",
+      "derived__operating_margin",
+      "derived__gross_margin",
+      "derived__net_margin",
+      "derived__roa_proxy",
+      "derived__cogs_to_revenue",
+      "derived__sga_to_revenue",
+      "derived__financial_cost_to_revenue",
+      "derived__capex_to_revenue",
+      "derived__ppe_to_assets",
+      "derived__short_debt_to_total_debt",
+      "derived__long_debt_to_total_debt",
+      "derived__bond_to_total_debt",
+      "derived__inventory_to_revenue",
+      "derived__receivables_to_revenue",
+      "derived__payables_to_revenue",
+      "delta_1y__derived__operating_margin",
+      "delta_1y__derived__debt_to_assets",
+      "delta_1y__derived__current_ratio",
+      "delta_1y__derived__roa_proxy",
+      "year",
+      "fiscal_year",
+      "log_assets",
+      "nf_log_assets"
+    ],
+    "numeric_prefixes": [],
+    "categorical_candidates": [
+      "industry_class",
+      "market",
+      "sector_7"
+    ],
+    "minimum_feature_count": 5,
+    "forbidden_exact": [
+      "candidate_id",
+      "projected_candidate_id",
+      "nearest_candidate_id",
+      "rating_num",
+      "rating_grade",
+      "grade_base_10",
+      "rating_num_10",
+      "grade_base_notch",
+      "rating_num_notch",
+      "reward_train",
+      "reward_raw",
+      "R_score_alpha",
+      "R_score_beta",
+      "R_score_gamma",
+      "delta_R_score_alpha",
+      "delta_R_score_beta",
+      "delta_R_score_gamma"
+    ],
+    "forbidden_prefixes": [
+      "next__",
+      "action__",
+      "action_observed__",
+      "soft_cand_"
+    ],
+    "forbidden_substrings": [
+      "oracle_score",
+      "revision_delta",
+      "revised_delta",
+      "initial_delta"
+    ],
+    "feature_visibility_contract": "stage7_prompt_ic_b",
+    "feature_visibility_source": "credit_recourse.rl.pipelines.final_stage7_llm_action_generation.prompt_builder:IC_A_DERIVED_FEATURES+IC_B_CONTEXT_FEATURES"
+  },
+  "post_c4_gate": {
+    "model": "ridge_regression",
+    "outer_folds": 5,
+    "repeats": 1,
+    "seed": 20260718,
+    "ridge_alpha": 10.0,
+    "group_key": "row_id",
+    "feature_columns": [
+      "c4_final_l1",
+      "c4_projection_distance",
+      "c4_active_dimensions"
+    ],
+    "target_column": "revision_delta_R_score_alpha",
+    "decision_threshold": 0.0,
+    "decision_rule": "select_C6_iff_predicted_revision_gain_gt_zero",
+    "headroom_formula": "(gate_mean - max(C4_mean,C6_mean)) / (hindsight_oracle_mean - max(C4_mean,C6_mean))"
+  }
+}

@@ -1,0 +1,17 @@
+acceptance:
+  ratios_calculated_min: 150
+  quality_pass_total_min: 120
+  lag_coverage_min: 0.95
+ratio_categories:
+  - 수익성
+  - 안정성
+  - 활동성
+  - 성장성
+  - 부채상환능력
+  - 유동성
+growth_ratio:
+  base_year_offset: 1
+  positive_base_only: true
+  cap_extreme: 100.0
+growth_audit:
+  enabled: true

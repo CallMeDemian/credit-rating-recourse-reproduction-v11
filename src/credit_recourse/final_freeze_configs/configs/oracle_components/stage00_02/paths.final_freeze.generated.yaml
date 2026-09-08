@@ -1,0 +1,28 @@
+inputs:
+  stage1b:
+    panel: ${PROJECT_ROOT}\data\final_freeze\stage1_oracle_inputs\stage00_01_rating_statement_integration\firm_year_panel_v1.parquet
+    cleaned_dir: ${PROJECT_ROOT}\data\final_freeze\stage1_oracle_inputs\stage00_01_rating_statement_integration\cleaned_statement_panels
+    raw_long: ${PROJECT_ROOT}\data\final_freeze\stage1_oracle_inputs\stage00_01_rating_statement_integration\financial_statement_items_raw.parquet
+  reference:
+    candidates_xlsx: ${PROJECT_ROOT}\src\credit_recourse\oracle\stage1\stage00_02_ratio_engineering\candidate_ratio_master.xlsx
+    candidates_sheet: 후보_재무비율
+  raw:
+    dir: ${PROJECT_ROOT}\data\raw\raw_all
+    patterns:
+      재무상태표: '*재무상태표*.xlsx'
+      손익계산서: '*손익계산서*.xlsx'
+      현금흐름표: '*현금흐름표*.xlsx'
+      자본변동표: '*자본변동표*.xlsx'
+      이익잉여금처분계산서: '*이익잉여금*.xlsx'
+      재무비율: '*재무비율*.xlsx'
+outputs:
+  results: ${PROJECT_ROOT}\data\final_freeze\stage1_oracle_inputs\stage00_02_financial_ratio_engineering
+  run_log: ${PROJECT_ROOT}\runs\final_freeze\stage00_02_financial_ratio_engineering
+acceptance:
+  ratios_calculated_min: 150
+  quality_pass_min: 100
+  candidates_total_draft_min: 150
+growth_ratio:
+  base_year_offset: 1
+  positive_base_only: true
+  cap_extreme: 100.0

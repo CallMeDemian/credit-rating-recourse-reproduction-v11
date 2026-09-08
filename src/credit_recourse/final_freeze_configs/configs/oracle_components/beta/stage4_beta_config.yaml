@@ -1,0 +1,5 @@
+backend: beta
+model_type: ordered_logit_10grade
+random_seed: 42
+dev_end_year: 2019
+oot_start_year: 2020

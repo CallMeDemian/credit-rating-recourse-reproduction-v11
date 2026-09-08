@@ -1,0 +1,1078 @@
+﻿schema_version: claim_evidence_registry_v4
+contract_version: v4_final_20260719
+allowed_evidence_classes:
+- BOUNDARY_OR_DESIGN_CONTRACT
+- PREREGISTERED
+- EXECUTION_FROZEN_EXTENSION
+- EVALUATOR_ONLY_POST_HOC
+- EXPLORATORY
+- QC_OR_PROTOCOL_AUDIT
+- INTEGRATED_OPERATIONAL_CONCLUSION
+claims:
+- claim_id: C01
+  priority: P3 경계·운영
+  contribution_axis: 검증 우선 평가
+  claim_type: 주장 범위
+  claim_text_ko: 본 연구의 정책가치는 검증된 Oracle 평가기반 내부에서 무행동 또는 비교정책 대비 관측된 상대값이며, 실제 외부등급
+    상승이나 부도위험 감소를 직접 의미하지 않는다.
+  identification: Oracle score Δnoop 및 정책 간 paired contrast
+  scope_text: 전체 논문; 평가한 표본·Oracle·API snapshot
+  key_evidence_text: 평가계약과 주장범위 정의
+  uncertainty_and_decision_rule: 범위 규율; 현실효과 추정 없음
+  source_ids:
+  - S01
+  - S02
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S01_design_contract.json;
+    data/reproduction/claim_evidence/source_extracts/S02_rq_h_lineage.csv | claim
+    filters: S01 contract keys; S02 item=RQ1'
+  allowed_interpretation: 평가기반 내부의 상대 정책가치와 정책 간 차이를 보고한다.
+  forbidden_interpretation: 실제 외부등급 상승, 부도위험 감소 또는 현실 처치효과를 입증했다고 쓰지 않는다.
+  evidence_class: BOUNDARY_OR_DESIGN_CONTRACT
+  evidence_class_label_ko: 주장경계·설계계약
+  lineage:
+  - RQ1
+  freeze_status: FROZEN
+  writing_status: READY
+  decision_ids: []
+  paper_locations:
+  - '1.6'
+  - '3.3'
+  - '7.7'
+  functional_asset_ids:
+  - BOUNDARY_SCOPE
+  prewriting_action: 모든 ‘개선’ 표현을 전수검사
+  final_slots:
+  - BOX-01 / FIG-01A
+- claim_id: C02
+  priority: P0 대표 결론
+  contribution_axis: 검증 우선 평가
+  claim_type: 평가기반 타당성
+  claim_text_ko: Oracle-α는 시간외검증에서 실제 신용등급 이동과 의미 있게 정렬되어, 제한된 상대 정책비교의 주 평가자로 사용할
+    수 있다.
+  identification: OOT 이동기업 방향일치 및 동시점·lead 정렬
+  scope_text: Oracle-α; OOT 이동기업; 동결 표본
+  key_evidence_text: 방향일치율 72.0%, Wilson 95% CI [64.7, 78.4]와 동시점·lead 정렬
+  uncertainty_and_decision_rule: Wilson 95% CI; 사전 gate
+  source_ids:
+  - S01
+  - S03
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S01_design_contract.json;
+    data/reproduction/claim_evidence/source_extracts/S03_oracle_oot_validation.csv
+    | claim filters: S03 oracle=alpha | split=OOT | metrics=direction_agreement,CI,lead'
+  allowed_interpretation: 통제된 상대 정책비교의 평가 관문으로 사용한다.
+  forbidden_interpretation: Oracle이 현실 신용평가를 대체하거나 72%가 정책 성공률이라고 해석하지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - RQ1
+  freeze_status: PATH_CONFIRMATION_REQUIRED
+  writing_status: NOT_READY_PATH
+  decision_ids: []
+  paper_locations:
+  - '3.5'
+  functional_asset_ids:
+  - TAB_ORACLE_OOT_VALIDATION
+  prewriting_action: 정확한 Stage1 원천 파일·필터·열을 확정
+  final_slots:
+  - TAB-03
+  scope:
+    description: Oracle-α; OOT 이동기업; 동결 표본
+  decision_rule:
+    type: registered_evidence_rule
+    expression: Wilson 95% CI; 사전 gate
+- claim_id: C03
+  priority: P1 필수 전제
+  contribution_axis: 검증 우선 평가
+  claim_type: Measurement autopsy
+  claim_text_ko: 초기 simulator-mediated 지표는 시뮬레이터 충실도보다 점수경로 재구성과 부호 산술을 크게 반영했으며,
+    시뮬레이터는 현실 미래예측기가 아니라 공통 반사실 비교장치로 제한해 해석해야 한다.
+  identification: B2 gap의 행 단위 분해·부호편향·clipping 관측성
+  scope_text: B2 재설계 표본 및 substrate diagnostics
+  key_evidence_text: gap decomposition·counterfactual fidelity·structural event slice
+  uncertainty_and_decision_rule: PASS manifest + 행 단위 진단
+  source_ids:
+  - S04
+  - S05
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S04_b2_gap_decomposition.json;
+    data/reproduction/claim_evidence/source_extracts/S05_counterfactual_fidelity.json
+    | claim filters: S04 full report; S05 test3 report'
+  allowed_interpretation: 동일 계산경로에서 정책을 상대 비교하는 substrate로 사용한다.
+  forbidden_interpretation: 다음 해 재무제표나 실현효과를 정확히 예측한다고 쓰지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - RQ1 / measurement autopsy
+  freeze_status: FROZEN
+  writing_status: READY
+  decision_ids: []
+  paper_locations:
+  - '3.3'
+  - '3.6'
+  functional_asset_ids:
+  - FIG_MEASUREMENT_AUTOPSY
+  prewriting_action: 실패→분해→주장축소 순서 유지
+  final_slots:
+  - FIG-01B
+  scope:
+    description: B2 재설계 표본 및 substrate diagnostics
+  decision_rule:
+    type: registered_evidence_rule
+    expression: PASS manifest + 행 단위 진단
+- claim_id: C04
+  priority: P1 필수 전제
+  contribution_axis: 감사·강건성
+  claim_type: 정적 평가해상도
+  claim_text_ko: 세 Oracle은 신용수준을 대체로 정렬하지만 동점률, 행동효과 분산과 기업별 선호행동이 달라 후보행동 차이를 서로
+    다른 해상도로 관측한다.
+  identification: 후보행동 landscape의 동점률·효과분산·Oracle 간 최적행동 합의
+  scope_text: Stage6 candidate landscape; Oracle α/β/γ
+  key_evidence_text: 정적 tie rate, action-effect SD, best-action agreement
+  uncertainty_and_decision_rule: 정적 진단; raw Oracle effect 크기 직접비교 금지
+  source_ids:
+  - S06
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S06_static_evaluator_resolution.csv
+    | claim filters: S06 exact Stage6 artifact pending'
+  allowed_interpretation: 평가함수 구조가 정책효과의 관측분포와 해상도에 영향을 준다고 해석한다.
+  forbidden_interpretation: 정적 구조가 정책효과 자체를 인과적으로 결정한다고 쓰지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - RQ4 / H4-a
+  freeze_status: PATH_CONFIRMATION_REQUIRED
+  writing_status: NOT_READY_PATH
+  decision_ids: []
+  paper_locations:
+  - '3.7'
+  functional_asset_ids:
+  - FIG_EVALUATOR_RESOLUTION_STATIC
+  prewriting_action: 정적 요약 CSV의 exact producer/path 확정
+  final_slots:
+  - FIG-06A
+  scope:
+    description: Stage6 candidate landscape; Oracle α/β/γ
+  decision_rule:
+    type: registered_evidence_rule
+    expression: 정적 진단; raw Oracle effect 크기 직접비교 금지
+- claim_id: C05
+  priority: P1 필수 전제
+  contribution_axis: 검증 우선 평가
+  claim_type: 독립 참조정책
+  claim_text_ko: Candidate-IQL은 Oracle 출력점수를 직접 사용하지 않고 학습되어, LLM과 비교하고 외부 참조로 제공할
+    평가자-분리 독립정책이다.
+  identification: RL 학습보상·입력과 Oracle 평가출력의 기능적 분리
+  scope_text: Candidate-IQL training contract; P50 candidate provenance
+  key_evidence_text: 실제 등급변화·보조보상 사용, Oracle output 미사용
+  uncertainty_and_decision_rule: contract inspection + candidate vector provenance
+  source_ids:
+  - S01
+  - S07
+  - S08
+  - S25
+  canonical_evidence_contract: >-
+    data/reproduction/claim_evidence/source_extracts/S01_design_contract.json;
+    data/reproduction/claim_evidence/source_extracts/S07_p50_candidate_library.yaml;
+    data/reproduction/claim_evidence/source_extracts/S08_candidate_scale_audit.csv;
+    data/reproduction/claim_evidence/source_extracts/S25_candidate_vector_verifier.json
+  allowed_interpretation: 평가자 출력과 기능적으로 분리된 독립 비교·참조정책이라고 부른다.
+  forbidden_interpretation: 완전히 외생적이거나 평가체계와 무관한 정책이라고 쓰지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - RQ2 / training contract
+  freeze_status: PROVENANCE_PENDING
+  writing_status: NOT_READY_PROVENANCE
+  decision_ids:
+  - D03
+  paper_locations:
+  - 4.1–4.4
+  - '4.7'
+  functional_asset_ids:
+  - FIG_TRAIN_EVAL_SEPARATION
+  prewriting_action: P50 YAML 편입 및 Stage4/5 checkpoint·Stage7 rendered vector verifier
+    PASS
+  final_slots:
+  - FIG-01C
+  scope:
+    description: Candidate-IQL training contract; P50 candidate provenance
+  decision_rule:
+    type: registered_evidence_rule
+    expression: contract inspection + candidate vector provenance
+- claim_id: C06
+  priority: P0 대표 결론
+  contribution_axis: 검증 우선 평가
+  claim_type: Reference ladder
+  claim_text_ko: Candidate-IQL은 무행동보다 양의 평균 상대 정책가치를 보였고 시드 수준 평균효과는 안정적이었지만, 모든 Oracle에서
+    휴리스틱보다 우월한 절대 최적정책은 아니었다.
+  identification: C3−C0, C3−C2 및 7-seed 안정성
+  scope_text: Candidate-IQL; α/β/γ; seed 1–7
+  key_evidence_text: IC-b α C3−C0=+0.6303; 7-seed 평균 약 +0.632, SD 약 0.036; 휴리스틱 대비
+    결론은 Oracle 의존
+  uncertainty_and_decision_rule: paired inference + seed mean/SD
+  source_ids:
+  - S09
+  - S10
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S09_stage9_policy_summary.csv;
+    data/reproduction/claim_evidence/source_extracts/S10_rl_seven_seed_summary.csv
+    | claim filters: S09 policy=C3; S10 seeds=1–7'
+  allowed_interpretation: 무행동보다 유효한 평가자-분리 참조정책이라고 쓴다.
+  forbidden_interpretation: 모든 휴리스틱·Oracle·현실 기업행동보다 우월하다고 쓰지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - RQ2
+  freeze_status: PATH_CONFIRMATION_REQUIRED
+  writing_status: NOT_READY_PATH
+  decision_ids:
+  - D03
+  paper_locations:
+  - 4.5–4.7
+  functional_asset_ids:
+  - TAB_REFERENCE_LADDER
+  prewriting_action: 7-seed exact summary path 및 candidate vector verifier 연결
+  final_slots:
+  - TAB-04
+  scope:
+    description: Candidate-IQL; α/β/γ; seed 1–7
+  decision_rule:
+    type: registered_evidence_rule
+    expression: paired inference + seed mean/SD
+- claim_id: C07
+  priority: P1 필수 전제
+  contribution_axis: 행동 인터페이스·생성 제어면
+  claim_type: 출력계약 비교
+  claim_text_ko: 표준 후보행동 선택에서는 LLM이 Candidate-IQL을 일관되게 능가하지 못했으나, 연속 자유작성에서는 더 높은
+    평가점수가 관측되었다.
+  identification: candidate_selection 대 free_form_10d; 각 정책 대 C3
+  scope_text: GPT-5.4-mini; IC-b; Oracle-α; frozen 575
+  key_evidence_text: C3=0.6303, C4 candidate=0.5657, C4 free-form=0.8849, C6 free-form=1.1026
+  uncertainty_and_decision_rule: paired comparisons; H4-b scope
+  source_ids:
+  - S09
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S09_stage9_policy_summary.csv
+    | claim filters: S09 mode/policy/oracle filters'
+  allowed_interpretation: 출력공간이 관측 정책점수에 큰 영향을 미쳤다고 쓴다.
+  forbidden_interpretation: 자유작성 우위가 곧 기업별 판단능력 우위라고 쓰지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - RQ4 / H4-b
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids: []
+  paper_locations:
+  - '5.2'
+  functional_asset_ids:
+  - TAB_STANDARD_VS_FREEFORM
+  prewriting_action: 원점수 제시 직후 귀속질문으로 전환
+  final_slots:
+  - TAB-05
+  scope:
+    description: GPT-5.4-mini; IC-b; Oracle-α; frozen 575
+  decision_rule:
+    type: registered_evidence_rule
+    expression: paired comparisons; H4-b scope
+- claim_id: C08
+  priority: P0 대표 결론
+  contribution_axis: 행동 인터페이스·생성 제어면
+  claim_type: 성과 귀속
+  claim_text_ko: 자유작성 우위는 기업별 맞춤만으로 설명되지 않았고, 행동강도·공통 개선방향·연속적인 다차원 조합이 큰 기여요인으로 나타났으며
+    기업별 매칭은 잔여이득으로 남았다.
+  identification: global mean, row shuffle, L1 rescale, candidate-budget null, nearest
+    projection, sign flip
+  scope_text: GPT-5.4-mini; IC-b 중심; evaluator-only ablation
+  key_evidence_text: 각 대조에서 자유작성 우위가 단계적으로 축소됨
+  uncertainty_and_decision_rule: Evaluator-only post-hoc; 인과 분산분해 아님
+  source_ids:
+  - S11
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S11_freeform_attribution_manifest.json
+    | claim filters: S11 variant-specific paired files'
+  allowed_interpretation: 행동 인터페이스가 관측점수에 크게 기여했다고 쓴다.
+  forbidden_interpretation: 기업별 맞춤능력이 없거나 공식 인과분해가 완료됐다고 쓰지 않는다.
+  evidence_class: EVALUATOR_ONLY_POST_HOC
+  evidence_class_label_ko: Evaluator-only 사후 귀속
+  lineage:
+  - Output-contract ablation
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids: []
+  paper_locations:
+  - '5.3'
+  functional_asset_ids:
+  - FIG_FREEFORM_ATTRIBUTION
+  prewriting_action: 모든 문장에 evaluator-only 지위 표시
+  final_slots:
+  - FIG-02
+  scope:
+    description: GPT-5.4-mini; IC-b 중심; evaluator-only ablation
+- claim_id: C09
+  priority: P1 필수 전제
+  contribution_axis: 행동 인터페이스·생성 제어면
+  claim_type: H1 추론 점수효과
+  claim_text_ko: 평가한 GPT-5.4-mini, GPT-4.1-mini, Haiku 4.5의 사전명세 H1 자유작성 계약에서 추론 유도는
+    점수효과를 낮췄고 세 백엔드 모두 Holm 보정 후 유의했다.
+  identification: 세 백엔드의 사전명세 H1 score contrast
+  scope_text: 'H1 기존 3백엔드 자유작성 코호트: GPT-5.4-mini, GPT-4.1-mini, Haiku 4.5 · IC-b ·
+    free_form_10d. E4 matched-budget QC와는 별도 실행계약'
+  key_evidence_text: 동결 H1 backend-specific 효과는 −0.192/−0.238/−0.245이며 세 백엔드 모두 Holm
+    유의. 정확한 backend–estimate 매핑은 S12의 backend 열을 보존한 canonical extract로 고정한다.
+  uncertainty_and_decision_rule: backend별 paired contrast + Holm. 기존 H1 실행계약 범위 안의
+    판정이며 E4 matched-budget QC를 소급 적용하지 않는다.
+  source_ids:
+  - S12
+  canonical_evidence_contract: data/reproduction/claim_evidence/source_extracts/S12_h1_reasoning_score.csv
+    | backend∈{gpt54mini,gpt41mini,haiku45} | information_condition=IC-b | mode=free_form_10d
+    | columns=backend,contrast,mean_diff,ci_low,ci_high,p_raw,p_holm,decision
+  allowed_interpretation: 사전명세 H1의 3백엔드 자유작성 계약에서 추론 유도의 점수효과가 모두 음수였다고 쓴다.
+  forbidden_interpretation: 추론이 항상 해롭거나 모든 모델·계약에서 내부 사고품질을 낮춘다고 쓰지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - H1
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids:
+  - D10
+  paper_locations:
+  - '5.4'
+  functional_asset_ids:
+  - TAB_REASONING_SCORE_EFFECT
+  prewriting_action: S12 extractor에서 backend label·Holm family·3개 판정을 보존
+  final_slots:
+  - TAB-06C
+  scope:
+    description: 'H1 기존 3백엔드 자유작성 코호트: GPT-5.4-mini, GPT-4.1-mini, Haiku 4.5 · IC-b
+      · free_form_10d. E4 matched-budget QC와는 별도 실행계약'
+    backend:
+    - gpt54mini
+    - gpt41mini
+    - haiku45
+    information_condition: IC-b
+    mode: free_form_10d
+    execution_contract: LEGACY_THREE_BACKEND_REASONING
+  decision_rule:
+    type: registered_evidence_rule
+    expression: backend별 paired contrast + Holm. 기존 H1 실행계약 범위 안의 판정이며 E4 matched-budget
+      QC를 소급 적용하지 않는다.
+- claim_id: C10
+  priority: P1 필수 전제
+  contribution_axis: 행동 인터페이스·생성 제어면
+  claim_type: 정보조건
+  claim_text_ko: 정보범위 확대와 실명 제공은 평균 정책점수를 일관되게 개선하지 않았고, 기업명 인식 여부가 IC-c−IC-b 효과를
+    체계적으로 조절한다는 강건한 증거도 발견되지 않았다.
+  identification: IC-a/b/c 및 recognized 444 대 unrecognized 131의 IC-c−IC-b
+  scope_text: GPT-5.4-mini; 575 firms; 36 conditional tests
+  key_evidence_text: permutation 20,000회; 최소 raw p=0.0217도 Holm p=0.7812
+  uncertainty_and_decision_rule: bootstrap CI + permutation + Holm
+  source_ids:
+  - S13
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S13_icc_recognition_conditional.csv
+    | claim filters: S13 all 36 tests'
+  allowed_interpretation: 인식 여부의 강건한 조절효과가 발견되지 않았다고 쓴다.
+  forbidden_interpretation: 사전학습 오염이 없다고 결론내리지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - RQ5 / H5 + conditional audit
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids: []
+  paper_locations:
+  - '5.5'
+  functional_asset_ids:
+  - TAB_INFORMATION_AND_RECOGNITION
+  prewriting_action: 감사 CSV를 저장소로 이관
+  final_slots:
+  - TAB-06B
+  scope:
+    description: GPT-5.4-mini; 575 firms; 36 conditional tests
+  decision_rule:
+    type: registered_evidence_rule
+    expression: bootstrap CI + permutation + Holm
+- claim_id: C11
+  priority: P2 보조 강건성
+  contribution_axis: 감사·강건성
+  claim_type: 다중해상도 재현성
+  claim_text_ko: 평균 정책가치의 안정성과 기업별 효과순위·행동벡터의 안정성은 구분해야 하며, 집계효과의 반복은 개별 행동의 반복을 보장하지
+    않는다.
+  identification: 시드·live repeat 간 평균효과, firm-level rank, action identity
+  scope_text: RL seeds 1–7; E2/E3 matching GPT repeats
+  key_evidence_text: RL 평균 안정성과 행동정체성 변동; LLM firm-level rank/action identity의 낮은
+    재현성
+  uncertainty_and_decision_rule: 해상도별 별도 지표
+  source_ids:
+  - S10
+  - S19
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S10_rl_seven_seed_summary.csv;
+    data/reproduction/claim_evidence/source_extracts/S19_e2_e3_lineage.csv | claim
+    filters: S10 seed outputs; S19 raw-response/action identity'
+  allowed_interpretation: 재현성을 평균·대비·순위·행동·축·계약 수준으로 분리한다.
+  forbidden_interpretation: 평균이 반복되므로 기업별 권고도 재현된다고 쓰지 않는다.
+  evidence_class: QC_OR_PROTOCOL_AUDIT
+  evidence_class_label_ko: QC·프로토콜 감사
+  lineage:
+  - Reproducibility audit
+  freeze_status: PATH_CONFIRMATION_REQUIRED
+  writing_status: NOT_READY_PATH
+  decision_ids: []
+  paper_locations:
+  - '5.6'
+  - '6.8'
+  functional_asset_ids:
+  - FIG_MULTIRES_REPRODUCIBILITY
+  prewriting_action: RL 7-seed exact path와 firm-level reproducibility 원장 연결
+  final_slots:
+  - FIG-06C
+  scope:
+    description: RL seeds 1–7; E2/E3 matching GPT repeats
+- claim_id: C12
+  priority: P1 필수 전제
+  contribution_axis: 예산계약 조건부 수정
+  claim_type: H3 참조 출처
+  claim_text_ko: LLM은 Candidate-IQL 참조와 무작위 참조에 차별적으로 반응했으며, 자유작성에서 C6이 C6X보다 일관되게
+    높았다.
+  identification: C6−C6X
+  scope_text: 'H3 기존 자유작성 참조출처 코호트: GPT-5.4-mini, GPT-4.1-mini, Haiku · IC-b · free_form_10d.
+    E4 matched-budget QC와는 별도 실행계약'
+  key_evidence_text: 'α: +0.174, +0.310, +0.179; Holm 보정 후 유의'
+  uncertainty_and_decision_rule: Holm-adjusted paired contrast. Haiku H3 결과의 적격성은
+    기존 H3 계약에 한정되며, E4 matched-budget QC 탈락과 혼동하지 않는다.
+  source_ids:
+  - S14
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S14_h3_reference_source.csv
+    | claim filters: S14 contrast=C6-C6X'
+  allowed_interpretation: 참조 정체성에 대한 차별적 반응은 C6−C4R에서 관측된 참조증분이 참조내용의 질과 관련된다는 보조
+    타당성을 제공한다.
+  forbidden_interpretation: C6−C6X가 C6−C4R 식별을 성립시키는 필수 전제라고 쓰지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - H3
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids:
+  - D02
+  - D07
+  paper_locations:
+  - 6.4.1
+  functional_asset_ids:
+  - TAB_REFERENCE_SOURCE
+  prewriting_action: ‘전제’ 표현 전수 제거
+  final_slots:
+  - TAB-08A
+  scope:
+    description: 'H3 기존 자유작성 참조출처 코호트: GPT-5.4-mini, GPT-4.1-mini, Haiku · IC-b ·
+      free_form_10d. E4 matched-budget QC와는 별도 실행계약'
+  decision_rule:
+    type: registered_evidence_rule
+    expression: Holm-adjusted paired contrast. Haiku H3 결과의 적격성은 기존 H3 계약에 한정되며, E4
+      matched-budget QC 탈락과 혼동하지 않는다.
+- claim_id: C13
+  priority: P2 보조 강건성
+  contribution_axis: 예산계약 조건부 수정
+  claim_type: C8 참조 제시 시점
+  claim_text_ko: C8은 참조 제시 시점이 결과에 영향을 미치는지를 확인하기 위한 사전명세 보조대조이며, 효과의 방향과 판정은 paired
+    contrast 원장을 확인한 뒤 확정한다.
+  identification: C8 timing contrast
+  scope_text: GPT-5.4-mini; IC-b; free_form_10d
+  key_evidence_text: 현재 policy mean은 존재하나 exact paired inference 경로 미연결
+  uncertainty_and_decision_rule: paired N·multiplicity family 확인 전 결과형 문장 금지
+  source_ids:
+  - S15
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S15_c8_timing_contrast.csv
+    | claim filters: S15 exact contrast pending'
+  allowed_interpretation: 참조 제시 시점의 효과를 검증하는 분석계약으로 소개한다.
+  forbidden_interpretation: 경로 확인 전 ‘중립요소가 아니었다’ 또는 유의성을 단정하지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - RQ3 / timing control
+  freeze_status: PATH_CONFIRMATION_REQUIRED
+  writing_status: NOT_READY_PATH
+  decision_ids: []
+  paper_locations:
+  - 6.4.1
+  functional_asset_ids:
+  - TAB_REFERENCE_TIMING
+  prewriting_action: C8 paired contrast·Holm family·decision 원장 연결
+  final_slots:
+  - TAB-08B
+  scope:
+    description: GPT-5.4-mini; IC-b; free_form_10d
+  decision_rule:
+    type: registered_evidence_rule
+    expression: paired N·multiplicity family 확인 전 결과형 문장 금지
+- claim_id: C14
+  priority: P0 대표 결론
+  contribution_axis: 예산계약 조건부 수정
+  claim_type: 전체 패키지
+  claim_text_ko: 명시적 총 L1 예산을 부여한 조건에서는 비예산지시 조건보다 전체 수정 패키지 C6−C4의 증분가치가 약했다.
+  identification: finite budget minus no-explicit-budget package interaction
+  scope_text: GPT-5.4-mini 및 Gemini 3.1 Flash-Lite; IC-b; α; matched 575
+  key_evidence_text: 'GPT interactions: −0.2049/−0.0893/−0.1381; Gemini: −0.3520/−0.3057/−0.2776'
+  uncertainty_and_decision_rule: Holm-adjusted interactions; backend 내부 비교
+  source_ids:
+  - S16
+  - S17
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S16_e3_interactions.csv;
+    data/reproduction/claim_evidence/source_extracts/S17_e3_contrasts.csv | claim
+    filters: S16 component=package; S17 within-arm context'
+  allowed_interpretation: 평가한 두 백엔드의 유한 예산계약에서 패키지 증분이 약했다고 쓴다.
+  forbidden_interpretation: 순수 물리적 행동량만의 인과효과 또는 모든 LLM의 보편법칙이라고 쓰지 않는다.
+  evidence_class: EXECUTION_FROZEN_EXTENSION
+  evidence_class_label_ko: 실행 전 동결 확장
+  lineage:
+  - E3
+  - E1 successor
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids:
+  - D01
+  paper_locations:
+  - '6.1'
+  - '6.6'
+  functional_asset_ids:
+  - FIG_BUDGET_COMPONENT_INTERACTION
+  prewriting_action: E1 수치와 무라벨 혼합 금지
+  final_slots:
+  - FIG-04 / TAB-07
+  scope:
+    description: GPT-5.4-mini 및 Gemini 3.1 Flash-Lite; IC-b; α; matched 575
+  decision_rule:
+    type: registered_evidence_rule
+    expression: Holm-adjusted interactions; backend 내부 비교
+- claim_id: C15
+  priority: P0 대표 결론
+  contribution_axis: 예산계약 조건부 수정
+  claim_type: GPT 자기 재검토
+  claim_text_ko: GPT-5.4-mini의 유한예산 조건에서는 자기 재검토 성분이 음수였고 비예산지시 조건에서는 양수여서, 전체 패키지
+    약화는 주로 자기 재검토 성분에서 발생했다.
+  identification: GPT self_revision by budget and finite−no-budget interaction
+  scope_text: GPT-5.4-mini; IC-b; α; matched 575
+  key_evidence_text: 'Within-arm self-review: 0.75 −0.104974, 1.27 −0.046174, 2.00
+    −0.114487, 비예산 +0.041438. Finite−비예산 interaction 분해: package −0.204863/−0.089263/−0.138143
+    = self-review −0.146411/−0.087612/−0.155924 + reference −0.058451/−0.001651/+0.017781.
+    세 유한예산 모두 package 약화의 절대 기여가 self-review interaction에서 더 큼.'
+  uncertainty_and_decision_rule: Paired CI + Holm interaction. ‘주로’는 각 예산에서 |self-review
+    interaction| > |reference interaction|이라는 성분분해에 근거한다.
+  source_ids:
+  - S16
+  - S17
+  - S20
+  - S21
+  canonical_evidence_contract: data/reproduction/claim_evidence/source_extracts/S16_e3_interactions.csv
+    | backend=gpt54mini | oracle=alpha | components={package,self_revision,reference_content_conditional}
+    | budgets={0p75,1p27,2p00} | columns=finite_minus_unbounded_interaction,p_holm
+  allowed_interpretation: 직접 결과는 자기 재검토 성분의 손실이며, 행동구성 분석은 이를 재배분 손실로 해석하는 추가 근거를
+    제공한다.
+  forbidden_interpretation: 모든 GPT 또는 모든 자기수정이 해롭거나 내부 사고가 실패했다고 쓰지 않는다.
+  evidence_class: EXECUTION_FROZEN_EXTENSION
+  evidence_class_label_ko: 실행 전 동결 확장
+  lineage:
+  - E2/E3
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids:
+  - D08
+  paper_locations:
+  - '6.2'
+  - '6.6'
+  functional_asset_ids:
+  - FIG_BUDGET_COMPONENT_INTERACTION
+  prewriting_action: 직접 결과와 재배분 해석을 분리
+  final_slots:
+  - FIG-04 / TAB-07
+  scope:
+    description: GPT-5.4-mini; IC-b; α; matched 575
+  decision_rule:
+    type: component_dominance
+    expression: abs(self_review_interaction) > abs(reference_interaction)
+    required_cells: 3
+- claim_id: C16
+  priority: P1 필수 전제
+  contribution_axis: 예산계약 조건부 수정
+  claim_type: GPT 참조 회복
+  claim_text_ko: GPT-5.4-mini의 참조내용 조건부 증분 C6−C4R은 모든 예산에서 양수였고, 유한예산 자기 재검토 손실을 부분적으로
+    복구했다.
+  identification: GPT reference_content_conditional by budget
+  scope_text: GPT-5.4-mini; IC-b; α; matched 575
+  key_evidence_text: 0.75 +0.0762, 1.27 +0.1330, 2.00 +0.1524, 비예산 +0.1346
+  uncertainty_and_decision_rule: paired CI; TOST margin 0.109
+  source_ids:
+  - S17
+  - S18
+  - S14
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S17_e3_contrasts.csv;
+    data/reproduction/claim_evidence/source_extracts/S18_tost_manifest.json; data/reproduction/claim_evidence/source_extracts/S14_h3_reference_source.csv
+    | claim filters: S17 component=reference; S18 equivalence; S14 auxiliary identity
+    validation'
+  allowed_interpretation: C4R–C6 matched design을 식별 근거로 제시하고 C6–C6X를 참조 정체성에 관한 보조
+    타당화로 연결한다.
+  forbidden_interpretation: 참조가 항상 유익하거나 모든 기업에 자동 적용해야 한다고 쓰지 않는다.
+  evidence_class: EXECUTION_FROZEN_EXTENSION
+  evidence_class_label_ko: 실행 전 동결 확장
+  lineage:
+  - E2/E3 + H3 auxiliary
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids:
+  - D02
+  paper_locations:
+  - '6.2'
+  - 6.4.1
+  - '6.6'
+  functional_asset_ids:
+  - FIG_BUDGET_COMPONENT_INTERACTION
+  prewriting_action: ‘C6X 전제’ 문구 제거
+  final_slots:
+  - FIG-04 / TAB-07
+  scope:
+    description: GPT-5.4-mini; IC-b; α; matched 575
+  decision_rule:
+    type: registered_evidence_rule
+    expression: paired CI; TOST margin 0.109
+- claim_id: C17
+  priority: P0 대표 결론
+  contribution_axis: 예산계약 조건부 수정
+  claim_type: Gemini 참조 민감성
+  claim_text_ko: Gemini 3.1 Flash-Lite의 참조증분 단계는 자기 재검토 단계보다 예산조건에 더 민감했다.
+  identification: Gemini self_revision와 reference_content_conditional의 finite−no-budget
+    interactions
+  scope_text: Gemini 3.1 Flash-Lite; IC-b; α; matched 575
+  key_evidence_text: self-review 약 +0.062~+0.070 대 비예산 +0.0189; reference −0.001/+0.045/+0.081
+    대 비예산 +0.402
+  uncertainty_and_decision_rule: paired CI, Holm interactions, TOST
+  source_ids:
+  - S16
+  - S17
+  - S18
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S16_e3_interactions.csv;
+    data/reproduction/claim_evidence/source_extracts/S17_e3_contrasts.csv; data/reproduction/claim_evidence/source_extracts/S18_tost_manifest.json
+    | claim filters: backend=gemini31flashlite; components=self_revision/reference'
+  allowed_interpretation: 이 직접 결과는 해당 코호트에서 참조 구현 병목과 정합적인 통합 해석을 지지한다.
+  forbidden_interpretation: Gemini가 참조를 이해하지 못하거나 모든 Gemini의 보편법칙이라고 쓰지 않는다.
+  evidence_class: EXECUTION_FROZEN_EXTENSION
+  evidence_class_label_ko: 실행 전 동결 확장
+  lineage:
+  - E3
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids: []
+  paper_locations:
+  - '6.6'
+  functional_asset_ids:
+  - FIG_BUDGET_COMPONENT_INTERACTION
+  prewriting_action: 직접 결과와 ‘병목’ 해석을 분리
+  final_slots:
+  - FIG-04 / TAB-07
+  scope:
+    description: Gemini 3.1 Flash-Lite; IC-b; α; matched 575
+  decision_rule:
+    type: registered_evidence_rule
+    expression: paired CI, Holm interactions, TOST
+- claim_id: C18
+  priority: P1 필수 전제
+  contribution_axis: 행동 인터페이스·생성 제어면
+  claim_type: Raw 생성형성
+  claim_text_ko: 예산계약에 따른 차이는 applied-action clipping 이후에만 발생하지 않았으며, 후처리 이전 raw L1·활성축·행동질량
+    집중도에서 이미 나타났다.
+  identification: finite budget 대 비예산지시의 동일 기업·정책 raw output paired comparison
+  scope_text: GPT-5.4-mini 및 Gemini 3.1 Flash-Lite; C4/C4R/C6
+  key_evidence_text: '예: GPT C4 raw L1 0.75 약 0.432 대 비예산 약 2.298; Gemini 0.721 대
+    2.320'
+  uncertainty_and_decision_rule: paired tests; raw mechanism only
+  source_ids:
+  - S20
+  - S21
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S20_raw_action_summary.csv;
+    data/reproduction/claim_evidence/source_extracts/S21_raw_action_budget_tests.csv
+    | claim filters: budget/backend/condition paired filters'
+  allowed_interpretation: 예산계약이 raw 생성정책을 형성했다는 메커니즘 근거로 쓴다.
+  forbidden_interpretation: 텍스트 예산문구만의 순수효과 또는 raw 행동으로 점수검정을 했다고 쓰지 않는다.
+  evidence_class: QC_OR_PROTOCOL_AUDIT
+  evidence_class_label_ko: QC·프로토콜 감사
+  lineage:
+  - Canonical raw-action audit
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids: []
+  paper_locations:
+  - 6.3.1
+  functional_asset_ids:
+  - FIG_RAW_APPLIED_ACTION_PATH
+  prewriting_action: 감사 산출물을 저장소로 이관
+  final_slots:
+  - FIG-05
+  scope:
+    description: GPT-5.4-mini 및 Gemini 3.1 Flash-Lite; C4/C4R/C6
+- claim_id: C19
+  priority: P1 필수 전제
+  contribution_axis: 행동 인터페이스·생성 제어면
+  claim_type: 축별 후처리
+  claim_text_ko: 총 L1 raw 초과는 대체로 드물었지만, 유효 기업 575개 중 하나 이상의 축에서 hard-bound clipping이
+    발생한 기업 비율은 상당했으며 특히 Gemini 유한예산에서 높아, 예산효과는 raw 생성형성과 후처리의 결합으로 해석해야 한다.
+  identification: raw over-budget, axis clipping, 95% near-budget
+  scope_text: GPT-5.4-mini 및 Gemini 3.1 Flash-Lite; C4/C4R/C6
+  key_evidence_text: '분모는 각 셀의 유효 기업 n=575. axis-bound clipping 기업률은 10개 축 중 하나 이상에서
+    raw≠applied hard-bound clipping이 발생한 기업 수/n. GPT 0.75/C4: raw 총 L1 초과 0.87%, clipping
+    기업률 48.17%, 95% 근접소진 1.04%; Gemini: 0.35%, 76.52%, 34.43%.'
+  uncertainty_and_decision_rule: Canonical denominator=n valid firms. axis_bound_clip_firm_rate는
+    clipped-axis share가 아니라 ≥1 clipped axis를 가진 기업 비율이다.
+  source_ids:
+  - S22
+  canonical_evidence_contract: data/reproduction/claim_evidence/source_extracts/S22_canonical_clipping.csv
+    | backend∈{gpt54mini,gemini31flashlite} | budget=0p75 | policy=C4 | columns=n,total_l1_raw_over_budget_rate,axis_bound_clip_firm_rate,near_95pct_budget_rate
+  allowed_interpretation: 총량 상한 직접구속만으로 설명되지 않지만 축별 clipping도 중요하다고 쓴다.
+  forbidden_interpretation: 후처리를 무시하거나 예산효과가 모두 prompt shaping이라고 쓰지 않는다.
+  evidence_class: QC_OR_PROTOCOL_AUDIT
+  evidence_class_label_ko: QC·프로토콜 감사
+  lineage:
+  - Canonical clipping audit
+  freeze_status: FROZEN
+  writing_status: READY
+  decision_ids:
+  - D09
+  paper_locations:
+  - 6.3.2
+  functional_asset_ids:
+  - TAB_CANONICAL_CLIPPING
+  prewriting_action: 과거 비canonical 수치 전부 제거
+  final_slots:
+  - TAB-07B
+  scope:
+    description: GPT-5.4-mini 및 Gemini 3.1 Flash-Lite; C4/C4R/C6
+- claim_id: C20
+  priority: P2 보조 강건성
+  contribution_axis: 행동 인터페이스·생성 제어면
+  claim_type: 수정 희석
+  claim_text_ko: 제한예산에서 더 작은 행동량이 더 많은 축으로 분산되고 고영향 축의 집중도가 약해지는 경우 이를 ‘수정 희석과 정합적인
+    패턴’으로 해석할 수 있다.
+  identification: C4→C4R의 L1, active dimensions, concentration, removal mass, score
+  scope_text: E3 GPT/Gemini; budget cells
+  key_evidence_text: 일부 raw 패턴 확인; 5개 요건의 동시충족 미확정
+  uncertainty_and_decision_rule: 5개 operational criteria
+  source_ids:
+  - S20
+  - S21
+  - S23
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S20_raw_action_summary.csv;
+    data/reproduction/claim_evidence/source_extracts/S21_raw_action_budget_tests.csv;
+    data/reproduction/claim_evidence/source_extracts/S23_revision_dilution_summary.csv
+    | claim filters: S23 five-criteria output pending'
+  allowed_interpretation: 일부 요건만 확인되면 ‘정합적인 패턴’이라고 쓴다.
+  forbidden_interpretation: 확인 전 초록·서론·장 결론에서 확정적 메커니즘명으로 사용하지 않는다.
+  evidence_class: EVALUATOR_ONLY_POST_HOC
+  evidence_class_label_ko: Evaluator-only 사후 귀속
+  lineage:
+  - Revision-dilution post-hoc
+  freeze_status: CONDITIONAL_NAMING
+  writing_status: CONDITIONAL_ONLY
+  decision_ids: []
+  paper_locations:
+  - 6.3.3
+  functional_asset_ids:
+  - TAB_REVISION_DILUTION
+  prewriting_action: E3 기준 5개 요건 집계
+  final_slots:
+  - APP-TAB-RD
+  scope:
+    description: E3 GPT/Gemini; budget cells
+- claim_id: C21
+  priority: P2 보조 강건성
+  contribution_axis: 감사·강건성
+  claim_type: 성분 상쇄
+  claim_text_ko: 총효과가 0에 가깝더라도 무행동을 의미하지 않으며, Gemini 0.75 참조증분은 여러 축의 양·음 기여가 상쇄된
+    결과와 정합적이다.
+  identification: C4R→C6 axis-level OAT·Shapley, 0.75 대 비예산
+  scope_text: Gemini 3.1 Flash-Lite; α; E3
+  key_evidence_text: 0.75 reference increment 약 −0.001 대 비예산 +0.402; 축별 양·음 기여 상쇄
+  uncertainty_and_decision_rule: 64-permutation Shapley efficiency
+  source_ids:
+  - S24
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S24_shapley_summary.csv
+    | claim filters: backend=gemini31flashlite; transition=C4R_to_C6'
+  allowed_interpretation: 평균 0과 무행동을 구분하고 성분상쇄를 감사해야 한다고 쓴다.
+  forbidden_interpretation: Shapley가 인과기제를 입증한다고 쓰지 않는다.
+  evidence_class: EVALUATOR_ONLY_POST_HOC
+  evidence_class_label_ko: Evaluator-only 사후 귀속
+  lineage:
+  - R2 OAT·Shapley
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids: []
+  paper_locations:
+  - 6.7.2–6.7.3
+  functional_asset_ids:
+  - FIG_SHAPLEY_COMPONENTS
+  prewriting_action: ‘설명적 귀속’ 표기
+  final_slots:
+  - FIG-06B
+  scope:
+    description: Gemini 3.1 Flash-Lite; α; E3
+- claim_id: C22
+  priority: P2 보조 강건성
+  contribution_axis: 감사·강건성
+  claim_type: 실질적 동등성
+  claim_text_ko: 비유의성과 실질적 동등성은 다르며, TOST는 예산별 성분이 ±0.109 범위에서 동등한지를 별도로 판정한다.
+  identification: within-arm 및 finite−no-budget interaction TOST
+  scope_text: Oracle-α; E3 components
+  key_evidence_text: GPT reference 1.27/2.00 interaction은 동등; Gemini self-review interactions는
+    동등, reference는 미확립
+  uncertainty_and_decision_rule: TOST margin ±0.109; 90% CI decision
+  source_ids:
+  - S18
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S18_tost_manifest.json
+    | claim filters: within-arm and interaction decision rows'
+  allowed_interpretation: 동등성 통과와 미확립을 성분별로 구분한다.
+  forbidden_interpretation: p>0.05를 동등성으로 보거나 TOST 실패가 차이를 증명한다고 쓰지 않는다.
+  evidence_class: EXECUTION_FROZEN_EXTENSION
+  evidence_class_label_ko: 실행 전 동결 확장
+  lineage:
+  - R3 Oracle-α TOST
+  freeze_status: FROZEN
+  writing_status: READY
+  decision_ids: []
+  paper_locations:
+  - '6.6'
+  functional_asset_ids:
+  - TAB_TOST_ROBUSTNESS
+  prewriting_action: 증거 클래스와 세부 계보를 분리 유지
+  final_slots:
+  - TAB-08C
+  scope:
+    description: Oracle-α; E3 components
+  decision_rule:
+    type: TOST
+    margin: 0.109
+    interpretation: equivalent_only_when_both_one_sided_tests_pass
+- claim_id: C23
+  priority: P1 필수 전제
+  contribution_axis: 감사·강건성
+  claim_type: 실행계보
+  claim_text_ko: E2와 E3의 matching 0.75·비예산지시 GPT 팔은 E2 output 재사용이 아니라 별도 live batch에서
+    독립적으로 재생성되었다.
+  scope_text: GPT-5.4-mini matching arms
+  source_ids:
+  - S19
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S19_e2_e3_lineage.csv
+    | claim filters: budgets={0.75,no-explicit-budget}'
+  allowed_interpretation: matching 팔의 독립 live repeat라고 쓴다.
+  forbidden_interpretation: E3 전체 또는 1.27·2.00을 E2 반복이라고 쓰지 않는다.
+  evidence_class: QC_OR_PROTOCOL_AUDIT
+  evidence_class_label_ko: QC·프로토콜 감사
+  lineage:
+  - Run-lineage audit
+  freeze_status: FROZEN
+  writing_status: READY
+  decision_ids: []
+  paper_locations:
+  - '6.8'
+  functional_asset_ids:
+  - TAB_RUN_LINEAGE
+  prewriting_action: 감사 원장을 저장소로 이관
+  final_slots:
+  - TAB-09B
+  scope:
+    description: GPT-5.4-mini matching arms
+- claim_id: C24
+  priority: P1 필수 전제
+  contribution_axis: 감사·강건성
+  claim_type: QC 적격성 관문
+  claim_text_ko: 계약 준수는 점수 비교 이전의 적격성 관문이며, 사전 QC를 통과하지 못한 구성은 확증 순위에서 제외해야 한다.
+  identification: 파싱·스키마·예산·축별 준수와 Haiku gate
+  scope_text: Haiku characterization; GPT/Gemini confirmatory cohorts
+  key_evidence_text: Haiku는 사전 QC gate 미통과; E4는 프로토콜 특성화로만 사용
+  uncertainty_and_decision_rule: pre-specified QC decision
+  source_ids:
+  - S26
+  - S27
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S26_e4_qc_manifest.json;
+    data/reproduction/claim_evidence/source_extracts/S27_budget_contract_diff.csv
+    | claim filters: S26 QC manifests; S27 contract equality'
+  allowed_interpretation: 현재 생성계약에서 비교 적격성을 통과한 구성만 확증 순위에 포함한다.
+  forbidden_interpretation: 계약준수만으로 현실 안전성이나 규제준수가 보장된다고 쓰지 않는다.
+  evidence_class: QC_OR_PROTOCOL_AUDIT
+  evidence_class_label_ko: QC·프로토콜 감사
+  lineage:
+  - E4
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids:
+  - D07
+  paper_locations:
+  - '6.5'
+  functional_asset_ids:
+  - TAB_QC_ELIGIBILITY
+  prewriting_action: P50 provenance는 C05 선행조건으로 별도 관리
+  final_slots:
+  - TAB-09A
+  scope:
+    description: Haiku characterization; GPT/Gemini confirmatory cohorts
+- claim_id: C25
+  priority: P2 보조 강건성
+  contribution_axis: 예산계약 조건부 수정
+  claim_type: 사후 이질성·관계적 참조가치
+  claim_text_ko: 참조의 추가가치는 Candidate-IQL의 평균품질만으로 결정되지 않고, 현재 초안 대비 국소 참조우위, 보완·대체
+    방식과 허용된 수정공간에 따라 이질적으로 나타날 수 있다.
+  identification: local reference advantage, complement/substitute, adoption, removal/addition
+  scope_text: E3 C4/C4R/C6 firm-level frame; GPT/Gemini
+  key_evidence_text: E1/N5M에서 최초 관측했으나 headline 근거는 E3 재산출 필요
+  uncertainty_and_decision_rule: post-hoc; shared term and mean-reversion warnings
+  source_ids:
+  - S28
+  - S31
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S28_relational_reference_manifest.json;
+    data/reproduction/claim_evidence/source_extracts/S31_e1_n5m_historical_manifest.json
+    | claim filters: S28 primary E3 output pending; S31 historical only'
+  allowed_interpretation: 관계적 참조가치를 현재 초안과 수정계약의 관계에 대한 사후 해석으로 제시한다.
+  forbidden_interpretation: 기업별 자동 채택규칙 또는 공유항 통제 전 인과 예측변수로 사용하지 않는다.
+  evidence_class: EVALUATOR_ONLY_POST_HOC
+  evidence_class_label_ko: Evaluator-only 사후 귀속
+  lineage:
+  - E3 relational-reference post-hoc
+  freeze_status: RECOMPUTE_REQUIRED
+  writing_status: NOT_READY_RECOMPUTE
+  decision_ids:
+  - D01
+  paper_locations:
+  - 6.4.2
+  functional_asset_ids:
+  - TAB_RELATIONAL_REFERENCE_VALUE
+  prewriting_action: E3 기준 재산출; E1 수치는 historical label 유지
+  final_slots:
+  - APP-TAB-RRV
+  scope:
+    description: E3 C4/C4R/C6 firm-level frame; GPT/Gemini
+- claim_id: C26
+  priority: P1 필수 전제
+  contribution_axis: 행동 인터페이스·생성 제어면
+  claim_type: H2 형식·검토가능성
+  claim_text_ko: 사전명세 H2는 GPT-5.4-mini, GPT-4.1-mini, Haiku 4.5의 기존 자유작성 계약에서 추론 유도가
+    행동규모, 활성축, 표준 후보와의 거리 및 출력 형식·검토가능성 지표를 어떻게 변화시켰는지를 판정한다.
+  identification: 세 백엔드 C5−C4/C7−C6의 projection distance, L1, active dimensions, format
+    failures, reviewability
+  scope_text: 'H2 기존 3백엔드 자유작성 코호트: GPT-5.4-mini, GPT-4.1-mini, Haiku 4.5 · IC-b ·
+    candidate/free-form contracts. E4 matched-budget QC와 별도'
+  key_evidence_text: 구 표 18은 3백엔드 H2 형식효과를 보고했다. backend별 원수치·방향·H4-b 검토가능성 proxy를
+    S29 claim-ready summary로 재산출해야 한다.
+  uncertainty_and_decision_rule: backend별 H2 decision rule + H4-b reviewability proxies.
+    미완료는 범위가 아니라 canonical extract 상태다.
+  source_ids:
+  - S29
+  canonical_evidence_contract: data/reproduction/claim_evidence/source_extracts/S29_h2_format_reviewability.csv
+    | backend∈{gpt54mini,gpt41mini,haiku45} | information_condition=IC-b | columns=backend,contrast,projection_distance,l1,active_dims,format_failures,reviewability_proxy,decision
+  allowed_interpretation: 추론 유도가 출력형식과 행동구조를 변화시켰다고 쓴다.
+  forbidden_interpretation: 내부 추론품질이 향상·악화됐다고 쓰지 않는다.
+  evidence_class: PREREGISTERED
+  evidence_class_label_ko: 사전 명세
+  lineage:
+  - H2 / H4-b
+  freeze_status: RECOMPUTE_REQUIRED
+  writing_status: NOT_READY_RECOMPUTE
+  decision_ids:
+  - D10
+  paper_locations:
+  - '5.4'
+  functional_asset_ids:
+  - TAB_REASONING_FORMAT_EFFECT
+  prewriting_action: 3백엔드 H2 summary producer·verifier 신설; backend별 판정 보존
+  final_slots:
+  - TAB-06D
+  scope:
+    description: 'H2 기존 3백엔드 자유작성 코호트: GPT-5.4-mini, GPT-4.1-mini, Haiku 4.5 · IC-b
+      · candidate/free-form contracts. E4 matched-budget QC와 별도'
+    backend:
+    - gpt54mini
+    - gpt41mini
+    - haiku45
+    information_condition: IC-b
+    mode: free_form_10d
+    execution_contract: LEGACY_THREE_BACKEND_REASONING
+  decision_rule:
+    type: registered_evidence_rule
+    expression: backend별 H2 decision rule + H4-b reviewability proxies. 미완료는 범위가 아니라
+      canonical extract 상태다.
+- claim_id: C27
+  priority: P2 보조 강건성
+  contribution_axis: 감사·강건성
+  claim_type: 동적 평가해상도
+  claim_text_ko: 실제 C4–C4R–C6 정책효과에서 정확한 0, 경계통과 집중과 paired-gap 분포는 Oracle·예산·백엔드에
+    따라 달라질 수 있다.
+  identification: E3 firm frame의 zero/tie/positive/negative, grade-boundary crossing,
+    dispersion
+  scope_text: E3 GPT/Gemini; α/β/γ; all budgets
+  key_evidence_text: N5M 수치는 historical이며 E3 기준 재산출 필요
+  uncertainty_and_decision_rule: exact zero와 grade boundary crossing 분리
+  source_ids:
+  - S30
+  - S31
+  canonical_evidence_contract: 'data/reproduction/claim_evidence/source_extracts/S30_dynamic_resolution_manifest.json;
+    data/reproduction/claim_evidence/source_extracts/S31_e1_n5m_historical_manifest.json
+    | claim filters: S30 primary pending; S31 historical only'
+  allowed_interpretation: 평가함수의 동적 관측해상도를 E3 코호트 기준으로 보고한다.
+  forbidden_interpretation: N5M 0 비율을 E3 수치처럼 재사용하거나 효과 자체의 인과결정으로 해석하지 않는다.
+  evidence_class: EXECUTION_FROZEN_EXTENSION
+  evidence_class_label_ko: 실행 전 동결 확장
+  lineage:
+  - E3 dynamic-resolution extension
+  freeze_status: RECOMPUTE_REQUIRED
+  writing_status: NOT_READY_RECOMPUTE
+  decision_ids:
+  - D01
+  paper_locations:
+  - 6.7.1
+  functional_asset_ids:
+  - FIG_EVALUATOR_RESOLUTION_DYNAMIC
+  prewriting_action: E3 dynamic-resolution producer·verifier 신설
+  final_slots:
+  - FIG-06A
+  scope:
+    description: E3 GPT/Gemini; α/β/γ; all budgets
+  decision_rule:
+    type: dynamic_resolution_contract
+    expression: explicit_oracle_grade_mapping_not_floor_score
+- claim_id: C28
+  priority: P0 대표 결론
+  contribution_axis: 배포 정책 시스템
+  claim_type: 통합 운영결론
+  claim_text_ko: 금융기관이 검증하고 승인해야 할 대상은 모델명이 아니라 평가자, 생성계약, 후보 라이브러리, 수정·참조 절차와 후처리가
+    결합된 배포 정책 시스템이다.
+  identification: 전체 증거사슬의 통합
+  scope_text: 본 연구가 평가한 표본·모델·계약 범위
+  key_evidence_text: Oracle gate, 독립 참조, 출력계약 귀속, 예산·수정 분해, QC와 재현성
+  uncertainty_and_decision_rule: 규범적·운영적 귀결; 외부 규제승인 아님
+  source_ids:
+  - S01
+  - S08
+  - S14
+  - S16
+  - S24
+  - S26
+  canonical_evidence_contract: data/reproduction/claim_evidence/source_extracts/S01_design_contract.json;
+    data/reproduction/claim_evidence/source_extracts/S08_candidate_scale_audit.csv;
+    data/reproduction/claim_evidence/source_extracts/S14_h3_reference_source.csv;
+    data/reproduction/claim_evidence/source_extracts/S16_e3_interactions.csv; data/reproduction/claim_evidence/source_extracts/S24_shapley_summary.csv;
+    data/reproduction/claim_evidence/source_extracts/S26_e4_qc_manifest.json | cross-claim
+    synthesis
+  allowed_interpretation: 모델 단독이 아니라 deployment configuration 전체를 평가·감사·승인해야 한다고 제안한다.
+  forbidden_interpretation: 특정 모델의 규제승인이나 현실 안전성이 입증됐다고 쓰지 않는다.
+  evidence_class: INTEGRATED_OPERATIONAL_CONCLUSION
+  evidence_class_label_ko: 통합 운영결론
+  lineage:
+  - Integrated conclusion
+  freeze_status: FROZEN
+  writing_status: READY_WITH_BOUNDARY
+  decision_ids:
+  - D03
+  - D04
+  - D12
+  paper_locations:
+  - 7.4–7.6
+  - '7.8'
+  functional_asset_ids:
+  - FIG_DEPLOYMENT_POLICY_SYSTEM
+  prewriting_action: S32 final reproduction manifest는 실증 근거가 아니라 verification package의
+    runtime reproducibility status link로 별도 연결
+  final_slots:
+  - FIG-07
+  scope:
+    description: 본 연구가 평가한 표본·모델·계약 범위

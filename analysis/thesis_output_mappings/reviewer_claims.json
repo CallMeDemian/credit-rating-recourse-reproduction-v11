@@ -1,0 +1,138 @@
+{
+  "schema_version": "reviewer_core_claims_v11",
+  "purpose": "교수·심사위원이 논문의 핵심 실증 주장과 실제 실행 산출물에서 다시 계산한 값을 바로 대조하기 위한 목록",
+  "claims": [
+    {
+      "claim_key": "ORACLE_VALIDITY",
+      "category": "Oracle 타당성",
+      "title": "Oracle-α의 등급 수준·선행 변화방향 타당성",
+      "token_ids": ["NC0106-01", "NC0106-03", "NC0106-04", "NC0106-05", "NC0106-06"]
+    },
+    {
+      "claim_key": "SIMULATOR_FIDELITY",
+      "category": "Simulator 타당성",
+      "title": "Simulator와 실제 재무상태 점수의 차이·순위·변화방향",
+      "token_ids": ["NC0117-01", "NC0117-02", "NC0117-03", "NC0117-04", "NC0119-01", "NC0120-02", "NC0120-03", "NC0120-04", "NC0120-05", "NC0120-06"]
+    },
+    {
+      "claim_key": "CANDIDATE_IQL",
+      "category": "RL 결과",
+      "title": "Candidate-IQL의 무행동 및 휴리스틱 대비 정책가치",
+      "token_ids": ["NC0127-01", "NC0127-02", "NC0127-03", "NC0127-04", "NC0127-05", "NC0127-06"]
+    },
+    {
+      "claim_key": "CANDIDATE_UPPER_BOUND",
+      "category": "RL 결과",
+      "title": "기업별 11개 표준행동 중 Oracle-α 최선행동 상한과 Candidate-IQL",
+      "token_ids": ["NC0256-02", "NC0256-03"]
+    },
+    {
+      "claim_key": "LLM_H1_REASONING",
+      "category": "LLM 실험",
+      "title": "추론 유도 지시의 정책가치 변화(C5−C4)",
+      "token_ids": ["NC0141-02", "NC0141-04", "NC0141-06"]
+    },
+    {
+      "claim_key": "LLM_H3_REFERENCE",
+      "category": "LLM 실험",
+      "title": "Candidate-IQL 참조내용의 증분효과(C6−C6X)",
+      "token_ids": ["NC0152-04", "NC0153-03", "NC0153-04"]
+    },
+    {
+      "claim_key": "LLM_CANDIDATE_C6_C8",
+      "category": "LLM 실험",
+      "title": "후보행동 선택에서 C6와 C8의 정책가치",
+      "token_ids": ["NC0155-02", "NC0155-03", "NC0155-05", "NC0155-06", "NC0155-08", "NC0155-09"]
+    },
+    {
+      "claim_key": "LLM_FREE_C6_C8",
+      "category": "LLM 실험",
+      "title": "자유작성에서 C6와 C8의 정책가치",
+      "token_ids": ["NC0156-02", "NC0156-03", "NC0156-05", "NC0156-06", "NC0156-08", "NC0156-09"]
+    },
+    {
+      "claim_key": "LLM_ABLATION",
+      "category": "LLM 행동분석",
+      "title": "원행동·평균행동·1,000회 재배정·L1 축소·최근접 후보의 정책가치",
+      "token_ids": ["NC0182-01", "NC0182-02", "NC0182-05", "NC0185-02", "NC0185-03", "NC0184-01"]
+    },
+    {
+      "claim_key": "LLM_REPEATABILITY",
+      "category": "반복성",
+      "title": "같은 모델 반복 실행과 서로 다른 모델 간 기업별 행동·정책가치 비교",
+      "token_ids": ["NC0167-01", "NC0167-02", "NC0167-03", "NC0167-04", "NC0168-01", "NC0168-02", "NC0168-03", "NC0168-04"]
+    },
+    {
+      "claim_key": "ACTION_SIZE_AND_CLIPPING",
+      "category": "LLM 행동분석",
+      "title": "제안행동 L1·총 L1 위반·변수별 허용범위 적용·적용행동의 상한 사용률",
+      "token_ids": ["NC0197-03", "NC0197-04", "NC0197-06", "NC0197-07", "NC0197-10", "NC0197-12", "NC0198-04", "NC0198-06", "NC0199-04", "NC0199-06"]
+    },
+    {
+      "claim_key": "GPT54_SELF_REVISION",
+      "category": "C4/C4R/C6 분기",
+      "title": "GPT-5.4-mini 자기 재검토 효과(C4R−C4)",
+      "token_ids": ["NC0214-03", "NC0214-05", "NC0214-07", "NC0214-08"]
+    },
+    {
+      "claim_key": "GPT54_BUDGET_INTERACTION",
+      "category": "C4/C4R/C6 분기",
+      "title": "GPT-5.4-mini 행동크기 상한에 따른 자기 재검토·외부참조·전체효과 차이",
+      "token_ids": ["NC0191-03", "NC0191-05", "NC0191-07", "NC0215-02", "NC0215-03", "NC0215-04", "NC0215-06", "NC0215-07", "NC0215-08", "NC0215-10", "NC0215-11", "NC0215-12"]
+    },
+    {
+      "claim_key": "GEMINI_SELF_REVISION",
+      "category": "C4/C4R/C6 분기",
+      "title": "Gemini 3.1 자기 재검토 효과와 무지시 조건 대비 차이",
+      "token_ids": ["NC0218-03", "NC0218-05", "NC0218-07", "NC0218-08", "NC0218-09", "NC0218-10", "NC0218-11"]
+    },
+    {
+      "claim_key": "GEMINI_REFERENCE",
+      "category": "C4/C4R/C6 분기",
+      "title": "Gemini 3.1 외부 정책참조 효과와 행동크기 상한의 감소폭",
+      "token_ids": ["NC0219-01", "NC0219-03", "NC0219-05", "NC0219-07", "NC0219-08", "NC0219-09", "NC0219-10", "NC0219-12", "NC0219-14", "NC0219-16"]
+    },
+    {
+      "claim_key": "FIRM_WIN_TIE_LOSS",
+      "category": "기업별 결과",
+      "title": "자기 재검토 및 외부 정책참조의 기업별 증가·동률·감소 건수",
+      "token_ids": ["NC0227-03", "NC0227-04", "NC0227-05", "NC0227-06", "NC0228-02", "NC0228-03", "NC0228-05", "NC0228-07", "NC0228-09", "NC0228-10"]
+    },
+    {
+      "claim_key": "DECOMPOSITION_SAMPLE",
+      "category": "분산분해",
+      "title": "공통 IC-b 분산분해 표본",
+      "token_ids": ["NC0231-01", "NC0231-02", "NC0231-03", "NC0231-04"]
+    },
+    {
+      "claim_key": "DECOMPOSITION_SHARES",
+      "category": "분산분해",
+      "title": "정책 하네스와 파운데이션 모델이 설명한 기업 내 변동 비율",
+      "token_ids": ["NC0232-01", "NC0232-02", "NC0232-03", "NC0232-04", "NC0232-05", "NC0232-06", "NC0232-07"]
+    },
+    {
+      "claim_key": "GPT54_AXIS_CONTRIBUTIONS",
+      "category": "행동항목 기여",
+      "title": "GPT-5.4-mini 0.75 조건의 C4R−C4 및 C6−C4R 항목별 기여",
+      "token_ids": ["NC0237-04", "NC0237-05", "NC0237-06", "NC0237-08", "NC0237-09"]
+    },
+    {
+      "claim_key": "GEMINI_AXIS_CONTRIBUTIONS",
+      "category": "행동항목 기여",
+      "title": "Gemini 3.1 0.75 조건의 C6−C4R 항목별 기여",
+      "token_ids": ["NC0238-04", "NC0238-05", "NC0238-06"]
+    },
+    {
+      "claim_key": "E2_E3_COMPONENT_REPEAT",
+      "category": "반복성",
+      "title": "E2와 E3의 자기 재검토·외부참조·전체효과 반복",
+      "token_ids": ["NC0245-02", "NC0245-03", "NC0245-04", "NC0245-05", "NC0245-06", "NC0245-07", "NC0246-01", "NC0246-02", "NC0246-03", "NC0246-04", "NC0246-05", "NC0246-06"]
+    },
+    {
+      "claim_key": "INCREMENT_REPEATABILITY",
+      "category": "반복성",
+      "title": "절대 정책가치와 외부참조 증분효과의 기업별 순위 반복성",
+      "token_ids": ["NC0247-02", "NC0247-03"]
+    }
+  ]
+}

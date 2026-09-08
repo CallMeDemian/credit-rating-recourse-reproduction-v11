@@ -1,0 +1,115 @@
+{
+  "artifact_name": "final_expected_schema_artifacts",
+  "required_expected_schema_path": "configs_frozen/schema/final_avs256_acd_v2_feature_schema_expected.json",
+  "schema_version": "AVS256_BLOCK_AWARE_ACD_V2",
+  "feature_universe_policy": "avs256_audited_universe_129_features_with_acd_interaction",
+  "continuous_feature_count_expected": 129,
+  "categorical_feature_count_expected": 2,
+  "categorical_columns_expected": [
+    "market",
+    "industry_class"
+  ],
+  "block_realized_count_expected": {
+    "SIM_ACCOUNT_UCODE": 44,
+    "ACTION_CAPACITY": 11,
+    "MARGIN_COST": 8,
+    "LEVERAGE_DEBT": 4,
+    "LIQUIDITY": 6,
+    "RETAINED_EQUITY": 3,
+    "TREND_DELTA": 30,
+    "PEER_RELATIVE": 15,
+    "CONTEXT_COHORT": 2,
+    "TRANSITION_PROXIMITY": 6
+  },
+  "direction_vocab_required": [
+    "neutral",
+    "lower_good",
+    "higher_good",
+    "higher_good_direction_adjusted"
+  ],
+  "acd_head_required": {
+    "class": "ActionConditionalForwardHead",
+    "uses_interaction_term": true,
+    "interaction_form": "phi_times_a_emb_with_per_target_gate",
+    "action_emb_dim": 64,
+    "n_acd_targets_expected": 118,
+    "acd_excluded_blocks": [
+      "RETAINED_EQUITY",
+      "CONTEXT_COHORT",
+      "TRANSITION_PROXIMITY"
+    ]
+  },
+  "ssl_loss_weights_required": {
+    "mcm_weight": 1.0,
+    "acd_weight": 0.5,
+    "contrastive_weight": 0.3
+  },
+  "architecture_required": {
+    "input_dim_continuous": 129,
+    "input_dim_categorical": 2,
+    "hidden_dim_allowed": [
+      256,
+      384
+    ],
+    "hidden_dim_selected_by": "phase_alpha_winner_hidden_dim",
+    "n_layers": 4,
+    "n_heads": 8,
+    "ff_multiplier": 4,
+    "dropout": 0.1,
+    "activation": "gelu",
+    "norm_first": true,
+    "cls_token": true,
+    "missing_emb_states": 3,
+    "architecture_change_record": "Final v3 AVS256 block-aware encoder uses d_model=256, n_heads=8, n_layers=4, ff_multiplier=4 in code and binding schema."
+  },
+  "forbidden_fields": [
+    "clipped_embedding",
+    "clipped_mask",
+    "clipped_flag",
+    "use_clipped_embedding"
+  ],
+  "required_fields": [
+    "schema_version",
+    "contract_version",
+    "contract_hash",
+    "schema_hash",
+    "continuous_columns",
+    "categorical_columns",
+    "categorical_vocab",
+    "n_categorical_tokens",
+    "n_categorical_fields",
+    "feature_blocks",
+    "feature_directions",
+    "feature_block_ids",
+    "feature_direction_ids",
+    "block_vocab",
+    "direction_vocab",
+    "action_columns",
+    "action_bounds",
+    "acd_target_columns",
+    "acd_target_indices_in_feature_list",
+    "acd_head_class",
+    "acd_uses_interaction",
+    "acd_action_emb_dim",
+    "mcm_weight",
+    "acd_weight",
+    "contrastive_weight",
+    "rating_derived_feature_treatment",
+    "column_lineage"
+  ],
+  "encoder_acd_separation_invariant": "encoder.forward(x, missing_mask, cat) operates on x of shape (B, 129) and is invariant under ACD-head behavior; gate saturation, ACD-weight zeroing, or ACD-target absence on some rows do not change the encoder input dimension or the downstream forward signature",
+  "status": "binding_contract_for_final_rerun_avs256_acd_v2",
+  "schema_architecture_note": "129 is the realized continuous input feature count. hidden_dim/d_model is selected by Phase alpha from [256, 384]. Legacy 128-dim text is non-active and must not appear as a binding template requirement.",
+  "phase_column_policy": {
+    "common_state_columns": "129 continuous state features + 2 categorical fields must appear in all phases",
+    "next_target_columns": "required only on phase1_pretrain, phase2_bc, phase3_iql; forbidden on phase_eval and phase_eval_candidate.parquet",
+    "phase_eval_policy": "phase_eval_candidate_is_state_only_for_primary_stage6_policy_evaluation",
+    "phase_eval_policy_note": "Active Stage2/Stage6 code and verifier require phase_eval_candidate.parquet to remain state-only: no action, reward, candidate_id, projection, or next-state columns. C_obs/raw-action diagnostics are secondary inner-dev only."
+  },
+  "transition_proximity_required": {
+    "status_required_final": "computed",
+    "active_stage": "Stage2 transition-proximity subtask",
+    "legacy_artifact_dependency_allowed": false,
+    "smoke_test_only_status": "imputed_baseline_pending_cluster_build"
+  }
+}

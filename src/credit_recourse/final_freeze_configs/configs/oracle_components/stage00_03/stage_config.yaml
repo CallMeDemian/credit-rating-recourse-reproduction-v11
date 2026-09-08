@@ -1,0 +1,30 @@
+sector_7_mapping:
+  default_unknown: 미분류
+  priority_order:
+    - market
+    - industry
+industry_avg_rating:
+  min_n_threshold: 10
+industry_risk_v3_2:
+  min_n_threshold: 10
+event_windows:
+  cap_change_window_years: 3
+  ma_window_years: 3
+  operating_loss_window_years: 3
+  lawsuit_window_years: 3
+quality_filter:
+  missing_rate_max: 0.95
+  weak_signal_unique_count_threshold: 1
+  candidate_but_missingness_caveat_min_rate: 0.80
+acceptance:
+  panel_total_rows_min: 1
+  panel_total_rows_op: ge
+  category_min_quality_pass: 1
+  category_min_selected_eligible: 1
+  industry_risk_min_candidates: 1
+acceptance_v3_2:
+  panel_total_rows_min: 1
+  panel_total_rows_op: ge
+  category_min_quality_pass: 1
+  category_min_selected_eligible: 1
+  industry_risk_min_eligible_v3_2: 1

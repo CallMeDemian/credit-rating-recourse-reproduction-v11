@@ -1,0 +1,5 @@
+priority_order:
+  - sector_7
+  - 시장
+  - industry_name
+default_unknown: 미분류

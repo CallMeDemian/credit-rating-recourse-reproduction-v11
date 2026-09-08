@@ -1,0 +1,508 @@
+﻿schema_version: thesis_visual_claim_map_v1
+description: Canonical thesis visual-asset links to the display-slot and claim registries.
+assets:
+- asset_id: A1
+  slot_id: TAB-03
+  claim_ids:
+  - C02
+  - C03
+  - C04
+  paper_section: 3.5–3.7
+- asset_id: A2
+  slot_id: TAB-03
+  claim_ids:
+  - C02
+  paper_section: '3.5'
+- asset_id: A3
+  slot_id: FIG-06
+  claim_ids:
+  - C04
+  paper_section: '3.7'
+- asset_id: A4
+  slot_id: TAB-03
+  claim_ids:
+  - C02
+  - C03
+  paper_section: '3.5'
+- asset_id: A5
+  slot_id: TAB-03
+  claim_ids:
+  - C04
+  paper_section: '3.7'
+- asset_id: A6
+  slot_id: FIG-06
+  claim_ids:
+  - C04
+  paper_section: '3.7'
+- asset_id: A7
+  slot_id: TAB-03
+  claim_ids:
+  - C04
+  paper_section: '3.7'
+- asset_id: A8
+  slot_id: FIG-06
+  claim_ids:
+  - C04
+  paper_section: '3.7'
+- asset_id: A9
+  slot_id: FIG-06
+  claim_ids:
+  - C03
+  - C04
+  paper_section: 4.2.3
+- asset_id: B1
+  slot_id: TAB-02
+  claim_ids:
+  - C01
+  - C03
+  - C05
+  paper_section: 3.2–3.4
+- asset_id: B2
+  slot_id: TAB-02
+  claim_ids:
+  - C01
+  - C03
+  paper_section: '3.2'
+- asset_id: B3
+  slot_id: TAB-02
+  claim_ids:
+  - C03
+  paper_section: '3.2'
+- asset_id: B4
+  slot_id: TAB-02
+  claim_ids:
+  - C03
+  - C05
+  paper_section: 3.2–4.2
+- asset_id: C1
+  slot_id: TAB-04
+  claim_ids:
+  - C05
+  - C06
+  paper_section: '4.5'
+- asset_id: C2
+  slot_id: TAB-04
+  claim_ids:
+  - C05
+  - C06
+  paper_section: '4.5'
+- asset_id: C3
+  slot_id: TAB-04
+  claim_ids:
+  - C05
+  - C06
+  paper_section: '4.5'
+- asset_id: C4
+  slot_id: TAB-04
+  claim_ids:
+  - C06
+  - C11
+  paper_section: '4.7'
+- asset_id: C5
+  slot_id: TAB-04
+  claim_ids:
+  - C06
+  - C11
+  paper_section: '4.7'
+- asset_id: C6
+  slot_id: TAB-04
+  claim_ids:
+  - C06
+  paper_section: '4.6'
+- asset_id: C7
+  slot_id: TAB-04
+  claim_ids:
+  - C06
+  - C11
+  paper_section: 4.6–4.7
+- asset_id: C8
+  slot_id: TAB-04
+  claim_ids:
+  - C06
+  paper_section: '4.4'
+- asset_id: C9
+  slot_id: TAB-04
+  claim_ids:
+  - C06
+  - C11
+  paper_section: '4.6'
+- asset_id: D1
+  slot_id: TAB-06
+  claim_ids:
+  - C07
+  - C08
+  - C09
+  - C10
+  paper_section: 5.2–5.5
+- asset_id: D2
+  slot_id: TAB-05
+  claim_ids:
+  - C07
+  - C08
+  paper_section: 5.2–5.3
+- asset_id: D3
+  slot_id: TAB-06
+  claim_ids:
+  - C10
+  paper_section: '5.5'
+- asset_id: D4
+  slot_id: TAB-05
+  claim_ids:
+  - C07
+  - C08
+  paper_section: '5.2'
+- asset_id: D5
+  slot_id: TAB-05
+  claim_ids:
+  - C07
+  - C08
+  paper_section: '5.2'
+- asset_id: D6
+  slot_id: TAB-06
+  claim_ids:
+  - C08
+  - C11
+  paper_section: 5.3–5.5
+- asset_id: D7
+  slot_id: FIG-06
+  claim_ids:
+  - C11
+  paper_section: '5.5'
+- asset_id: D8
+  slot_id: TAB-09
+  claim_ids:
+  - C11
+  paper_section: '5.6'
+- asset_id: D9
+  slot_id: TAB-09
+  claim_ids:
+  - C11
+  paper_section: '5.6'
+- asset_id: D10
+  slot_id: FIG-07
+  claim_ids:
+  - C07
+  - C28
+  paper_section: 7.2
+- asset_id: E1
+  slot_id: TAB-07
+  claim_ids:
+  - C14
+  - C15
+  - C16
+  - C17
+  paper_section: '6.1'
+- asset_id: E2
+  slot_id: FIG-04
+  claim_ids:
+  - C14
+  - C15
+  - C16
+  - C17
+  paper_section: '6.1'
+- asset_id: E3
+  slot_id: FIG-04
+  claim_ids:
+  - C14
+  - C15
+  - C16
+  - C17
+  paper_section: '6.1'
+- asset_id: E4
+  slot_id: TAB-07
+  claim_ids:
+  - C18
+  - C19
+  paper_section: '6.3'
+- asset_id: E5
+  slot_id: FIG-05
+  claim_ids:
+  - C18
+  - C19
+  - C20
+  paper_section: '6.3'
+- asset_id: E6
+  slot_id: TAB-09
+  claim_ids:
+  - C24
+  paper_section: 6.5
+- asset_id: E7
+  slot_id: FIG-05
+  claim_ids:
+  - C18
+  - C19
+  - C20
+  paper_section: 6.4
+- asset_id: F1
+  slot_id: TAB-07
+  claim_ids:
+  - C14
+  - C15
+  - C16
+  - C17
+  paper_section: '6.2'
+- asset_id: F2
+  slot_id: FIG-04
+  claim_ids:
+  - C14
+  - C15
+  - C16
+  - C17
+  paper_section: '6.2'
+- asset_id: F3
+  slot_id: FIG-04
+  claim_ids:
+  - C14
+  - C15
+  - C16
+  - C17
+  paper_section: '6.2'
+- asset_id: F4
+  slot_id: TAB-07
+  claim_ids:
+  - C14
+  - C15
+  - C16
+  - C17
+  paper_section: '6.2'
+- asset_id: F5
+  slot_id: FIG-04
+  claim_ids:
+  - C14
+  - C15
+  - C16
+  - C17
+  paper_section: '6.2'
+- asset_id: F6
+  slot_id: TAB-08
+  claim_ids:
+  - C12
+  - C13
+  paper_section: '6.4'
+- asset_id: F7
+  slot_id: FIG-06
+  claim_ids:
+  - C11
+  - C27
+  paper_section: 6.7
+- asset_id: F8
+  slot_id: FIG-06
+  claim_ids:
+  - C21
+  paper_section: 6.8.2
+- asset_id: G1
+  slot_id: TAB-08
+  claim_ids:
+  - C21
+  - C22
+  - C27
+  paper_section: 6.6–6.8
+- asset_id: G2
+  slot_id: FIG-06
+  claim_ids:
+  - C21
+  - C27
+  paper_section: 6.7–6.8
+- asset_id: G3
+  slot_id: FIG-06
+  claim_ids:
+  - C21
+  - C27
+  paper_section: '6.7'
+- asset_id: G4
+  slot_id: TAB-08
+  claim_ids:
+  - C22
+  paper_section: '6.6'
+- asset_id: G5
+  slot_id: FIG-07
+  claim_ids:
+  - C07
+  - C12
+  - C15
+  - C28
+  paper_section: 7.1
+- asset_id: G6
+  slot_id: FIG-06
+  claim_ids:
+  - C27
+  paper_section: 6.8.3
+- asset_id: H1
+  slot_id: TAB-06
+  claim_ids:
+  - C10
+  - C26
+  paper_section: '5.5'
+- asset_id: H2
+  slot_id: TAB-06
+  claim_ids:
+  - C10
+  - C26
+  paper_section: '5.5'
+- asset_id: H3
+  slot_id: TAB-06
+  claim_ids:
+  - C10
+  paper_section: '5.5'
+- asset_id: H4
+  slot_id: TAB-06
+  claim_ids:
+  - C10
+  paper_section: '5.5'
+- asset_id: I1
+  slot_id: TAB-08
+  claim_ids:
+  - C12
+  - C13
+  paper_section: '6.4'
+- asset_id: I2
+  slot_id: TAB-08
+  claim_ids:
+  - C12
+  - C13
+  paper_section: '6.4'
+- asset_id: I3
+  slot_id: TAB-08
+  claim_ids:
+  - C12
+  - C13
+  paper_section: '6.4'
+- asset_id: I4
+  slot_id: TAB-08
+  claim_ids:
+  - C12
+  - C13
+  paper_section: '6.4'
+- asset_id: I5
+  slot_id: FIG-06
+  claim_ids:
+  - C11
+  - C23
+  paper_section: 5.6–6.9
+- asset_id: I6
+  slot_id: TAB-09
+  claim_ids:
+  - C23
+  paper_section: 5.6
+- asset_id: J1
+  slot_id: FIG-02
+  claim_ids:
+  - C08
+  paper_section: '5.3'
+- asset_id: J2
+  slot_id: FIG-02
+  claim_ids:
+  - C08
+  paper_section: '5.3'
+- asset_id: J3
+  slot_id: FIG-02
+  claim_ids:
+  - C08
+  paper_section: '5.3'
+- asset_id: K1
+  slot_id: FIG-01
+  claim_ids:
+  - C01
+  - C03
+  - C05
+  paper_section: 1.2; 2.2–2.5
+- asset_id: K2
+  slot_id: FIG-01
+  claim_ids:
+  - C01
+  - C03
+  - C05
+  paper_section: '1.2'
+- asset_id: K3
+  slot_id: FIG-03
+  claim_ids:
+  - C12
+  - C13
+  paper_section: 2.5; 6.4
+- asset_id: K4
+  slot_id: FIG-03
+  claim_ids:
+  - C14
+  - C15
+  - C16
+  - C17
+  paper_section: '6.2'
+- asset_id: K5
+  slot_id: FIG-01
+  claim_ids:
+  - C02
+  - C03
+  - C04
+  paper_section: 3.5–3.7
+- asset_id: L1
+  slot_id: TAB-07
+  claim_ids:
+  - C18
+  - C19
+  - C20
+  paper_section: Appendix
+- asset_id: L2
+  slot_id: TAB-08
+  claim_ids:
+  - C12
+  - C13
+  paper_section: Appendix
+- asset_id: L3
+  slot_id: TAB-09
+  claim_ids:
+  - C11
+  paper_section: Appendix
+- asset_id: L4
+  slot_id: TAB-09
+  claim_ids:
+  - C11
+  paper_section: Appendix
+- asset_id: L5
+  slot_id: TAB-04
+  claim_ids:
+  - C06
+  paper_section: Appendix
+- asset_id: L6
+  slot_id: TAB-02
+  claim_ids:
+  - C02
+  - C03
+  paper_section: Appendix
+- asset_id: L7
+  slot_id: TAB-03
+  claim_ids:
+  - C02
+  - C03
+  paper_section: Appendix
+- asset_id: L8
+  slot_id: TAB-01
+  claim_ids:
+  - C01
+  - C02
+  paper_section: Appendix
+- asset_id: L9
+  slot_id: TAB-01
+  claim_ids:
+  - C01
+  - C02
+  paper_section: Appendix
+- asset_id: L10
+  slot_id: TAB-01
+  claim_ids:
+  - C01
+  - C02
+  paper_section: Appendix
+- asset_id: L11
+  slot_id: TAB-01
+  claim_ids:
+  - C01
+  - C02
+  paper_section: Appendix
+- asset_id: L12
+  slot_id: TAB-06
+  claim_ids:
+  - C07
+  - C08
+  - C09
+  - C10
+  paper_section: Appendix

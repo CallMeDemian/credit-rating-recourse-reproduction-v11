@@ -1,0 +1,30 @@
+{
+  "analysis_id": "table_5_7_d2_independent_v1",
+  "inputs": {
+    "probe": {
+      "relative_path": "data/final_freeze/llm_runs/ICc_probe_gpt54mini_p50_seed1_20260711/stage7_icc_probe/icc_probe_firm_level.csv"
+    },
+    "ic_b": {
+      "relative_path": "data/final_freeze/llm_runs/ICb_gpt54mini_p50_live_seed1/stage8_llm_multi_oracle_eval/llm_stage8_multi_oracle_scores.parquet"
+    },
+    "ic_c": {
+      "relative_path": "data/final_freeze/llm_runs/ICc_gpt54mini_p50_live_seed1/stage8_llm_multi_oracle_eval/llm_stage8_multi_oracle_scores.parquet"
+    }
+  },
+  "policies": ["C4", "C5", "C6", "C6X", "C7", "C8"],
+  "modes": ["candidate_selection", "free_form_10d"],
+  "oracles": ["alpha", "beta", "gamma"],
+  "estimand": "delta_R_score_oracle(IC-c) - delta_R_score_oracle(IC-b)",
+  "group_statistic": "mean(delta|recognized=true) - mean(delta|recognized=false)",
+  "permutation": {
+    "master_seed": 20260815,
+    "count_per_cell": 20000,
+    "alternative": "two-sided",
+    "extreme_rule": "abs(T_permuted) >= abs(T_observed)",
+    "p_value": "(extreme_count + 1) / (20000 + 1)"
+  },
+  "multiplicity": {
+    "method": "Holm step-down",
+    "alpha": 0.05
+  }
+}

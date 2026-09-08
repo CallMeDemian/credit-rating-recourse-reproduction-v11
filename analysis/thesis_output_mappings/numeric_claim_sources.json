@@ -1,0 +1,839 @@
+{
+  "schema_version": "numeric_claim_selectors_v11",
+  "authority": "Explicit semantic claim selectors over already-declared thesis item selector outputs. Thesis display values are comparison references and are never lookup keys.",
+  "key": ["claim_id", "paragraph_text_sha256", "token_index"],
+  "prohibited_resolution": [
+    "THESIS_VALUE_LOOKUP",
+    "GLOBAL_NUMERIC_MATCH",
+    "NEAREST_VALUE_MATCH",
+    "FUZZY_TEXT_MATCH",
+    "SUBSTRING_MATCH"
+  ],
+  "paragraph_text_sha256": {
+    "NC0005": "1008506d3ff390246cc04b854f3dac48480f248189368122bb2fed64c216e6d8",
+    "NC0006": "db14142c2ecfd11761a24584b4fe63507ba9eb2851f9ac96ff70ef3cf33d6acf",
+    "NC0008": "3be23347c2a5229b43beff92a24ed3708492e3c19b3d2578a7d48c2e0259a40f",
+    "NC0009": "af64545750b54b0f3dc521c1b7e5dd55bfd5619304a15b97dea0faf77dada4d6",
+    "NC0057": "194cf32619653941e9d1c4a472f9e813b68f4337f48ed6bb9c805b0aa5f513bb",
+    "NC0074": "7ded87d9ab60ca43409406a263eb774e7843b8e93cfc848485e5d9b05066e208",
+    "NC0105": "e39702e369c1ca70f9ae851db9d85ba3f580f81483b58253a0fcab8df91e2f9b",
+    "NC0106": "686e571404be629c172e958f2b6046ab553194b1877ed73358f031f02dfc8fba",
+    "NC0107": "e8deb1a81530f47db85f67cc2a74af29b8666220cb15e130e015023a0b47b0ac",
+    "NC0115": "46c0b2dfeb5e360e0ea249a9cfdb6dc4dfc7eb928f35ce7158043c8c6fc7bd40",
+    "NC0116": "c36ef075a92f0dc67cc7774996def0d75f1484e31bd773a729517cbb55a7f46b",
+    "NC0117": "bde8cf71676e194048e798238764f2c50cbb839e20892da60c8123ba02647eac",
+    "NC0119": "2ba8a95ab1d7047bd6f6f22324127eca52dd904ff774babae560a6e02721b529",
+    "NC0120": "a7fcdd69220a3b482452f3c077fa2c843fd4ec787b9e20a58bffe19d43c59122",
+    "NC0127": "7845ace428f0966be9f9f6bc3335148f4449ec390760c5d79491574b5e413c0e",
+    "NC0134": "bb9c7605597a9fe6402fe8cfde1a7c16217cfa4bb7a9ec9119271307e1080c09",
+    "NC0137": "76c4c5aa932f1e44c47730b909bf673739f5f8482305ba8217fc828f8bc8d8be",
+    "NC0141": "414b9347b9875f9ff79ac17b0f476979513b115f502965738a9636061083714e",
+    "NC0152": "3feaaa9d6efdddac7101d64260a2aeb9292a7711123dde244d0afd1964fd45cb",
+    "NC0153": "f53010f730e8c8b75c150427fdc85f7001c4f2ad83a9d81c7fa650a1300a4c83",
+    "NC0155": "1bffa72f64130f0f25b226547ce74ca77694fc858e4f569ed331a54e627442bd",
+    "NC0156": "3f62c7ef9f4c4c98955d65d613fd52a8abce7add5a8f9d687c8721cc89ec069a",
+    "NC0182": "34a643dadcc152c78f3f2ef941f81d09c55d9eb7ff6cccdd7630a6e777656db8",
+    "NC0183": "d13a561c1443222215956c38ad1806847235fe3f0f4e344ca156af09ae885431",
+    "NC0184": "55603da851c43436168ed8c5991a55b4aed8a9df8f8350c067f84253b215af19",
+    "NC0185": "c57b11f798a4d6c6d8d8ad32a4e2ab298a68363d935d3f529754e1fc1c5727f9",
+    "NC0191": "76a84a11e5365a641860a5c987b33cfd09714e35d3e661b8adbd1d6dd8839f5c",
+    "NC0214": "f8d24739b45a6a30810b6b1c9f287f5fcd80ea483f2bcb96c87a037ae000986e",
+    "NC0215": "fd968dfa8cec44e66af21cbc5dbef8604d7fe9ada1d8e283a4b34f0061df70cc",
+    "NC0218": "516969abb80301ed184331ad17c3bb86167b3d5d7ba6af9cfc1d829901864bf9",
+    "NC0219": "a59fa662e1e389319f7cbdc791b6d05657c6162b9f022a79e75d895d7fc5ce2f",
+    "NC0224": "17a775a3fb50b2845f7666dfecfa9e3fd07c79c6725965869a5783a145c69500",
+    "NC0227": "78f9890867d465d9d10fe5560ba7909afc50178889a8b93a15fcff8035077d07",
+    "NC0228": "c20f71bfd7555cc099d0c3bf6eed3a466d5a1267a29c0b8160429edb5f6ed1fd",
+    "NC0231": "77368ba6acd2e6a767c0e4c4d638d4c958c7d6f0f306fee51d58a88b6288147f",
+    "NC0232": "da803ab91608c75335b8fe4714357a21079e4d47f268308146132cb47b0c0283",
+    "NC0237": "7336b738c885195833b152e13e1fcd5ffe9707a2ba9330ee1caeb7b95c5df981",
+    "NC0238": "d3d70cf789b0354aee801b24b8268db3e92fb4e0058438bc9cc0ef76cdede958",
+    "NC0245": "3cf9ceae699b5e83b971ac5549ea8c03757e2593a0f98dad583cef708ba02822",
+    "NC0246": "a99fd92b8586f28f818e7c62ae14e601dd7dd162f6ebf84dab631c6e2022cb44",
+    "NC0247": "e8e66824236963c4e3a44b7200e9e9cf8edb1b19b284f824221b9c6e419038ae",
+    "NC0251": "e07e103a659a547ba6a038e2a943f0b247199dc38e7ef58c35862ff1e0898756",
+    "NC0255": "2e39fc38747be4e9b574d05cb575c2e61fe92b5c0333831e9b1d9857995697e1",
+    "NC0256": "a9d331c274736ca7956adca2e0e566d02d661d8841278e85d830a397542fc7c5",
+    "NC0257": "35cf89b0ae03a0a3d1a3699ab395dbdc048014c24460ace0140911a6f471a4e3",
+    "NC0260": "a8a765a0c349804b27efba81ad842b80810599b91de4125b19cd9e46dfd0154a",
+    "NC0268": "b9bf7ecefc89ba1a78d53422d79f169d12f279ed3d643a5b98d1139620b042c6",
+    "NC0269": "5f4edb00c7aead68158f0b0f44e55770404ae0f3be504dffacc8a70ff7a40f89"
+  },
+  "rules": [
+    {
+      "rule_id": "oracle_alpha_oot_direction_agreement",
+      "targets": [
+        {"claim_id": "NC0005", "token_index": 1},
+        {"claim_id": "NC0008", "token_index": 2},
+        {"claim_id": "NC0106", "token_index": 5},
+        {"claim_id": "NC0107", "token_index": 1},
+        {"claim_id": "NC0107", "token_index": 2},
+        {"claim_id": "NC0251", "token_index": 1},
+        {"claim_id": "NC0255", "token_index": 1},
+        {"claim_id": "NC0257", "token_index": 1},
+        {"claim_id": "NC0268", "token_index": 1}
+      ],
+      "item_id": "T4-1",
+      "selector_id": "oracle_oot_validation",
+      "row_match": {"json_path": "per_backend.alpha.oot.lead_direction_agreement"},
+      "value_column": "value",
+      "transform": "MULTIPLY_100",
+      "rounding_decimals": 1,
+      "unit": "PERCENT",
+      "formula": "100 * per_backend.alpha.oot.lead_direction_agreement"
+    },
+    {
+      "rule_id": "oracle_alpha_level_validity",
+      "targets": [{"claim_id": "NC0106", "token_index": 1}],
+      "item_id": "T4-1",
+      "selector_id": "oracle_oot_validation",
+      "row_match": {"json_path": "per_backend.alpha.all.level_validity_spearman_oriented"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "CORRELATION",
+      "formula": "per_backend.alpha.all.level_validity_spearman_oriented"
+    },
+    {
+      "rule_id": "oracle_alpha_oot_lead_spearman",
+      "targets": [{"claim_id": "NC0106", "token_index": 3}],
+      "item_id": "T4-1",
+      "selector_id": "oracle_oot_validation",
+      "row_match": {"json_path": "per_backend.alpha.oot.lead_spearman"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "CORRELATION",
+      "formula": "per_backend.alpha.oot.lead_spearman"
+    },
+    {
+      "rule_id": "oracle_alpha_oot_movers",
+      "targets": [
+        {"claim_id": "NC0105", "token_index": 1},
+        {"claim_id": "NC0106", "token_index": 4}
+      ],
+      "item_id": "T4-1",
+      "selector_id": "oracle_oot_validation",
+      "row_match": {"json_path": "per_backend.alpha.oot.n_movers"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 0,
+      "unit": "COUNT",
+      "formula": "COUNT(per_backend.alpha.oot rating movers)"
+    },
+    {
+      "rule_id": "oracle_alpha_oot_auc",
+      "targets": [{"claim_id": "NC0106", "token_index": 6}],
+      "item_id": "T4-1",
+      "selector_id": "oracle_oot_validation",
+      "row_match": {"json_path": "per_backend.alpha.oot.upgrade_vs_downgrade_auc"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "AUC",
+      "formula": "per_backend.alpha.oot.upgrade_vs_downgrade_auc"
+    },
+    {
+      "rule_id": "test3_dev_wedge_median_1dp",
+      "targets": [
+        {"claim_id": "NC0005", "token_index": 5},
+        {"claim_id": "NC0008", "token_index": 6},
+        {"claim_id": "NC0251", "token_index": 2},
+        {"claim_id": "NC0255", "token_index": 5},
+        {"claim_id": "NC0257", "token_index": 5},
+        {"claim_id": "NC0260", "token_index": 2},
+        {"claim_id": "NC0268", "token_index": 5}
+      ],
+      "item_id": "T4-2",
+      "selector_id": "test3_dev_oot_post",
+      "row_match": {"property": "P1_wedge", "metric": "median", "split": "dev"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 1,
+      "unit": "POINT",
+      "formula": "MEDIAN(simulator_score - observed_state_score) on DEV"
+    },
+    {
+      "rule_id": "test3_dev_wedge_median_3dp",
+      "targets": [
+        {"claim_id": "NC0115", "token_index": 1},
+        {"claim_id": "NC0117", "token_index": 1},
+        {"claim_id": "NC0134", "token_index": 2}
+      ],
+      "item_id": "T4-2",
+      "selector_id": "test3_dev_oot_post",
+      "row_match": {"property": "P1_wedge", "metric": "median", "split": "dev"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POINT",
+      "formula": "MEDIAN(simulator_score - observed_state_score) on DEV"
+    },
+    {
+      "rule_id": "test3_dev_wedge_median_4dp",
+      "targets": [
+        {"claim_id": "NC0116", "token_index": 1},
+        {"claim_id": "NC0120", "token_index": 1}
+      ],
+      "item_id": "T4-2",
+      "selector_id": "test3_dev_oot_post",
+      "row_match": {"property": "P1_wedge", "metric": "median", "split": "dev"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 4,
+      "unit": "POINT",
+      "formula": "MEDIAN(simulator_score - observed_state_score) on DEV"
+    },
+    {
+      "rule_id": "test3_oot_wedge_median",
+      "targets": [
+        {"claim_id": "NC0117", "token_index": 2},
+        {"claim_id": "NC0134", "token_index": 3}
+      ],
+      "item_id": "T4-2",
+      "selector_id": "test3_dev_oot_post",
+      "row_match": {"property": "P1_wedge", "metric": "median", "split": "oot"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POINT",
+      "formula": "MEDIAN(simulator_score - observed_state_score) on OOT"
+    },
+    {
+      "rule_id": "test3_post_wedge_median",
+      "targets": [
+        {"claim_id": "NC0117", "token_index": 3},
+        {"claim_id": "NC0134", "token_index": 4}
+      ],
+      "item_id": "T4-2",
+      "selector_id": "test3_dev_oot_post",
+      "row_match": {"property": "P1_wedge", "metric": "median", "split": "post"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POINT",
+      "formula": "MEDIAN(simulator_score - observed_state_score) on POST"
+    },
+    {
+      "rule_id": "test3_oot_rank",
+      "targets": [
+        {"claim_id": "NC0005", "token_index": 3},
+        {"claim_id": "NC0008", "token_index": 4},
+        {"claim_id": "NC0119", "token_index": 1},
+        {"claim_id": "NC0134", "token_index": 5},
+        {"claim_id": "NC0251", "token_index": 4},
+        {"claim_id": "NC0255", "token_index": 3},
+        {"claim_id": "NC0257", "token_index": 3},
+        {"claim_id": "NC0260", "token_index": 3},
+        {"claim_id": "NC0268", "token_index": 3}
+      ],
+      "item_id": "T4-2",
+      "selector_id": "test3_dev_oot_post",
+      "row_match": {"property": "P2_rank", "metric": "spearman", "split": "oot"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "CORRELATION",
+      "formula": "SPEARMAN(simulator_score, observed_state_score) on OOT"
+    },
+    {
+      "rule_id": "test3_oot_direction_agreement",
+      "targets": [
+        {"claim_id": "NC0005", "token_index": 4},
+        {"claim_id": "NC0008", "token_index": 5},
+        {"claim_id": "NC0120", "token_index": 4},
+        {"claim_id": "NC0134", "token_index": 6},
+        {"claim_id": "NC0251", "token_index": 5},
+        {"claim_id": "NC0255", "token_index": 4},
+        {"claim_id": "NC0257", "token_index": 4},
+        {"claim_id": "NC0260", "token_index": 4},
+        {"claim_id": "NC0268", "token_index": 4}
+      ],
+      "item_id": "T4-2",
+      "selector_id": "test3_dev_oot_post",
+      "row_match": {"property": "P3_direction", "metric": "agreement", "split": "oot"},
+      "value_column": "value",
+      "transform": "MULTIPLY_100",
+      "rounding_decimals": 1,
+      "unit": "PERCENT",
+      "formula": "100 * MEAN(direction_match) on OOT after fixed DEV wedge adjustment"
+    },
+    {
+      "rule_id": "test3_oot_direction_n",
+      "targets": [{"claim_id": "NC0120", "token_index": 2}],
+      "item_id": "T4-2",
+      "selector_id": "test3_dev_oot_post",
+      "row_match": {"property": "P3_direction", "metric": "agreement", "split": "oot"},
+      "value_column": "n",
+      "transform": "IDENTITY",
+      "rounding_decimals": 0,
+      "unit": "COUNT",
+      "formula": "COUNT(valid OOT direction-comparison rows)"
+    },
+    {
+      "rule_id": "test3_dev_direction_agreement",
+      "targets": [{"claim_id": "NC0120", "token_index": 5}],
+      "item_id": "T4-2",
+      "selector_id": "test3_dev_oot_post",
+      "row_match": {"property": "P3_direction", "metric": "agreement", "split": "dev"},
+      "value_column": "value",
+      "transform": "MULTIPLY_100",
+      "rounding_decimals": 1,
+      "unit": "PERCENT",
+      "formula": "100 * MEAN(direction_match) on DEV"
+    },
+    {
+      "rule_id": "test3_post_direction_agreement",
+      "targets": [{"claim_id": "NC0120", "token_index": 6}],
+      "item_id": "T4-2",
+      "selector_id": "test3_dev_oot_post",
+      "row_match": {"property": "P3_direction", "metric": "agreement", "split": "post"},
+      "value_column": "value",
+      "transform": "MULTIPLY_100",
+      "rounding_decimals": 1,
+      "unit": "PERCENT",
+      "formula": "100 * MEAN(direction_match) on POST"
+    },
+    {
+      "rule_id": "test3_share_positive_overall",
+      "targets": [{"claim_id": "NC0117", "token_index": 4}],
+      "item_id": "T4-2",
+      "selector_id": "test3_wedge_share_positive",
+      "row_match": {"property": "P1_wedge", "metric": "share_positive", "split": "overall"},
+      "value_column": "value",
+      "transform": "MULTIPLY_100",
+      "rounding_decimals": 1,
+      "unit": "PERCENT",
+      "formula": "100 * MEAN(simulator_score - observed_state_score > 0)"
+    },
+    {
+      "rule_id": "candidate_iql_evaluation_n",
+      "targets": [
+        {"claim_id": "NC0006", "token_index": 1},
+        {"claim_id": "NC0009", "token_index": 2},
+        {"claim_id": "NC0057", "token_index": 2},
+        {"claim_id": "NC0074", "token_index": 1}
+      ],
+      "item_id": "T4-4",
+      "selector_id": "stage6_policy_values",
+      "row_match": {"policy": "C3_candidate_iql"},
+      "value_column": "n",
+      "transform": "IDENTITY",
+      "rounding_decimals": 0,
+      "unit": "COUNT",
+      "formula": "COUNT(distinct evaluation firms for C3_candidate_iql)"
+    },
+    {
+      "rule_id": "candidate_iql_alpha_value",
+      "targets": [
+        {"claim_id": "NC0006", "token_index": 2},
+        {"claim_id": "NC0009", "token_index": 4},
+        {"claim_id": "NC0127", "token_index": 1},
+        {"claim_id": "NC0137", "token_index": 8},
+        {"claim_id": "NC0184", "token_index": 1},
+        {"claim_id": "NC0256", "token_index": 3}
+      ],
+      "item_id": "T4-4",
+      "selector_id": "stage6_policy_values",
+      "row_match": {"policy": "C3_candidate_iql"},
+      "value_column": "mean_delta_R_score_alpha",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_alpha(action_i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "candidate_iql_beta_value",
+      "targets": [{"claim_id": "NC0127", "token_index": 2}],
+      "item_id": "T4-4",
+      "selector_id": "stage6_policy_values",
+      "row_match": {"policy": "C3_candidate_iql"},
+      "value_column": "mean_delta_R_score_beta",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_beta(action_i) - R_score_beta(noop_i))"
+    },
+    {
+      "rule_id": "candidate_iql_gamma_value",
+      "targets": [{"claim_id": "NC0127", "token_index": 3}],
+      "item_id": "T4-4",
+      "selector_id": "stage6_policy_values",
+      "row_match": {"policy": "C3_candidate_iql"},
+      "value_column": "mean_delta_R_score_gamma",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_gamma(action_i) - R_score_gamma(noop_i))"
+    },
+    {
+      "rule_id": "gpt54_c4_candidate_value",
+      "targets": [
+        {"claim_id": "NC0137", "token_index": 3},
+        {"claim_id": "NC0256", "token_index": 5},
+        {"claim_id": "NC0269", "token_index": 2}
+      ],
+      "item_id": "T5-1",
+      "selector_id": "alpha_c4_c6_cells",
+      "row_match": {"backend_label": "GPT-5.4-mini", "harness_cell": "C4__candidate_selection"},
+      "value_column": "mean_score",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_alpha(C4 candidate_i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "gpt54_c4_free_value",
+      "targets": [
+        {"claim_id": "NC0137", "token_index": 5},
+        {"claim_id": "NC0256", "token_index": 6},
+        {"claim_id": "NC0269", "token_index": 3}
+      ],
+      "item_id": "T5-1",
+      "selector_id": "alpha_c4_c6_cells",
+      "row_match": {"backend_label": "GPT-5.4-mini", "harness_cell": "C4__free_form_10d"},
+      "value_column": "mean_score",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_alpha(C4 free-form_i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "gpt54_c6_candidate_value",
+      "targets": [
+        {"claim_id": "NC0137", "token_index": 6},
+        {"claim_id": "NC0155", "token_index": 8}
+      ],
+      "item_id": "T5-1",
+      "selector_id": "alpha_c4_c6_cells",
+      "row_match": {"backend_label": "GPT-5.4-mini", "harness_cell": "C6__candidate_selection"},
+      "value_column": "mean_score",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_alpha(C6 candidate_i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "gpt54_c6_free_value",
+      "targets": [
+        {"claim_id": "NC0137", "token_index": 7},
+        {"claim_id": "NC0156", "token_index": 8},
+        {"claim_id": "NC0182", "token_index": 1},
+        {"claim_id": "NC0183", "token_index": 1},
+        {"claim_id": "NC0185", "token_index": 1},
+        {"claim_id": "NC0256", "token_index": 7},
+        {"claim_id": "NC0269", "token_index": 4}
+      ],
+      "item_id": "T5-1",
+      "selector_id": "alpha_c4_c6_cells",
+      "row_match": {"backend_label": "GPT-5.4-mini", "harness_cell": "C6__free_form_10d"},
+      "value_column": "mean_score",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_alpha(C6 free-form_i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "h1_gpt41_free_reasoning_gap",
+      "targets": [{"claim_id": "NC0141", "token_index": 2}],
+      "item_id": "T5-2",
+      "selector_id": "h1_exact_contrasts",
+      "row_match": {"contrast": "C5-C4", "mode": "free_form_10d", "backend_label": "ICb_gpt41mini_p50_live_seed1_postpatch_20260705_153820"},
+      "value_column": "mean_gap",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(delta_alpha(C5_i) - delta_alpha(C4_i))"
+    },
+    {
+      "rule_id": "h1_haiku45_free_reasoning_gap",
+      "targets": [{"claim_id": "NC0141", "token_index": 4}],
+      "item_id": "T5-2",
+      "selector_id": "h1_exact_contrasts",
+      "row_match": {"contrast": "C5-C4", "mode": "free_form_10d", "backend_label": "ICb_haiku45_p50_live_seed1_postpatch_20260705_190541"},
+      "value_column": "mean_gap",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(delta_alpha(C5_i) - delta_alpha(C4_i))"
+    },
+    {
+      "rule_id": "h1_gpt54_free_reasoning_gap",
+      "targets": [{"claim_id": "NC0141", "token_index": 6}],
+      "item_id": "T5-2",
+      "selector_id": "h1_exact_contrasts",
+      "row_match": {"contrast": "C5-C4", "mode": "free_form_10d", "backend_label": "ICb_gpt54mini_p50_live_seed1"},
+      "value_column": "mean_gap",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(delta_alpha(C5_i) - delta_alpha(C4_i))"
+    },
+    {
+      "rule_id": "h3_gpt41_free_reference_gap",
+      "targets": [{"claim_id": "NC0152", "token_index": 4}],
+      "item_id": "T5-4",
+      "selector_id": "h3_exact_contrasts",
+      "row_match": {"contrast": "C6-C6X", "mode": "free_form_10d", "backend_label": "ICb_gpt41mini_p50_live_seed1_postpatch_20260705_153820"},
+      "value_column": "mean_gap",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(delta_alpha(C6_i) - delta_alpha(C6X_i))"
+    },
+    {
+      "rule_id": "h3_haiku45_free_reference_gap",
+      "targets": [{"claim_id": "NC0153", "token_index": 3}],
+      "item_id": "T5-4",
+      "selector_id": "h3_exact_contrasts",
+      "row_match": {"contrast": "C6-C6X", "mode": "free_form_10d", "backend_label": "ICb_haiku45_p50_live_seed1_postpatch_20260705_190541"},
+      "value_column": "mean_gap",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(delta_alpha(C6_i) - delta_alpha(C6X_i))"
+    },
+    {
+      "rule_id": "h3_gpt54_free_reference_gap",
+      "targets": [{"claim_id": "NC0153", "token_index": 4}],
+      "item_id": "T5-4",
+      "selector_id": "h3_exact_contrasts",
+      "row_match": {"contrast": "C6-C6X", "mode": "free_form_10d", "backend_label": "ICb_gpt54mini_p50_live_seed1"},
+      "value_column": "mean_gap",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(delta_alpha(C6_i) - delta_alpha(C6X_i))"
+    },
+    {
+      "rule_id": "main_harness_candidate_c6_c8_values",
+      "targets": [
+        {"claim_id": "NC0155", "token_index": 2, "row_match": {"backend_label": "GPT-4.1-mini", "harness_cell": "C6__candidate_selection"}},
+        {"claim_id": "NC0155", "token_index": 3, "row_match": {"backend_label": "GPT-4.1-mini", "harness_cell": "C8__candidate_selection"}},
+        {"claim_id": "NC0155", "token_index": 5, "row_match": {"backend_label": "Haiku-4.5", "harness_cell": "C6__candidate_selection"}},
+        {"claim_id": "NC0155", "token_index": 6, "row_match": {"backend_label": "Haiku-4.5", "harness_cell": "C8__candidate_selection"}},
+        {"claim_id": "NC0155", "token_index": 9, "row_match": {"backend_label": "GPT-5.4-mini", "harness_cell": "C8__candidate_selection"}}
+      ],
+      "item_id": "T5-5",
+      "selector_id": "alpha_harness_cells",
+      "value_column": "mean_score",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_alpha(policy_i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "main_harness_free_c6_c8_values",
+      "targets": [
+        {"claim_id": "NC0156", "token_index": 2, "row_match": {"backend_label": "GPT-4.1-mini", "harness_cell": "C6__free_form_10d"}},
+        {"claim_id": "NC0156", "token_index": 3, "row_match": {"backend_label": "GPT-4.1-mini", "harness_cell": "C8__free_form_10d"}},
+        {"claim_id": "NC0156", "token_index": 5, "row_match": {"backend_label": "Haiku-4.5", "harness_cell": "C6__free_form_10d"}},
+        {"claim_id": "NC0156", "token_index": 6, "row_match": {"backend_label": "Haiku-4.5", "harness_cell": "C8__free_form_10d"}},
+        {"claim_id": "NC0156", "token_index": 9, "row_match": {"backend_label": "GPT-5.4-mini", "harness_cell": "C8__free_form_10d"}}
+      ],
+      "item_id": "T5-5",
+      "selector_id": "alpha_harness_cells",
+      "value_column": "mean_score",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_alpha(policy_i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "candidate_oracle_upper_bound_alpha",
+      "targets": [{"claim_id": "NC0256", "token_index": 2}],
+      "item_id": "T4-4",
+      "selector_id": "candidate_oracle_upper_bound",
+      "row_match": {"json_path": "per_backend.alpha.oracle_best_mean_noop_adjusted_score"},
+      "value_column": "value",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(MAX over ten fixed candidate actions and no-op of [R_score_alpha(action_i) - R_score_alpha(noop_i)])"
+    },
+    {
+      "rule_id": "ablation_global_mean_alpha",
+      "targets": [{"claim_id": "NC0182", "token_index": 2}, {"claim_id": "NC0183", "token_index": 2}],
+      "item_id": "F7",
+      "selector_id": "ablation_global_mean",
+      "row_match": {"policy": "C6", "mode": "free_form_10d"},
+      "value_column": "mean_delta_R_score_alpha",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_alpha(global mean C6 action applied to firm i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "ablation_shuffle_1000_alpha",
+      "targets": [{"claim_id": "NC0182", "token_index": 5}, {"claim_id": "NC0183", "token_index": 3}],
+      "item_id": "F7",
+      "selector_id": "ablation_shuffle_mean",
+      "row_match": {"policy": "C6", "mode": "free_form_10d", "oracle_backend": "alpha", "shuffle_within": "none"},
+      "value_column": "shuffle_null_mean_score",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN over 1,000 draws of MEAN_i(R_score_alpha(C6 action reassigned to firm i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "ablation_l1_rescale_alpha",
+      "targets": [{"claim_id": "NC0185", "token_index": 2}],
+      "item_id": "F7",
+      "selector_id": "ablation_l1_rescale",
+      "row_match": {"policy": "C6", "mode": "free_form_10d"},
+      "value_column": "mean_delta_R_score_alpha",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_alpha(C6 action after L1 rescale_i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "ablation_nearest_candidate_alpha",
+      "targets": [{"claim_id": "NC0185", "token_index": 3}],
+      "item_id": "F7",
+      "selector_id": "ablation_nearest_candidate",
+      "row_match": {"policy": "C6", "mode": "free_form_10d"},
+      "value_column": "mean_delta_R_score_alpha",
+      "transform": "IDENTITY",
+      "rounding_decimals": 3,
+      "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(R_score_alpha(nearest fixed candidate to C6 action_i) - R_score_alpha(noop_i))"
+    },
+    {
+      "rule_id": "gpt54_self_revision_0p75",
+      "targets": [{"claim_id": "NC0214", "token_index": 3}, {"claim_id": "NC0237", "token_index": 3}, {"claim_id": "NC0245", "token_index": 3}],
+      "item_id": "T6-5", "selector_id": "c4r_three_contrasts",
+      "row_match": {"cohort_id": "gpt54mini", "budget_label": "0p75", "contrast": "self_revision"},
+      "value_column": "mean_increment", "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(policy_value_alpha(C4R_i) - policy_value_alpha(C4_i))"
+    },
+    {
+      "rule_id": "gpt54_self_revision_1p27",
+      "targets": [{"claim_id": "NC0214", "token_index": 5}],
+      "item_id": "T6-5", "selector_id": "c4r_three_contrasts",
+      "row_match": {"cohort_id": "gpt54mini", "budget_label": "1p27", "contrast": "self_revision"},
+      "value_column": "mean_increment", "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(policy_value_alpha(C4R_i) - policy_value_alpha(C4_i))"
+    },
+    {
+      "rule_id": "gpt54_self_revision_2p00",
+      "targets": [{"claim_id": "NC0214", "token_index": 7}],
+      "item_id": "T6-5", "selector_id": "c4r_three_contrasts",
+      "row_match": {"cohort_id": "gpt54mini", "budget_label": "2p00", "contrast": "self_revision"},
+      "value_column": "mean_increment", "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(policy_value_alpha(C4R_i) - policy_value_alpha(C4_i))"
+    },
+    {
+      "rule_id": "gpt54_self_revision_unbounded",
+      "targets": [{"claim_id": "NC0214", "token_index": 8}, {"claim_id": "NC0237", "token_index": 10}, {"claim_id": "NC0246", "token_index": 4}],
+      "item_id": "T6-5", "selector_id": "c4r_three_contrasts",
+      "row_match": {"cohort_id": "gpt54mini", "budget_label": "unbounded", "contrast": "self_revision"},
+      "value_column": "mean_increment", "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(policy_value_alpha(C4R_i) - policy_value_alpha(C4_i))"
+    },
+    {
+      "rule_id": "gpt54_reference_effect_0p75",
+      "targets": [{"claim_id": "NC0237", "token_index": 7}, {"claim_id": "NC0245", "token_index": 5}],
+      "item_id": "T6-5", "selector_id": "c4r_three_contrasts",
+      "row_match": {"cohort_id": "gpt54mini", "budget_label": "0p75", "contrast": "reference_content_conditional"},
+      "value_column": "mean_increment", "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(policy_value_alpha(C6_i) - policy_value_alpha(C4R_i)); C4R and C6 are sibling outcomes from C4"
+    },
+    {
+      "rule_id": "gpt54_reference_effect_unbounded",
+      "targets": [{"claim_id": "NC0237", "token_index": 11}, {"claim_id": "NC0246", "token_index": 5}],
+      "item_id": "T6-5", "selector_id": "c4r_three_contrasts",
+      "row_match": {"cohort_id": "gpt54mini", "budget_label": "unbounded", "contrast": "reference_content_conditional"},
+      "value_column": "mean_increment", "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(policy_value_alpha(C6_i) - policy_value_alpha(C4R_i)); C4R and C6 are sibling outcomes from C4"
+    },
+    {
+      "rule_id": "gpt54_package_0p75",
+      "targets": [{"claim_id": "NC0245", "token_index": 7}],
+      "item_id": "T6-5", "selector_id": "c4r_three_contrasts",
+      "row_match": {"cohort_id": "gpt54mini", "budget_label": "0p75", "contrast": "reference_plus_revision_package"},
+      "value_column": "mean_increment", "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(policy_value_alpha(C6_i) - policy_value_alpha(C4_i))"
+    },
+    {
+      "rule_id": "gpt54_package_unbounded",
+      "targets": [{"claim_id": "NC0246", "token_index": 6}],
+      "item_id": "T6-5", "selector_id": "c4r_three_contrasts",
+      "row_match": {"cohort_id": "gpt54mini", "budget_label": "unbounded", "contrast": "reference_plus_revision_package"},
+      "value_column": "mean_increment", "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(policy_value_alpha(C6_i) - policy_value_alpha(C4_i))"
+    },
+    {
+      "rule_id": "gemini_self_revision_values",
+      "targets": [
+        {"claim_id": "NC0218", "token_index": 3, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "0p75", "contrast": "self_revision"}},
+        {"claim_id": "NC0218", "token_index": 5, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "1p27", "contrast": "self_revision"}},
+        {"claim_id": "NC0218", "token_index": 7, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "2p00", "contrast": "self_revision"}},
+        {"claim_id": "NC0218", "token_index": 8, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "unbounded", "contrast": "self_revision"}}
+      ],
+      "item_id": "T6-5", "selector_id": "c4r_three_contrasts", "value_column": "mean_increment",
+      "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(policy_value_alpha(C4R_i) - policy_value_alpha(C4_i))"
+    },
+    {
+      "rule_id": "gemini_reference_effect_values",
+      "targets": [
+        {"claim_id": "NC0219", "token_index": 3, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "0p75", "contrast": "reference_content_conditional"}},
+        {"claim_id": "NC0219", "token_index": 5, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "1p27", "contrast": "reference_content_conditional"}},
+        {"claim_id": "NC0219", "token_index": 7, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "2p00", "contrast": "reference_content_conditional"}},
+        {"claim_id": "NC0219", "token_index": 1, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "unbounded", "contrast": "reference_content_conditional"}},
+        {"claim_id": "NC0238", "token_index": 3, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "0p75", "contrast": "reference_content_conditional"}},
+        {"claim_id": "NC0238", "token_index": 7, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "unbounded", "contrast": "reference_content_conditional"}}
+      ],
+      "item_id": "T6-5", "selector_id": "c4r_three_contrasts", "value_column": "mean_increment",
+      "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN_i(policy_value_alpha(C6_i) - policy_value_alpha(C4R_i)); C4R and C6 are sibling outcomes from C4"
+    },
+    {
+      "rule_id": "gpt54_package_budget_interactions",
+      "targets": [
+        {"claim_id": "NC0191", "token_index": 3, "row_match": {"cohort_id": "gpt54mini", "budget_label": "0p75", "component": "package"}},
+        {"claim_id": "NC0191", "token_index": 5, "row_match": {"cohort_id": "gpt54mini", "budget_label": "1p27", "component": "package"}},
+        {"claim_id": "NC0191", "token_index": 7, "row_match": {"cohort_id": "gpt54mini", "budget_label": "2p00", "component": "package"}}
+      ],
+      "item_id": "T6-6", "selector_id": "interaction_tost", "value_column": "mean_gap",
+      "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "finite-budget (C6-C4) minus unbounded-budget (C6-C4), same firms"
+    },
+    {
+      "rule_id": "gpt54_component_budget_interactions",
+      "targets": [
+        {"claim_id": "NC0215", "token_index": 3, "row_match": {"cohort_id": "gpt54mini", "budget_label": "0p75", "component": "self_revision"}},
+        {"claim_id": "NC0215", "token_index": 4, "row_match": {"cohort_id": "gpt54mini", "budget_label": "0p75", "component": "reference_content_conditional"}},
+        {"claim_id": "NC0215", "token_index": 7, "row_match": {"cohort_id": "gpt54mini", "budget_label": "1p27", "component": "self_revision"}},
+        {"claim_id": "NC0215", "token_index": 8, "row_match": {"cohort_id": "gpt54mini", "budget_label": "1p27", "component": "reference_content_conditional"}},
+        {"claim_id": "NC0215", "token_index": 11, "row_match": {"cohort_id": "gpt54mini", "budget_label": "2p00", "component": "self_revision"}},
+        {"claim_id": "NC0215", "token_index": 12, "row_match": {"cohort_id": "gpt54mini", "budget_label": "2p00", "component": "reference_content_conditional"}}
+      ],
+      "item_id": "T6-6", "selector_id": "interaction_tost", "value_column": "mean_gap",
+      "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "finite-budget component minus unbounded-budget component, same firms"
+    },
+    {
+      "rule_id": "gpt54_package_budget_interaction_magnitudes",
+      "targets": [
+        {"claim_id": "NC0215", "token_index": 2, "row_match": {"cohort_id": "gpt54mini", "budget_label": "0p75", "component": "package"}},
+        {"claim_id": "NC0215", "token_index": 6, "row_match": {"cohort_id": "gpt54mini", "budget_label": "1p27", "component": "package"}},
+        {"claim_id": "NC0215", "token_index": 10, "row_match": {"cohort_id": "gpt54mini", "budget_label": "2p00", "component": "package"}}
+      ],
+      "item_id": "T6-6", "selector_id": "interaction_tost", "value_column": "mean_gap",
+      "transform": "ABS", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "ABS(finite-budget (C6-C4) minus unbounded-budget (C6-C4)), same firms"
+    },
+    {
+      "rule_id": "gemini_self_revision_budget_interactions",
+      "targets": [
+        {"claim_id": "NC0218", "token_index": 9, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "0p75", "component": "self_revision"}},
+        {"claim_id": "NC0218", "token_index": 10, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "1p27", "component": "self_revision"}},
+        {"claim_id": "NC0218", "token_index": 11, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "2p00", "component": "self_revision"}}
+      ],
+      "item_id": "T6-6", "selector_id": "interaction_tost", "value_column": "mean_gap",
+      "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "finite-budget (C4R-C4) minus unbounded-budget (C4R-C4), same firms"
+    },
+    {
+      "rule_id": "gemini_reference_budget_interaction_magnitudes",
+      "targets": [
+        {"claim_id": "NC0219", "token_index": 8, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "0p75", "component": "reference_content_conditional"}},
+        {"claim_id": "NC0219", "token_index": 9, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "1p27", "component": "reference_content_conditional"}},
+        {"claim_id": "NC0219", "token_index": 10, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "2p00", "component": "reference_content_conditional"}},
+        {"claim_id": "NC0219", "token_index": 12, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "0p75", "component": "package"}},
+        {"claim_id": "NC0219", "token_index": 14, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "1p27", "component": "package"}},
+        {"claim_id": "NC0219", "token_index": 16, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "2p00", "component": "package"}}
+      ],
+      "item_id": "T6-6", "selector_id": "interaction_tost", "value_column": "mean_gap",
+      "transform": "ABS", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "ABS(finite-budget component minus unbounded-budget component), same firms"
+    },
+    {
+      "rule_id": "c4r_win_tie_loss_key_counts",
+      "targets": [
+        {"claim_id": "NC0227", "token_index": 3, "row_match": {"cohort_id": "gpt54mini", "budget_label": "0p75", "contrast": "self_revision"}, "value_column": "win_count"},
+        {"claim_id": "NC0227", "token_index": 4, "row_match": {"cohort_id": "gpt54mini", "budget_label": "0p75", "contrast": "self_revision"}, "value_column": "loss_count"},
+        {"claim_id": "NC0227", "token_index": 5, "row_match": {"cohort_id": "gpt54mini", "budget_label": "unbounded", "contrast": "self_revision"}, "value_column": "win_count"},
+        {"claim_id": "NC0227", "token_index": 6, "row_match": {"cohort_id": "gpt54mini", "budget_label": "unbounded", "contrast": "self_revision"}, "value_column": "loss_count"},
+        {"claim_id": "NC0228", "token_index": 2, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "unbounded", "contrast": "self_revision"}, "value_column": "n_pairs"},
+        {"claim_id": "NC0228", "token_index": 3, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "unbounded", "contrast": "self_revision"}, "value_column": "tie_count"},
+        {"claim_id": "NC0228", "token_index": 5, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "0p75", "contrast": "reference_content_conditional"}, "value_column": "win_count"},
+        {"claim_id": "NC0228", "token_index": 7, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "1p27", "contrast": "reference_content_conditional"}, "value_column": "win_count"},
+        {"claim_id": "NC0228", "token_index": 9, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "2p00", "contrast": "reference_content_conditional"}, "value_column": "win_count"},
+        {"claim_id": "NC0228", "token_index": 10, "row_match": {"cohort_id": "gemini31flashlite", "budget_label": "unbounded", "contrast": "reference_content_conditional"}, "value_column": "win_count"}
+      ],
+      "item_id": "T6-7", "selector_id": "c4r_win_tie_loss", "value_column": "n_pairs",
+      "transform": "IDENTITY", "rounding_decimals": 0, "unit": "COUNT",
+      "formula": "COUNT of matched firms by sign of the named sibling-arm contrast"
+    },
+    {
+      "rule_id": "variance_decomposition_sample",
+      "targets": [
+        {"claim_id": "NC0231", "token_index": 1, "value_column": "n_observations"},
+        {"claim_id": "NC0231", "token_index": 2, "value_column": "n_firms"},
+        {"claim_id": "NC0231", "token_index": 3, "value_column": "n_backends"},
+        {"claim_id": "NC0231", "token_index": 4, "value_column": "n_harness_cells"}
+      ],
+      "item_id": "FH-1", "selector_id": "variance_decomposition", "row_match": {"oracle_backend": "alpha"},
+      "value_column": "n_observations", "transform": "IDENTITY", "rounding_decimals": 0, "unit": "COUNT",
+      "formula": "COUNT from the common crossed IC-b firm x foundation-model x harness-cell panel"
+    },
+    {
+      "rule_id": "variance_decomposition_harness_shares",
+      "targets": [
+        {"claim_id": "NC0232", "token_index": 1, "row_match": {"oracle_backend": "alpha"}},
+        {"claim_id": "NC0232", "token_index": 2, "row_match": {"oracle_backend": "beta"}},
+        {"claim_id": "NC0232", "token_index": 3, "row_match": {"oracle_backend": "gamma"}}
+      ],
+      "item_id": "FH-1", "selector_id": "variance_decomposition", "value_column": "harness_main_effect_r2_within_firm",
+      "transform": "MULTIPLY_100", "rounding_decimals": 1, "unit": "PERCENT",
+      "formula": "100 * harness-condition main-effect R2 after removing firm fixed effects"
+    },
+    {
+      "rule_id": "variance_decomposition_backend_shares",
+      "targets": [
+        {"claim_id": "NC0232", "token_index": 4, "row_match": {"oracle_backend": "alpha"}},
+        {"claim_id": "NC0232", "token_index": 5, "row_match": {"oracle_backend": "beta"}},
+        {"claim_id": "NC0232", "token_index": 6, "row_match": {"oracle_backend": "gamma"}},
+        {"claim_id": "NC0232", "token_index": 7, "row_match": {"oracle_backend": "beta"}}
+      ],
+      "item_id": "FH-1", "selector_id": "variance_decomposition", "value_column": "backend_main_effect_r2_within_firm",
+      "transform": "MULTIPLY_100", "rounding_decimals": 1, "unit": "PERCENT",
+      "formula": "100 * foundation-model main-effect R2 after removing firm fixed effects"
+    },
+    {
+      "rule_id": "gpt54_self_revision_axis_contributions",
+      "targets": [
+        {"claim_id": "NC0237", "token_index": 4, "row_match": {"cohort_id": "gpt54mini", "policy_pair": "C4_to_C4R", "budget_label": "0p75", "axis": "action__cogs_ratio_chg"}},
+        {"claim_id": "NC0237", "token_index": 5, "row_match": {"cohort_id": "gpt54mini", "policy_pair": "C4_to_C4R", "budget_label": "0p75", "axis": "action__sga_ratio_chg"}},
+        {"claim_id": "NC0237", "token_index": 6, "row_match": {"cohort_id": "gpt54mini", "policy_pair": "C4_to_C4R", "budget_label": "0p75", "axis": "action__ppe_pct"}}
+      ],
+      "item_id": "T6-8", "selector_id": "axis_contributions", "value_column": "mean",
+      "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN firm-level Shapley contribution of the named action axis to C4R-C4"
+    },
+    {
+      "rule_id": "gpt54_reference_axis_contributions",
+      "targets": [
+        {"claim_id": "NC0237", "token_index": 8, "row_match": {"cohort_id": "gpt54mini", "policy_pair": "C4R_to_C6", "budget_label": "0p75", "axis": "action__short_debt_pct"}},
+        {"claim_id": "NC0237", "token_index": 9, "row_match": {"cohort_id": "gpt54mini", "policy_pair": "C4R_to_C6", "budget_label": "0p75", "axis": "action__cogs_ratio_chg"}}
+      ],
+      "item_id": "T6-8", "selector_id": "axis_contributions", "value_column": "mean",
+      "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN firm-level Shapley contribution of the named action axis to the C6-C4R sibling-arm contrast"
+    },
+    {
+      "rule_id": "gemini_reference_axis_contributions",
+      "targets": [
+        {"claim_id": "NC0238", "token_index": 4, "row_match": {"cohort_id": "gemini31flashlite", "policy_pair": "C4R_to_C6", "budget_label": "0p75", "axis": "action__ppe_pct"}},
+        {"claim_id": "NC0238", "token_index": 5, "row_match": {"cohort_id": "gemini31flashlite", "policy_pair": "C4R_to_C6", "budget_label": "0p75", "axis": "action__sga_ratio_chg"}},
+        {"claim_id": "NC0238", "token_index": 6, "row_match": {"cohort_id": "gemini31flashlite", "policy_pair": "C4R_to_C6", "budget_label": "0p75", "axis": "action__cogs_ratio_chg"}}
+      ],
+      "item_id": "T6-8", "selector_id": "axis_contributions", "value_column": "mean",
+      "transform": "IDENTITY", "rounding_decimals": 3, "unit": "POLICY_VALUE_POINT",
+      "formula": "MEAN firm-level Shapley contribution of the named action axis to the C6-C4R sibling-arm contrast"
+    }
+  ]
+}

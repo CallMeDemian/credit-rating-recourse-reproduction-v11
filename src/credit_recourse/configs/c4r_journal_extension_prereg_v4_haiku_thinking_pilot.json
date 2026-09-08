@@ -1,0 +1,74 @@
+{
+  "schema_version": "c4r_journal_extension_prereg_v4_haiku_thinking_pilot",
+  "design_status": "LOCKED_THIRD_AMENDMENT_AFTER_HAIKU45_NONTHINKING_FAILURE_BEFORE_HAIKU45_THINKING_PILOT",
+  "public_timestamp_status": "PENDING_USER_PUBLIC_COMMIT_OR_OSF_REGISTRATION",
+  "amends": {
+    "schema_version": "c4r_journal_extension_prereg_v3",
+    "reason": "The frozen Claude Haiku 4.5 0.75 arm used the standard Messages API without manual extended thinking and failed the preregistered raw-coordinate L1 feasibility gate. This amendment tests whether the failure is attributable to the non-thinking provider protocol rather than to the model family alone. The pilot is a separate cohort and does not enter the frozen two-cohort matched inference.",
+    "preserved_failed_cohort_id": "haiku45",
+    "preserved_failed_backend_id": "anthropic_claude-haiku-4-5-20251001",
+    "preserved_failed_budget_label": "0p75",
+    "preserved_observed_stage7_rows": 1721,
+    "preserved_expected_stage7_rows": 1725,
+    "preserved_aggregate_raw_budget_compliance": 0.1871,
+    "preserved_condition_raw_budget_compliance": {
+      "C4": 0.1287,
+      "C4R": 0.2369,
+      "C6": 0.1958
+    },
+    "preservation_rule": "Do not overwrite, resume, relabel, or include the non-thinking Haiku archive in the thinking-enabled cohort."
+  },
+  "pilot_scope": {
+    "cohort_id": "haiku45thinking",
+    "backend": "anthropic:claude-haiku-4-5-20251001",
+    "expected_backend_id": "anthropic_claude-haiku-4-5-20251001_messages_thinking-2048_maxout-4096",
+    "run_role": "paper_c4r_haiku45_thinking_pilot",
+    "information_condition": "IC-b",
+    "conditions": [
+      "C4",
+      "C4R",
+      "C6"
+    ],
+    "mode": "free_form_10d",
+    "candidate_library_quantile": 50,
+    "l1_budget": 0.75,
+    "budget_label": "0p75",
+    "sample_size": 50,
+    "sample_seed": 20260718,
+    "sample_strata": [
+      "sector_7",
+      "grade_base_10"
+    ],
+    "planned_live_request_count": 150
+  },
+  "provider_contract": {
+    "api_mode": "messages",
+    "manual_extended_thinking": true,
+    "thinking_type": "enabled",
+    "thinking_budget_tokens": 2048,
+    "max_tokens": 4096,
+    "temperature": null,
+    "top_k": null,
+    "interleaved_thinking": false,
+    "thinking_content_storage": "Thinking blocks are excluded from Stage7 raw output and checkpoints; only non-secret counts and token usage metadata are retained.",
+    "stop_reason_policy": "max_tokens and model_context_window_exceeded are hard provider failures and must not enter the action parser."
+  },
+  "seed_protocol": {
+    "run_contract_seed": 1,
+    "reference_draw_seed": 1,
+    "provider_generation_seed_passed": false
+  },
+  "quality_gates": {
+    "expected_firm_count": 50,
+    "expected_stage7_action_rows": 150,
+    "expected_stage8_score_rows": 150,
+    "expected_stage9_revision_rows": 100,
+    "translational_failure_rows": 0,
+    "finite_arm_raw_budget_compliance_aggregate_min": 0.95,
+    "finite_arm_raw_budget_compliance_each_condition_min": 0.9,
+    "prompt_payload_archive_status": "FULL_PAYLOAD_ARCHIVED"
+  },
+  "stopping_rule": "Stop after the 150-request pilot. A full 575-firm Haiku-thinking arm requires a new public amendment after this pilot is observed. Do not relax the raw-budget, row-completeness, parser, or simulator gates.",
+  "analysis_status": "PROVIDER_FEASIBILITY_PILOT_ONLY_NOT_INCLUDED_IN_MATCHED_INFERENCE",
+  "interpretation_boundary": "The comparison isolates a provider-protocol change within the Haiku 4.5 model snapshot, but temperature also changes from the legacy explicit zero setting to omission because Anthropic extended thinking is incompatible with custom temperature. Results are therefore protocol-level, not a pure latent-reasoning treatment effect."
+}

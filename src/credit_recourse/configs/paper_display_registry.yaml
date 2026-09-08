@@ -1,0 +1,263 @@
+﻿schema_version: paper_display_registry_v4
+main_body_budget:
+  figures: 7
+  tables: 9
+  total: 16
+slots:
+- slot_id: FIG-01
+  slot_type: 본문 그림
+  title_and_role: 전체 논증·평가–식별 구조
+  panel_or_function_ids:
+  - A BOUNDARY_SCOPE
+  - B FIG_MEASUREMENT_AUTOPSY
+  - C FIG_TRAIN_EVAL_SEPARATION
+  claim_ids:
+  - C01
+  - C03
+  - C05
+  paper_locations:
+  - '1.2'
+  - 2.2–2.5
+  status: PLANNED
+  notes: 세 귀속 오류와 평가·학습 분리를 한 그림으로 통합
+- slot_id: FIG-02
+  slot_type: 본문 그림
+  title_and_role: 자유작성 성과 귀속
+  panel_or_function_ids:
+  - FIG_FREEFORM_ATTRIBUTION
+  claim_ids:
+  - C08
+  paper_locations:
+  - '5.3'
+  status: READY
+  notes: waterfall/ablation
+- slot_id: FIG-03
+  slot_type: 본문 그림
+  title_and_role: C4–C4R–C6 식별식과 조건구조
+  panel_or_function_ids:
+  - 'NEW: FIG_C4_C4R_C6_IDENTIFICATION'
+  claim_ids:
+  - C12–C17
+  paper_locations:
+  - '2.5'
+  - '6.2'
+  - '6.4'
+  status: PLANNED
+  notes: 결과 그래프와 분리된 설계도
+- slot_id: FIG-04
+  slot_type: 본문 그림
+  title_and_role: 백엔드×예산별 self-review·reference·package
+  panel_or_function_ids:
+  - FIG_BUDGET_COMPONENT_INTERACTION
+  claim_ids:
+  - C14–C17
+  paper_locations:
+  - 6.1–6.2
+  - '6.6'
+  status: READY
+  notes: 핵심 결과
+- slot_id: FIG-05
+  slot_type: 본문 그림
+  title_and_role: Raw 생성→clipping→applied 행동 경로
+  panel_or_function_ids:
+  - FIG_RAW_APPLIED_ACTION_PATH
+  - FIG_RAW_APPLIED_L1_DISTRIBUTION
+  claim_ids:
+  - C18
+  - C19
+  - C20
+  paper_locations:
+  - '6.3'
+  status: PARTIAL
+  notes: C20 판정은 부록표와 연동
+- slot_id: FIG-06
+  slot_type: 본문 그림
+  title_and_role: 평가함수 해상도·Shapley·다중해상도 재현성
+  panel_or_function_ids:
+  - A FIG_EVALUATOR_RESOLUTION_STATIC
+  - FIG_EVALUATOR_RESOLUTION_DYNAMIC
+  - FIG_TEST3_WEDGE_DIRECTION_PANEL
+  - FIG_WIN_TIE_LOSS_HETEROGENEITY
+  - B FIG_SHAPLEY_COMPONENTS
+  - FIG_SHAPLEY_AXIS_DIVERGING
+  - FIG_E2_E3_COMPONENT_RANK_CORRELATION
+  - C FIG_MULTIRES_REPRODUCIBILITY
+  claim_ids:
+  - C04
+  - C11
+  - C21
+  - C27
+  paper_locations:
+  - '3.7'
+  - 6.7–6.8
+  status: PARTIAL
+  notes: C04/C11/C27 미완료
+- slot_id: FIG-07
+  slot_type: 본문 그림
+  title_and_role: 배포 정책 시스템 승인 프레임워크
+  panel_or_function_ids:
+  - FIG_DEPLOYMENT_POLICY_SYSTEM
+  - FIG_HARNESS_LEVER_COMMON_SCALE
+  - FIG_PERFORMANCE_VERIFIABILITY_FRONTIER
+  claim_ids:
+  - C24
+  - C28
+  paper_locations:
+  - 7.4–7.6
+  status: READY_WITH_BOUNDARY
+  notes: 운영 결론
+- slot_id: TAB-01
+  slot_type: 본문 표
+  title_and_role: 표본과 시간분할
+  panel_or_function_ids:
+  - 'NEW: TAB_SAMPLE_TIME_SPLIT'
+  claim_ids:
+  - C01
+  - C02
+  - C05
+  paper_locations:
+  - '3.1'
+  status: PLANNED
+  notes: 모든 분석 cohort를 한 표에
+- slot_id: TAB-02
+  slot_type: 본문 표
+  title_and_role: 행동공간과 평가계약
+  panel_or_function_ids:
+  - 'NEW: TAB_ACTION_EVALUATION_CONTRACT'
+  claim_ids:
+  - C01
+  - C03
+  - C05
+  paper_locations:
+  - 3.2–3.4
+  status: PLANNED
+  notes: 10D·11 actions·Oracle roles
+- slot_id: TAB-03
+  slot_type: 본문 표
+  title_and_role: Oracle 검증
+  panel_or_function_ids:
+  - TAB_ORACLE_OOT_VALIDATION
+  claim_ids:
+  - C02
+  - C03
+  - C04
+  paper_locations:
+  - 3.5–3.7
+  status: PARTIAL
+  notes: C02/C04 path 필요
+- slot_id: TAB-04
+  slot_type: 본문 표
+  title_and_role: Candidate-IQL reference ladder와 provenance
+  panel_or_function_ids:
+  - TAB_REFERENCE_LADDER
+  - TAB_CAPTURE_DEFINITIONS
+  - S25 provenance
+  claim_ids:
+  - C05
+  - C06
+  - C11
+  paper_locations:
+  - 4.5–4.7
+  status: PARTIAL
+  notes: C05/C06/C11 미완료
+- slot_id: TAB-05
+  slot_type: 본문 표
+  title_and_role: 표준 선택 대 자유작성
+  panel_or_function_ids:
+  - TAB_STANDARD_VS_FREEFORM
+  claim_ids:
+  - C07
+  paper_locations:
+  - '5.2'
+  status: READY
+  notes: null
+- slot_id: TAB-06
+  slot_type: 본문 표
+  title_and_role: 자유작성·추론·정보조건 핵심 대조
+  panel_or_function_ids:
+  - A attribution summary
+  - B TAB_INFORMATION_AND_RECOGNITION
+  - C TAB_REASONING_SCORE_EFFECT
+  - D TAB_REASONING_FORMAT_EFFECT
+  claim_ids:
+  - C08
+  - C09
+  - C10
+  - C26
+  paper_locations:
+  - 5.3–5.5
+  status: PARTIAL
+  notes: H1/H2 3백엔드 범위
+- slot_id: TAB-07
+  slot_type: 본문 표
+  title_and_role: C4–C4R–C6×예산×백엔드 성분 및 행동계약
+  panel_or_function_ids:
+  - A FIG_BUDGET_COMPONENT_INTERACTION data
+  - B TAB_CANONICAL_CLIPPING
+  claim_ids:
+  - C14–C19
+  paper_locations:
+  - 6.1–6.3
+  - '6.6'
+  status: READY
+  notes: component effects + clipping panel
+- slot_id: TAB-08
+  slot_type: 본문 표
+  title_and_role: C6X·C8·TOST 및 Oracle 강건성
+  panel_or_function_ids:
+  - A TAB_REFERENCE_SOURCE
+  - B TAB_REFERENCE_TIMING
+  - C TAB_TOST_ROBUSTNESS
+  - TAB_TOST_COMPLETE_LEDGER
+  - FIG_TOST_EQUIVALENCE_FOREST
+  claim_ids:
+  - C12
+  - C13
+  - C22
+  paper_locations:
+  - '6.4'
+  - '6.6'
+  status: PARTIAL
+  notes: C13 path 필요
+- slot_id: TAB-09
+  slot_type: 본문 표
+  title_and_role: QC·실행계보·감사축과 위험기반 배포
+  panel_or_function_ids:
+  - A TAB_QC_ELIGIBILITY
+  - FIG_BUDGET_COMPLIANCE_LADDER
+  - B TAB_RUN_LINEAGE
+  - TAB_LLM_REPEAT_STABILITY
+  - C deployment audit axes
+  claim_ids:
+  - C11
+  - C23
+  - C24
+  - C28
+  paper_locations:
+  - '6.5'
+  - '6.8'
+  - 7.5–7.6
+  status: PARTIAL
+  notes: C11 미완료
+- slot_id: APP-TAB-RD
+  slot_type: 부록 표
+  title_and_role: 수정 희석 5개 요건
+  panel_or_function_ids:
+  - TAB_REVISION_DILUTION
+  claim_ids:
+  - C20
+  paper_locations:
+  - 부록
+  status: CONDITIONAL
+  notes: 확정 후 본문 요약만
+- slot_id: APP-TAB-RRV
+  slot_type: 부록 표
+  title_and_role: 관계적 참조가치 상세
+  panel_or_function_ids:
+  - TAB_RELATIONAL_REFERENCE_VALUE
+  claim_ids:
+  - C25
+  paper_locations:
+  - 부록
+  status: NOT_READY
+  notes: E3 재산출 필요

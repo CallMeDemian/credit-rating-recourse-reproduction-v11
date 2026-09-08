@@ -1,0 +1,102 @@
+schema_version: final_candidate_library_v32
+library_name: v32_candidate_iql_controllability_ladder
+main_train_labels:
+- A0_noop
+- DL1_deleverage_mild
+- DL2_deleverage_moderate
+- RF1_short_debt_refinance
+- CX1_capex_discipline
+- WC1_working_capital_tightening
+- WC2_supplier_financing
+- OE1_cost_efficiency_mild
+- OE2_cost_efficiency_moderate
+- MX1_cost_and_deleverage
+- MX2_liquidity_rescue
+final_rl_label: C3_candidate_iql
+fixed_candidates:
+  A0_noop:
+    paper_role: noop
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+  DL1_deleverage_mild:
+    paper_role: main_train
+    action__short_debt_pct: -0.2
+    action__long_debt_pct: -0.5
+    action__bond_pct: -0.5
+  DL2_deleverage_moderate:
+    paper_role: main_train
+    action__short_debt_pct: -0.4
+    action__long_debt_pct: -0.5
+    action__bond_pct: -0.5
+  RF1_short_debt_refinance:
+    paper_role: main_train
+    action__short_debt_pct: -0.35
+    action__long_debt_pct: -0.5
+    action__bond_pct: -0.5
+  CX1_capex_discipline:
+    paper_role: main_train
+    action__ppe_pct: -0.1
+  WC1_working_capital_tightening:
+    paper_role: main_train
+    action__inv_turnover_chg: 0.5
+    action__ar_turnover_chg: 0.5
+    action__ap_turnover_chg: 0.25
+  WC2_supplier_financing:
+    paper_role: main_train
+    action__ap_turnover_chg: -3.0
+  OE1_cost_efficiency_mild:
+    paper_role: main_train
+    action__cogs_ratio_chg: -0.03
+    action__sga_ratio_chg: -0.02
+  OE2_cost_efficiency_moderate:
+    paper_role: main_train
+    action__cogs_ratio_chg: -0.015
+    action__sga_ratio_chg: -0.01
+  MX1_cost_and_deleverage:
+    paper_role: main_train
+    action__short_debt_pct: -0.2
+    action__cogs_ratio_chg: -0.03
+    action__sga_ratio_chg: -0.02
+  MX2_liquidity_rescue:
+    paper_role: main_train
+    action__inv_turnover_chg: 3.0
+    action__ar_turnover_chg: 0.4
+    action__ap_turnover_chg: -3.0
+    action__short_debt_pct: -0.35
+scenario_candidates:
+  RV1_revenue_growth_mild:
+    paper_role: scenario_only_not_train
+    action__revenue_growth: 0.025
+  RV2_revenue_growth_moderate:
+    paper_role: scenario_only_not_train
+    action__revenue_growth: 0.05
+diagnostic_candidates:
+  DG1_capex_expansion_stress:
+    paper_role: diagnostic_only_not_train
+    action__ppe_pct: 0.1
+  DG2_margin_stress:
+    paper_role: diagnostic_only_not_train
+    action__cogs_ratio_chg: 0.01
+    action__sga_ratio_chg: 0.005
+row_conditional_baselines:
+  C2_weakest_component_rule:
+    paper_role: stage6_baseline_only
+    train_label_allowed: false
+    projection_label_allowed: false
+magnitude_calibration:
+  schema_version: final_candidate_library_magnitude_calibrated_v33
+  created_utc: '2026-05-21T10:25:53.198457+00:00'
+  source_candidate_library_sha256: 9c952105a82fe94298a0bc2fb3ddc755219a6a55302677839c30f88c1d9fb5d5
+  calibration_sample: phase2_plus_phase3_train_only
+  eval_distribution_used: false
+  automatic_recalibration_performed: true
+  n_recalibrated_candidate_dimensions: 13
+  n_recalibration_recommended_dimensions: 14

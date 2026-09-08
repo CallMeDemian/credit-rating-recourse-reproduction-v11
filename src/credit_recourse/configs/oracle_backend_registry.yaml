@@ -1,0 +1,28 @@
+schema_version: oracle_backend_registry_stage1_final_v28
+status: generated_by_stage1_oracle_development_verified
+final_result_allowed: true
+generated_by: credit_recourse.oracle.stage1.run_stage1_oracle_development
+created_utc: '2026-05-19T21:59:12.235605+00:00'
+allowed_backend_types:
+  alpha: alpha_vanilla_isotonic_scorecard
+  beta: beta_ordered_logit
+  gamma: gamma_ml_tree_boosting
+backends:
+  alpha:
+    backend_type: alpha_vanilla_isotonic_scorecard
+    path: data/final_freeze/stage1_oracle_backends/alpha
+    params: data/final_freeze/stage1_oracle_backends/alpha/oracle_alpha_params.json
+    output: data/final_freeze/stage1_oracle_backends/alpha/oracle_firm_year_output_alpha.parquet
+    metrics: data/final_freeze/stage1_oracle_backends/alpha/preliminary_dev_oot_metrics_alpha.csv
+  beta:
+    backend_type: beta_ordered_logit
+    path: data/final_freeze/stage1_oracle_backends/beta
+    params: data/final_freeze/stage1_oracle_backends/beta/benchmark_beta_params.json
+    output: data/final_freeze/stage1_oracle_backends/beta/benchmark_firm_year_output_beta.parquet
+  gamma:
+    backend_type: gamma_ml_tree_boosting
+    path: data/final_freeze/stage1_oracle_backends/gamma
+    params: data/final_freeze/stage1_oracle_backends/gamma/benchmark_gamma_params.json
+    model: data/final_freeze/stage1_oracle_backends/gamma/benchmark_gamma_model.joblib
+    output: data/final_freeze/stage1_oracle_backends/gamma/benchmark_firm_year_output_gamma.parquet
+no_placeholder_policy: hard_fail_unless_allow_unscored

@@ -1,0 +1,12 @@
+schema_version: phase_alpha_grid_v1
+description: "Stage 3 SSL encoder sweep grid."
+grid:
+  hidden_dim: [256, 384]
+  pretraining_epochs: [30, 50, 80]
+  masking_ratio: [0.15, 0.30, 0.50]
+selection:
+  metric: holdout_acd_loss
+  direction: lower_is_better
+  tie_break: [hidden_dim_lower, pretraining_epochs_lower, masking_ratio_lower]
+holdout: {fraction: 0.10, source: phase1_pretrain_inner_train}
+final_refit: {window: train_transition_year_max, source: phase1_pretrain_le_train_transition_year_max}

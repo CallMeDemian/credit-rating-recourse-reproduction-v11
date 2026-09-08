@@ -1,0 +1,35 @@
+# Local Python environment and credentials
+.venv/
+.env
+.env.*
+!.env.example
+
+# Python/editor caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Runtime workspaces. These are populated by a run, not committed.
+/data/final_freeze/**
+!/data/final_freeze/.gitkeep
+/data/analysis/**
+!/data/analysis/.gitkeep
+/data/runs/**
+!/data/runs/.gitkeep
+
+# Large inputs and the historical frozen snapshot are GitHub Release assets.
+/data/raw/**
+!/data/raw/.gitkeep
+/frozen_outputs/**
+!/frozen_outputs/.gitkeep
+
+# Local release staging and OS files
+/release_assets/
+Thumbs.db
+Desktop.ini
+

@@ -1,0 +1,7 @@
+# Optional: paste this block at the bottom of configs/stage4_alpha_config.yaml
+# stage4_alpha_pipeline_pareto.py already uses these defaults if the block is absent.
+pareto_search:
+  n_trials: 360          # 300-400 권장. 더 길게 돌리려면 400.
+  seed: 42
+  inner_outer_iter: 3    # inner validation search fidelity
+  inner_weight_trials: 300

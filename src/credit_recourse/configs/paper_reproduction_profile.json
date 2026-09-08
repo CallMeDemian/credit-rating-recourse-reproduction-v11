@@ -1,0 +1,441 @@
+{
+  "schema_version": "paper_reproduction_profile_v1",
+  "profile_name": "thesis_final_paper_2026",
+  "description": "Canonical fresh-workspace reproduction profile for Oracle -> RL -> precomputed LLM outputs -> paper analysis. LLM generation and replay are outside this package contract.",
+  "workspace": {
+    "required_source_dir": "src/credit_recourse",
+    "required_tools_dir": "tools",
+    "raw_root": "data/raw",
+    "final_freeze_root": "data/final_freeze",
+    "llm_runs_root": "data/final_freeze/llm_runs",
+    "analysis_root": "data/analysis/paper_repro"
+  },
+  "raw_contract": {
+    "required_directories": [
+      "data/raw/raw_all",
+      "data/raw/rating_sample",
+      "data/raw/raw_nonfinancial/kospi_kosdaq"
+    ],
+    "optional_directories": [
+      "data/raw/raw_nonfinancial/konex_optional"
+    ],
+    "minimum_xlsx_counts": {
+      "data/raw/raw_all": 6,
+      "data/raw/rating_sample": 1,
+      "data/raw/raw_nonfinancial/kospi_kosdaq": 4
+    },
+    "accepted_archive_names": {
+      "data/raw/raw_all": "raw_all.zip",
+      "data/raw/raw_nonfinancial": "raw_nonfinancial.zip",
+      "data/raw/rating_sample": "rating_sample.zip"
+    }
+  },
+  "oracle": {
+    "score_end_year": 2023,
+    "dev_start_year": 2002,
+    "dev_end_year": 2019,
+    "oot_start_year": 2020,
+    "run_verifiers": true
+  },
+  "rl": {
+    "profile": "FinalPaper",
+    "run_loopA_loopB2_extension": true,
+    "magnitude_quantile": 50,
+    "sim_business_plan_mode": "calibrated",
+    "preserve_current_non_current_residual": true,
+    "final_run_label": "sector0_m0p05_f0p45_liq0p45_s2_s3train_g0p60_tau0p85_b15_cql0_distill1p5_qpareto"
+  },
+  "llm": {
+    "seed": 1,
+    "reference_draw_seed": 1,
+    "candidate_library_quantile": 50,
+    "max_concurrency": 6,
+    "max_retries": 3,
+    "retry_sleep_seconds": 20.0,
+    "primary": {
+      "run_role": "paper_primary_gpt54",
+      "backend": "openai:gpt-5.4-mini",
+      "information_conditions": [
+        "IC-a",
+        "IC-b",
+        "IC-c"
+      ],
+      "conditions": [
+        "C4",
+        "C5",
+        "C6",
+        "C6X",
+        "C7",
+        "C8"
+      ],
+      "modes": [
+        "candidate_selection",
+        "free_form_10d"
+      ],
+      "openai_api_mode": "responses",
+      "openai_reasoning_effort": "low",
+      "openai_max_output_tokens": 1200
+    },
+    "supplementary": [
+      {
+        "run_role": "paper_supplementary_gpt41",
+        "backend": "openai:gpt-4.1-mini",
+        "information_conditions": [
+          "IC-b"
+        ],
+        "conditions": [
+          "C4",
+          "C5",
+          "C6",
+          "C6X",
+          "C7",
+          "C8"
+        ],
+        "modes": [
+          "candidate_selection",
+          "free_form_10d"
+        ]
+      },
+      {
+        "run_role": "paper_supplementary_haiku45",
+        "backend": "anthropic:claude-haiku-4-5-20251001",
+        "information_conditions": [
+          "IC-b"
+        ],
+        "conditions": [
+          "C4",
+          "C5",
+          "C6",
+          "C6X",
+          "C7",
+          "C8"
+        ],
+        "modes": [
+          "candidate_selection",
+          "free_form_10d"
+        ]
+      }
+    ],
+    "n5": {
+      "run_role": "paper_n5_l1_1p27",
+      "backend": "openai:gpt-5.4-mini",
+      "information_conditions": [
+        "IC-a",
+        "IC-b",
+        "IC-c"
+      ],
+      "conditions": [
+        "C4",
+        "C6"
+      ],
+      "modes": [
+        "free_form_10d"
+      ],
+      "l1_budget": 1.27,
+      "budgeted_conditions": [
+        "C6"
+      ],
+      "openai_api_mode": "responses",
+      "openai_reasoning_effort": "low",
+      "openai_max_output_tokens": 1200
+    },
+    "icc_probe": {
+      "run_role": "paper_icc_probe",
+      "base_run_role": "paper_primary_gpt54",
+      "information_condition": "IC-c",
+      "target_feature": "derived__debt_to_assets",
+      "relative_tolerance": 0.2
+    },
+    "n5_budget_frontier": {
+      "run_role": "paper_n5_budget_frontier_icb",
+      "backend": "openai:gpt-5.4-mini",
+      "information_condition": "IC-b",
+      "conditions": [
+        "C4",
+        "C6"
+      ],
+      "modes": [
+        "free_form_10d"
+      ],
+      "l1_budgets": [
+        0.75,
+        1.27,
+        2.0,
+        null
+      ],
+      "budgeted_conditions": [
+        "C6"
+      ],
+      "openai_api_mode": "responses",
+      "openai_reasoning_effort": "low",
+      "openai_max_output_tokens": 1200,
+      "required_for_canonical_analysis": false,
+      "paper_use": "supplementary"
+    },
+    "n5_matched_budget_frontier": {
+      "run_role": "paper_n5_matched_budget_frontier_icb",
+      "backend": "openai:gpt-5.4-mini",
+      "information_condition": "IC-b",
+      "conditions": [
+        "C4",
+        "C6"
+      ],
+      "modes": [
+        "free_form_10d"
+      ],
+      "l1_budgets": [
+        0.75,
+        1.27,
+        2.0,
+        null
+      ],
+      "budgeted_conditions": [
+        "C4",
+        "C6"
+      ],
+      "openai_api_mode": "responses",
+      "openai_reasoning_effort": "low",
+      "openai_max_output_tokens": 1200,
+      "required_for_canonical_analysis": false,
+      "paper_use": "historical",
+      "evidence_class": "SUPERSEDED_FIRST_OBSERVATION"
+    }
+  },
+  "analysis": {
+    "tasks": [
+      "verify",
+      "b2-gap",
+      "test3",
+      "structural-slice",
+      "postfreeze-ablation",
+      "postfreeze-holm",
+      "main-harness-backend-decomposition",
+      "reference-quality",
+      "n5-holm",
+      "n5-frontier-holm",
+      "signflip",
+      "frontier",
+      "winrate",
+      "icc-probe",
+      "final-contract",
+      "analysis-extensions",
+      "thesis-registry",
+      "master-verification",
+      "freeze-baseline",
+      "missing-evidence-analyses",
+      "claim-evidence",
+      "review-package",
+      "claim-contract",
+      "claim-map-sync"
+    ],
+    "frontier_mode": "full",
+    "frontier_grid": [
+      0.5,
+      0.75,
+      1.0,
+      1.27,
+      1.75,
+      2.5,
+      3.25,
+      4.0
+    ],
+    "frontier_variants": [
+      "l1_rescale",
+      "global_mean_vector_null",
+      "row_shuffle_vector_null"
+    ],
+    "strict": true,
+    "strict_paper_assets": true,
+    "output_layout": {
+      "manifest": "00_manifest",
+      "substrate": "01_substrate_validation",
+      "hypothesis_tests": "02_llm_hypothesis_tests",
+      "contract_diagnostics": "03_output_contract_diagnostics",
+      "paper_assets": "04_paper_assets",
+      "verification": "99_verification",
+      "extensions": "05_extension_e3_e4",
+      "registry": "06_thesis_registry",
+      "claim_evidence": "data/reproduction/claim_evidence",
+      "verification_package": "data/reproduction/verification_package",
+      "reproduction_manifests": "data/reproduction/manifests"
+    },
+    "shuffle_permutation_seeds": "1:1000",
+    "shuffle_within": [
+      "none",
+      "industry",
+      "rating_band"
+    ],
+    "main_harness_backend_decomposition": {
+      "information_condition": "IC-b",
+      "run_role_backend_labels": {
+        "paper_primary_gpt54": "GPT-5.4-mini",
+        "paper_supplementary_gpt41": "GPT-4.1-mini",
+        "paper_supplementary_haiku45": "Haiku-4.5"
+      },
+      "conditions": [
+        "C4",
+        "C5",
+        "C6",
+        "C6X",
+        "C7",
+        "C8"
+      ],
+      "modes": [
+        "candidate_selection",
+        "free_form_10d"
+      ],
+      "expected_firm_count": 575,
+      "minimum_backend_coverage": 0.99,
+      "minimum_cell_coverage": 0.95,
+      "excluded_run_families": [
+        "N5",
+        "N5F",
+        "N5M"
+      ]
+    },
+    "historical_optional_tasks": [
+      "n5-matched-frontier-holm",
+      "n5m-posthoc",
+      "n5m-adaptive-selection",
+      "legacy-paper-assets"
+    ]
+  },
+  "reproduction": {
+    "schema_version": "thesis_reproduction_graph_v1",
+    "llm_input_mode": "precomputed_stage7_stage8_stage9_outputs",
+    "llm_generation_required": false,
+    "llm_replay_required": false,
+    "public_runner": "tools/run_full_reproduction.ps1",
+    "task_order": [
+      "VerifyInputs",
+      "FreezeBaseline",
+      "Oracle",
+      "RL",
+      "Analysis",
+      "RLSevenSeed",
+      "AnalysisExtensions",
+      "MissingEvidenceAnalyses",
+      "ClaimEvidence",
+      "PaperAssets",
+      "ReviewPackage",
+      "VerifyAll"
+    ],
+    "input_inventory": "src/credit_recourse/configs/reproduction_input_inventory.json",
+    "environment_lock": "src/credit_recourse/configs/reproduction_environment_lock.json",
+    "artifact_registry": "src/credit_recourse/configs/paper_display_registry.yaml",
+    "final_manifest": "data/reproduction/final_reproduction_manifest.json",
+    "complete_marker": "data/reproduction/COMPLETE",
+    "core_complete_marker": "data/reproduction/CORE_COMPLETE"
+  },
+  "rl_reproducibility": {
+    "final_seed": 2,
+    "seven_seed_grid": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "run_stage2_once": true,
+    "reuse_stage2_for_seed_cells": true,
+    "aligned_stage_seeds": true,
+    "expected_firm_count": 575,
+    "output_root": "data/final_freeze/rl_reproducibility/seven_seed",
+    "summary_root": "data/analysis/paper_repro/03_output_contract_diagnostics/rl_seven_seed",
+    "historical_milestones_evidence_class": "HISTORICAL_PROVENANCE",
+    "encoder_sweep_mode": "REQUIRED_FRESH_RUN",
+    "encoder_sweep_output_root": "data/final_freeze/rl_reproducibility/encoder_sweep",
+    "encoder_sweep_cells": [
+      {
+        "cell_id": "b256_ep30_m030_s0",
+        "batch_size": 256,
+        "epochs": 30,
+        "masking_ratio": 0.3,
+        "seed": 0
+      },
+      {
+        "cell_id": "b256_ep49_m030_s42",
+        "batch_size": 256,
+        "epochs": 49,
+        "masking_ratio": 0.3,
+        "seed": 42
+      },
+      {
+        "cell_id": "b512_ep15_m015_s1",
+        "batch_size": 512,
+        "epochs": 15,
+        "masking_ratio": 0.15,
+        "seed": 1
+      },
+      {
+        "cell_id": "b512_ep30_m015_s1",
+        "batch_size": 512,
+        "epochs": 30,
+        "masking_ratio": 0.15,
+        "seed": 1,
+        "selected_for_final_family": true
+      },
+      {
+        "cell_id": "b512_ep50_m030_s42",
+        "batch_size": 512,
+        "epochs": 50,
+        "masking_ratio": 0.3,
+        "seed": 42
+      }
+    ],
+    "encoder_sweep_summary_root": "data/analysis/paper_repro/03_output_contract_diagnostics/rl_encoder_sweep"
+  },
+  "extensions": {
+    "output_root": "data/analysis/paper_repro/05_extension_e3_e4",
+    "e2": {
+      "run_role": "paper_c4r_matched_icb",
+      "information_condition": "IC-b",
+      "budgets": [
+        0.75,
+        null
+      ],
+      "expected_firm_count": 575,
+      "expected_firm_rows": 1150,
+      "expected_contrasts": 18,
+      "expected_interactions": 9
+    },
+    "e3": {
+      "cohorts": {
+        "gpt54mini": "paper_c4r_journal_ext_gpt54mini",
+        "gemini31flashlite": "paper_c4r_journal_ext_gemini31flashlite"
+      },
+      "budgets": [
+        0.75,
+        1.27,
+        2.0,
+        null
+      ],
+      "expected_firm_count": 575,
+      "expected_firm_rows": 4600,
+      "expected_contrasts": 72,
+      "expected_interactions": 54,
+      "tost_within_arm_rows": 24,
+      "tost_interaction_rows": 18,
+      "equivalence_margin": 0.109
+    },
+    "e4": {
+      "nonthinking_role": "paper_c4r_journal_ext_haiku45",
+      "thinking_pilot_role": "paper_c4r_haiku45_thinking_pilot",
+      "thinking_full_role": "paper_c4r_haiku45_thinking_full_characterization",
+      "common_complete_case_n": 571,
+      "confirmatory_inclusion": false
+    }
+  },
+  "claim_evidence_contract": {
+    "version": "v4",
+    "claim_count": 28,
+    "source_count": 32,
+    "decision_count": 15,
+    "main_asset_slots": 16,
+    "core_complete_rule": "P0 unresolved=0",
+    "complete_rule": "all 28 claims materialized and evaluated; unresolved=0",
+    "source_of_truth": "src/credit_recourse/configs/claim_evidence_registry.yaml"
+  }
+}

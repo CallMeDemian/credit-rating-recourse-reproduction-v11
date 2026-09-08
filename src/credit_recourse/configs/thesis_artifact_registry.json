@@ -1,0 +1,6 @@
+{
+  "schema_version": "legacy_thesis_artifact_registry_v1",
+  "status": "HISTORICAL_ONLY",
+  "note": "현재 논문 목록이 아님. 현재 기준은 docs/thesis_lineage/registry/CANONICAL_THESIS_INVENTORY.csv.",
+  "artifacts": []
+}

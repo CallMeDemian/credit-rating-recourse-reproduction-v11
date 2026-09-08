@@ -1,0 +1,159 @@
+# ============================================================================
+# Final Paper Run Profile — frozen 2026-06-06 deployment configuration
+# (RL-RUN-007; consumed by credit_recourse.utils.run_final_paper_rl and
+#  credit_recourse.rl.common.run_profile.load_final_run_profile)
+#
+# PURPOSE
+#   Pin the paper-run hyperparameters INSIDE src. Stage 2 reward CLI defaults are
+#   also aligned to the frozen values as a defense-in-depth guard, while this
+#   profile remains authoritative for the complete multi-stage configuration.  Diagnosis ISSUE-01 (docs/DIAGNOSIS_SRC_FREEZE_20260704.md).
+#
+# PROVENANCE (confidence per value)
+#   [R]  reproducibility_comparison_original_vs_reproduction.md §6 (frozen run
+#        rl_unified_m0p05_f0p45_liq0p45_s2_20260606_181913 vs reproduction) —
+#        seed 2 / rho 0 / Merton-FCFF-Liquidity 0.05-0.45-0.45 / gamma 0.6 /
+#        tau 0.85 / beta 15 / cql 0 / distill 1.5 / cross-attention (2 blocks,
+#        4 heads) / q_pareto_knee / 80 epochs.
+#   [D]  2026-06 pre-experiment report (Offline RL 사전실험) figure/table text —
+#        Stage3 batch 512 · epoch 30 · masking 0.15; Stage4 epochs 80 · batch
+#        512 · LR 1e-3 · WD 1e-4 · effective-number beta 0.999 · family p 0.5;
+#        Stage5 batch 128 · LR 1e-4 · AWR actor.
+#   [P]  tools/runner play script.txt — actual independent reproduction command
+#        used for the frozen paper-profile replay (cash-flow substrate join,
+#        counterfactual fidelity warn gate, and Stage5 margin/dropout/WD).
+#   [S]  SENTINEL — recorded only in the frozen run's own artifacts; must be
+#        confirmed there (see confirm_hints) before a paper-profile run.
+#
+# POLICY
+#   The loader hard-fails while any __CONFIRM_FROM_FROZEN_RUN_ARTIFACT__
+#   remains for a requested stage. Do NOT replace a sentinel with a guess.
+# ============================================================================
+schema_version: final_run_profile_v1
+profile_name: final_paper_frozen_20260606_s2
+frozen_run_reference: rl_unified_m0p05_f0p45_liq0p45_s2_20260606_181913
+frozen_cell_reference: cell_001_P50_L1p5_G0p6_T0p85_B15
+
+stages:
+
+  stage2_raw_action_source:
+    args: {}          # Stage 2A consumes raw_all under project defaults [R: deterministic tier]
+    flags: {}
+
+  stage2_input_splits:
+    args:
+      bc-split-policy: all            # seed-free contract (RL-S2 splits) [R]
+      cash-flow-encoder-mode: reward_only   # [P] frozen runner: -CashFlowEncoderMode reward_only
+      cash-flow-panel: data/final_freeze/stage1_oracle_inputs/stage00_01_rating_statement_integration/cleaned_statement_panels/현금흐름표_clean.parquet  # [P] frozen runner cash-flow substrate panel
+    flags:
+      join-cash-flow-substrate: true   # [P] frozen runner: -JoinCashFlowSubstrate
+
+  stage2_candidate_projection:
+    args:
+      rho: 0.0                        # sector-Phi shaping OFF in the frozen run [R]
+      merton-lambda: 0.05             # [R]
+      fcff-lambda: 0.45               # [R]
+      liquidity-lambda: 0.45          # [R]
+    flags: {}
+
+  stage2_counterfactual_transitions:
+    args:
+      magnitude-quantile: 50          # P50 library [R]
+      reward-mode: phi_merton_fcff_liquidity   # [R]
+      done-mode: terminal
+      fidelity-gate: warn              # [P] frozen runner: -CounterfactualFidelityGate warn
+      max-rel-err-assets: 0.05         # [P] frozen runner: -CounterfactualMaxRelErrAssets 0.05
+      sim-business-plan-mode: calibrated   # [R/T] frozen/reproduction simulator substrate setting
+    flags:
+      preserve-current-non-current-residual: true   # [R/T] preserve simulator residual identity
+
+  stage3:
+    args:
+      train-mode: final_refit
+      seed: 2                         # [R: -Stage3Seed 2]
+      epochs: 30                      # [D: table 9, 채택]
+      batch-size: 512                 # [D]
+      hidden-dim: 256                 # [R/D]
+      masking-ratio: 0.15             # [D §2.3]
+      learning-rate: 3e-4             # [D/T] Stage3 runner/default frozen config
+      weight-decay: 1e-5              # [D/T] Stage3 runner/default frozen config
+    flags: {}
+
+  stage4:
+    args:
+      train-mode: final_refit
+      seeds: "2"                      # [R: -Stage4Seed 2]
+      epochs: 80                      # [D: Stage4 figure "Epochs 80"]
+      batch-size: 512                 # [D]
+      magnitude-quantile: 50          # [R]
+      class-balance-beta: 0.999       # [D §2.4]
+      family-balance-power: 0.5       # [D §2.4]
+      class-weight-cap: 5.0          # [D/T] Stage4 runner/default frozen config
+      family-weight-cap: 3.0         # [D/T] Stage4 runner/default frozen config
+      combined-weight-cap: 5.0       # [D/T] Stage4 runner/default frozen config
+    flags:
+      class-balanced: true            # [D §2.4]
+      family-balanced: true           # [D §2.4]
+
+  stage5:
+    args:
+      train-mode: final_refit
+      seeds: "2"                      # [R: -Stage5Seed 2]
+      epochs: 80                      # [R]
+      gamma: 0.6                      # [R]
+      expectile-tau: 0.85             # [R]
+      beta: 15                        # [R]
+      cql-alpha: 0.0                  # [R]
+      magnitude-quantile: 50          # [R]
+      batch-size: 128                 # [D: Stage5 box "B 128"]
+      learning-rate: 1e-4             # [D: Stage5 box "LR 1e-4"]
+      actor-distill-lambda: 1.5       # [R]
+      critic-head-arch: cross_attention   # [R]
+      cross-attn-blocks: 2            # [R]
+      cross-attn-heads: 4             # [R]
+      selection-metric: q_pareto_knee # [R]
+      transition-source: counterfactual   # [D fig1: IQL trains on 34,749 CF transitions]
+      actor-extraction-mode: awr      # [D: AWR actor + distill]
+      actor-distill-mode: ce          # [R/T] distillation CE mode
+      actor-distill-margin-min: 0.01  # [P] frozen runner: -DistillMarginMin 0.01
+      actor-distill-temperature: 1.0  # [D/T] runner default
+      actor-head-arch: linear        # [R/T] deployed actor head
+      cross-attn-dropout: 0.25       # [P] frozen runner: -CrossAttnDropout 0.25
+      weight-decay: 2e-3             # [P] frozen runner: -Stage5WeightDecay 2e-3
+    flags: {}
+
+  stage6_multi_oracle:
+    args:
+      sim-business-plan-mode: calibrated   # [R/T] frozen Stage6 simulator identity
+    flags:
+      preserve-current-non-current-residual: true   # [R/T] frozen Stage6 simulator identity
+      deploy-qargmax-as-policy: false   # deployed C3 = actor policy; q-argmax was diagnostic only
+
+  stage6_statistical_inference:
+    args: {}
+    flags: {}
+
+  stage6_derived_comparators:
+    args: {}
+    flags: {}
+
+# ----------------------------------------------------------------------------
+# Where to confirm each sentinel. All are recorded inside the frozen run's own
+# artifacts (rl_unified_m0p05_f0p45_liq0p45_s2_20260606_181913 archive) or, if
+# absent there, in the frozen runner ps1 under tools/ in the thesis repo.
+# ----------------------------------------------------------------------------
+confirm_hints:
+  stage2_counterfactual_transitions.sim-business-plan-mode: "frozen stage2_candidate_projection/*counterfactual* metadata: sim_business_plan_mode"
+  stage2_counterfactual_transitions.preserve-current-non-current-residual: "frozen counterfactual metadata: preserve_current_non_current_residual"
+  stage3.learning-rate: "frozen stage3_acd_ssl/metadata.json: learning_rate (else tools ps1 -Stage3 args)"
+  stage3.weight-decay: "frozen stage3_acd_ssl/metadata.json: weight_decay"
+  stage4.class-weight-cap: "frozen stage4_candidate_bc/metadata.json class_balance_audit block"
+  stage4.family-weight-cap: "frozen stage4_candidate_bc/metadata.json family balance block"
+  stage4.combined-weight-cap: "frozen stage4_candidate_bc/metadata.json family balance block"
+  stage5.actor-distill-mode: "frozen stage5_candidate_iql/metadata.json or checkpoint payload: actor_distill_mode"
+  stage5.actor-distill-margin-min: "frozen stage5 metadata: actor_distill_margin_min"
+  stage5.actor-distill-temperature: "frozen stage5 metadata: actor_distill_temperature"
+  stage5.actor-head-arch: "frozen stage5 metadata/checkpoint: actor_head_arch"
+  stage5.cross-attn-dropout: "frozen stage5 metadata: cross_attn_dropout"
+  stage5.weight-decay: "frozen stage5 validation_metrics.json: weight_decay"
+  stage6_multi_oracle.sim-business-plan-mode: "frozen stage6 metadata.json: sim_business_plan_mode"
+  stage6_multi_oracle.preserve-current-non-current-residual: "frozen stage6 metadata.json: preserve_current_non_current_residual"

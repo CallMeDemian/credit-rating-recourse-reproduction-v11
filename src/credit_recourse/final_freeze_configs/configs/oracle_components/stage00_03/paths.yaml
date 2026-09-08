@@ -1,0 +1,42 @@
+inputs:
+  stage1b:
+    panel: ${PROJECT_ROOT}\data\final_freeze\stage00_01_rating_statement_integration\firm_year_panel_v1.parquet
+    statements:
+      재무상태표: ${PROJECT_ROOT}\data\final_freeze\stage00_01_rating_statement_integration\cleaned_statement_panels\재무상태표_clean.parquet
+      손익계산서: ${PROJECT_ROOT}\data\final_freeze\stage00_01_rating_statement_integration\cleaned_statement_panels\손익계산서_clean.parquet
+      현금흐름표: ${PROJECT_ROOT}\data\final_freeze\stage00_01_rating_statement_integration\cleaned_statement_panels\현금흐름표_clean.parquet
+      자본변동표: ${PROJECT_ROOT}\data\final_freeze\stage00_01_rating_statement_integration\cleaned_statement_panels\자본변동표_clean.parquet
+      이익잉여금처분계산서: ${PROJECT_ROOT}\data\final_freeze\stage00_01_rating_statement_integration\cleaned_statement_panels\이익잉여금처분계산서_clean.parquet
+      재무비율: ${PROJECT_ROOT}\data\final_freeze\stage00_01_rating_statement_integration\cleaned_statement_panels\재무비율_clean.parquet
+
+  stage2:
+    engineered_ratios: ${PROJECT_ROOT}\data\final_freeze\stage00_02_financial_ratio_engineering\engineered_financial_ratios.parquet
+    candidate_pool: ${PROJECT_ROOT}\data\final_freeze\stage00_02_financial_ratio_engineering\candidate_ratio_pool_by_item.csv
+    lag_support_income: ${PROJECT_ROOT}\data\final_freeze\stage00_02_financial_ratio_engineering\lag_support\손익계산서_lag_support.parquet
+
+  raw_nonfinancial:
+    general_info:
+      kospi: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\kospi_kosdaq\코스피_전업종_폐지사 포함_일반사항.xlsx
+      kosdaq: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\kospi_kosdaq\코스닥_전업종_폐지사 포함_일반사항.xlsx
+      konex: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\konex_optional\코넥스_전업종_일반사항.xlsx
+    capital_change:
+      kospi: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\kospi_kosdaq\코스피_전업종_폐지사 포함_자본금 변동사항.xlsx
+      kosdaq: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\kospi_kosdaq\코스닥_전업종_폐지사 포함_자본금 변동사항.xlsx
+      konex: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\konex_optional\코넥스_전업종_자본금 변동사항.xlsx
+    ma_events:
+      kospi: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\kospi_kosdaq\코스피_전업종_폐지사 포함_합병-영업양수도.xlsx
+      kosdaq: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\kospi_kosdaq\코스닥_전업종_폐지사 포함_합병-영업양수도.xlsx
+      konex: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\konex_optional\코넥스_전업종_합병-영업양수도.xlsx
+    lawsuit:
+      kospi: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\kospi_kosdaq\코스피_전업종_폐지사 포함_계류중인 소송현황.xlsx
+      kosdaq: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\kospi_kosdaq\코스닥_전업종_폐지사 포함_계류중인 소송현황.xlsx
+      konex: ${PROJECT_ROOT}\data\raw\raw_nonfinancial\konex_optional\코넥스_전업종_계류중인 소송현황.xlsx
+
+outputs_v3_2:
+  results: ${PROJECT_ROOT}\data\final_freeze\stage00_03_nonfinancial_metadata
+  run_log: ${PROJECT_ROOT}\runs\oracle\stage00_03_nonfinancial_metadata
+
+outputs:
+  results: ${PROJECT_ROOT}\data\final_freeze\stage00_03_nonfinancial_metadata
+  run_log: ${PROJECT_ROOT}\runs\oracle\stage00_03_nonfinancial_metadata
+

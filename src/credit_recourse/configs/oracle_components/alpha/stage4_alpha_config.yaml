@@ -1,0 +1,58 @@
+model:
+  name: Reference Credit Rating Oracle α
+  spec: Isotonic + regularized joint weight-boundary KL optimization
+  version: stage4_alpha_v1.1_5d_grid
+split:
+  dev:
+  - 2002
+  - 2019
+  oot:
+  - 2020
+  - 2023
+inner_cv:
+  inner_train_end: 2016
+  inner_val_start: 2017
+  inner_val_end: 2019
+scoring:
+  bin_to_score: isotonic_smoothed_empirical
+  n_bins_default: 50
+  low_unique_threshold: 20
+  financial_block_weight: 0.7
+  nonfinancial_block_weight: 0.3
+optimization:
+  default_alpha_em: 1.5
+  default_alpha_w1: 0.5
+  default_delta_mae: 0.5
+  default_beta_kl: 0.5
+  default_gamma_reg: 0.3
+  w_floor: 0.05
+  w_cap: 0.3
+  n_outer_iter: 5
+  n_weight_trials: 500
+hyperparameter_grid:
+  alpha_em:
+  - 1.25
+  - 1.5
+  - 1.75
+  alpha_w1:
+  - 0.3
+  - 0.5
+  - 0.7
+  delta_mae:
+  - 0.3
+  - 0.5
+  - 0.7
+  beta_kl:
+  - 0.35
+  - 0.5
+  - 0.65
+  gamma_reg:
+  - 0.2
+  - 0.3
+  - 0.4
+acceptance:
+  spearman_min: 0.45
+  notch_pm1_min: 0.7
+  oot_psi_max: 0.3
+  oot_kl_grade_max: 0.3
+  grade_misclassify_max: 0.6

@@ -1,0 +1,81 @@
+{
+  "schema_version": "c4r_journal_extension_prereg_v5_haiku_thinking_full",
+  "design_status": "LOCKED_FOURTH_AMENDMENT_AFTER_HAIKU45_THINKING_PILOT_BEFORE_FULL_CHARACTERIZATION",
+  "public_timestamp_status": "PENDING_USER_PUBLIC_COMMIT_OR_OSF_REGISTRATION",
+  "amends": {
+    "schema_version": "c4r_journal_extension_prereg_v4_haiku_thinking_pilot",
+    "reason": "The preregistered 50-firm Haiku 4.5 extended-thinking pilot completed all 150 requests with zero translational failures and materially improved raw-coordinate L1 compliance relative to the frozen non-thinking Haiku arm, but failed the unchanged feasibility gates because aggregate compliance was 0.8867 and C4R compliance was 0.7800. This amendment authorizes one full 575-firm characterization run to estimate contract feasibility and condition-specific failure rates precisely. It does not preregister a directional performance conclusion and does not permit threshold relaxation, post-hoc rescaling, or inclusion in the primary matched-inference cohort when the strict gates fail.",
+    "preserved_pilot_cohort_id": "haiku45thinking",
+    "preserved_pilot_backend_id": "anthropic_claude-haiku-4-5-20251001_messages_thinking-2048_maxout-4096",
+    "preserved_pilot_sample_size": 50,
+    "preserved_pilot_stage7_rows": 150,
+    "preserved_pilot_translational_failure_rows": 0,
+    "preserved_pilot_aggregate_raw_budget_compliance": 0.8866666666666667,
+    "preserved_pilot_condition_raw_budget_compliance": {
+      "C4": 0.94,
+      "C4R": 0.78,
+      "C6": 0.94
+    },
+    "preservation_rule": "Do not overwrite, resume, relabel, or pool the 50-firm pilot with the 575-firm full characterization run."
+  },
+  "full_scope": {
+    "cohort_id": "haiku45thinkingfull",
+    "backend": "anthropic:claude-haiku-4-5-20251001",
+    "expected_backend_id": "anthropic_claude-haiku-4-5-20251001_messages_thinking-2048_maxout-4096",
+    "run_role": "paper_c4r_haiku45_thinking_full_characterization",
+    "information_condition": "IC-b",
+    "conditions": [
+      "C4",
+      "C4R",
+      "C6"
+    ],
+    "mode": "free_form_10d",
+    "candidate_library_quantile": 50,
+    "l1_budget": 0.75,
+    "budget_label": "0p75",
+    "sample_size": 575,
+    "sample_seed": 20260718,
+    "sample_strata": [
+      "sector_7",
+      "grade_base_10"
+    ],
+    "planned_live_request_count": 1725
+  },
+  "provider_contract": {
+    "api_mode": "messages",
+    "manual_extended_thinking": true,
+    "thinking_type": "enabled",
+    "thinking_budget_tokens": 2048,
+    "max_tokens": 4096,
+    "temperature": null,
+    "top_k": null,
+    "interleaved_thinking": false,
+    "thinking_content_storage": "Thinking blocks are excluded from Stage7 raw output and checkpoints; only non-secret counts and token usage metadata are retained.",
+    "stop_reason_policy": "max_tokens and model_context_window_exceeded are hard provider failures and must not enter the action parser."
+  },
+  "seed_protocol": {
+    "run_contract_seed": 1,
+    "reference_draw_seed": 1,
+    "provider_generation_seed_passed": false
+  },
+  "quality_gates": {
+    "expected_firm_count": 575,
+    "expected_stage7_action_rows": 1725,
+    "expected_stage8_score_rows": 1725,
+    "expected_stage9_revision_rows": 1150,
+    "translational_failure_rows": 0,
+    "finite_arm_raw_budget_compliance_aggregate_min": 0.95,
+    "finite_arm_raw_budget_compliance_each_condition_min": 0.9,
+    "prompt_payload_archive_status": "FULL_PAYLOAD_ARCHIVED"
+  },
+  "decision_rules": {
+    "primary_feasibility_pass": "All row-completeness and parser gates pass, translational failures equal zero, aggregate raw-coordinate L1 compliance is at least 0.95, and every condition-specific compliance rate is at least 0.90.",
+    "primary_feasibility_fail": "Any unchanged feasibility gate fails. Report the observed failure rate and condition localization; do not relax gates or reclassify clipped downstream actions as compliant.",
+    "performance_claim_if_pass": "When the strict feasibility gates pass, compare Oracle outcomes to the frozen GPT-5.4-mini and Gemini 3.1 Flash-Lite cohorts using the same 0.75 contract, while retaining backend-specific inference and no pooling.",
+    "performance_claim_if_fail": "When the strict feasibility gates fail, the confirmatory conclusion is provider-protocol contract infeasibility. Stage8 and Stage9 outcomes may be reported only as exploratory post-translation or post-clipping descriptions and must not support a confirmatory claim that Haiku is intrinsically lower-performing.",
+    "directional_outcome_precommitment": "No directional superiority or inferiority conclusion is preregistered."
+  },
+  "stopping_rule": "Run exactly one fresh 575-firm extended-thinking characterization cohort. Preserve the archive and QC ledger whether the gate passes or fails. Do not launch another Haiku amendment based on this result within the thesis analysis freeze.",
+  "analysis_status": "FULL_CHARACTERIZATION_SECONDARY_COHORT_PRIMARY_MATCHED_INFERENCE_INCLUSION_CONDITIONAL_ON_UNCHANGED_QC_GATES",
+  "interpretation_boundary": "The full run characterizes one frozen Haiku 4.5 provider protocol under IC-b and the raw-coordinate L1 contract. It tests contract feasibility more precisely; it cannot by design prove that the Haiku model family is universally inferior. Temperature remains omitted because extended thinking is incompatible with custom temperature, so comparison to the legacy temperature-zero non-thinking run is protocol-level rather than a pure reasoning treatment."
+}

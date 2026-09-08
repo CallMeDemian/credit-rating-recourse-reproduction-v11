@@ -1,0 +1,56 @@
+{
+  "schema_version": "reproduction_reference_values_v4",
+  "purpose": "Historical thesis Oracle/RL reference values used to explain frozen replay and fresh retraining outputs.",
+  "comparison_policy": {
+    "advisory_abs_tolerance": 1e-10,
+    "hard_abs_tolerance": 1e-09,
+    "hard_fail_on_reference_drift": true,
+    "prohibited_use": "Do not tune toward the reference. A mismatch must be investigated as code, input, environment, or stochastic-checkpoint lineage drift."
+  },
+  "comparison_modes": {
+    "frozen_replay": {
+      "description": "Exact replay contract for restored thesis Stage3-5 frozen checkpoints/artifacts.",
+      "c0_noop_enforcement": "hard",
+      "candidate_iql_enforcement": "hard",
+      "interpretation_boundary": "Use only with the packaged historical Stage3, Stage4, and Stage5 artifacts."
+    },
+    "fresh_retrain": {
+      "description": "Fresh-training contract for a newly trained Stage3-5 lineage from the packaged Stage2 substrate.",
+      "c0_noop_enforcement": "hard",
+      "candidate_iql_enforcement": "advisory",
+      "interpretation_boundary": "The no-op anchors remain hard checks of the 575-firm cohort and Oracle/evaluator substrate. Historical Candidate-IQL point differences are recorded as checkpoint-lineage drift and do not alone fail a fresh stochastic retraining. This mode does not claim frozen-checkpoint point parity."
+    }
+  },
+  "frozen_rl_lineage": {
+    "source": "original thesis_repo frozen Stage3-5 artifacts supplied for forensic comparison on 2026-07-20",
+    "checkpoints": {
+      "stage3_encoder": {
+        "path": "data/final_freeze/stage3_acd_ssl/stage3_encoder_avs256_final_refit_fulltrain.pt"
+      },
+      "stage4_candidate_bc": {
+        "path": "data/final_freeze/stage4_candidate_bc/stage4_bc_final_refit__P50__frozen.pt"
+      },
+      "stage5_candidate_iql": {
+        "path": "data/final_freeze/stage5_candidate_iql/stage5_candidate_iql_final_refit_fulltrain.pt"
+      }
+    }
+  },
+  "stage6_final_candidate_iql": {
+    "source": "paper_repro(27) / prior canonical Stage6 reproduction",
+    "expected_firm_count": 575,
+    "mean_delta_R_score_alpha": 0.6303125462064342,
+    "mean_delta_R_score_beta": 0.0758303102538364,
+    "mean_delta_R_score_gamma": 0.594780658969403
+  },
+  "oracle_exact_parity": {
+    "ratio_missing_rate_score": 0.7026675262852002,
+    "alpha_c0_noop_mean": 68.75825463870524
+  },
+  "stage6_c0_noop": {
+    "source": "original thesis_repo Stage6 final_policy_summary.csv",
+    "expected_firm_count": 575,
+    "mean_R_score_alpha": 68.75825463870524,
+    "mean_R_score_beta": 64.89476791620535,
+    "mean_R_score_gamma": 67.34639268256663
+  }
+}

@@ -1,0 +1,56 @@
+contract_name: final_action_contract
+contract_version: final_action_contract_v1
+canonical_action_order:
+  - ppe_pct
+  - inv_turnover_chg
+  - ar_turnover_chg
+  - ap_turnover_chg
+  - short_debt_pct
+  - long_debt_pct
+  - bond_pct
+  - revenue_growth
+  - cogs_ratio_chg
+  - sga_ratio_chg
+action_bounds:
+  ppe_pct: [-0.50, 0.50]
+  inv_turnover_chg: [-3.00, 3.00]
+  ar_turnover_chg: [-3.00, 3.00]
+  ap_turnover_chg: [-3.00, 3.00]
+  short_debt_pct: [-1.00, 1.00]
+  long_debt_pct: [-0.50, 0.50]
+  bond_pct: [-0.50, 0.50]
+  revenue_growth: [-0.15, 0.15]
+  cogs_ratio_chg: [-0.03, 0.03]
+  sga_ratio_chg: [-0.02, 0.02]
+normalization:
+  rule: bound_scaled_clip
+  clip_range: [-1.0, 1.0]
+source_of_truth: data/final_freeze/configs/final_action_contract.yaml
+previous_conflict_policy: final_freeze_config_overrides_all_legacy_defaults
+realized_column_mapping:
+  rule: "parquet/action columns are action__{canonical_action_order item}"
+  strip_prefix_for_bounds_lookup: "action__"
+  allow_other_aliases: false
+
+
+candidate_library:
+  source_of_truth: data/final_freeze/configs/final_candidate_library.yaml
+  contract_version: final_candidate_library_v32_controllability_ladder
+  main_train_labels:
+    - A0_noop
+    - DL1_deleverage_mild
+    - DL2_deleverage_moderate
+    - RF1_short_debt_refinance
+    - CX1_capex_discipline
+    - WC1_working_capital_tightening
+    - WC2_supplier_financing
+    - OE1_cost_efficiency_mild
+    - OE2_cost_efficiency_moderate
+    - MX1_cost_and_deleverage
+    - MX2_liquidity_rescue
+  scenario_candidates_train_label_allowed: false
+  diagnostic_candidates_train_label_allowed: false
+  row_conditional_baselines:
+    - C2_weakest_component_rule
+  deprecated_label_prefixes:
+    - H

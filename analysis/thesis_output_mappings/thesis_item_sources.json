@@ -1,0 +1,292 @@
+{
+  "schema_version": "thesis_output_selectors_v11",
+  "authority": "Explicit semantic selectors over selected-run producer outputs. Canonical thesis values are comparison references only.",
+  "prohibited_resolution": [
+    "THESIS_VALUE_LOOKUP",
+    "GLOBAL_NUMERIC_MATCH",
+    "NEAREST_VALUE_MATCH",
+    "FUZZY_TEXT_MATCH",
+    "SUBSTRING_MATCH"
+  ],
+  "supported_filter_operators": ["equals", "in", "not_equals"],
+  "items": {
+    "T3-1": {
+      "status": "ACTIVE",
+      "paper_selector": "stage0_panel_counts",
+      "selectors": [
+        {"selector_id": "stage0_panel_counts", "source_pattern": "data/final_freeze/stage0_oracle_foundation/stage0_manifest.json", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "json_path", "op": "in", "values": ["row_counts.canonical_panel", "row_counts.statement_items_panel", "rating_sample_counts.dedup_firm_year"]}], "row_keys": ["json_path"], "columns": ["json_path", "value"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_EXACT_JSON_PATHS", "value_columns": ["value"], "row_count": {"min": 3, "max": 3}},
+        {"selector_id": "stage1_join_count", "source_pattern": "data/final_freeze/stage1_oracle_inputs/stage00_01_rating_statement_integration/stage00_01_metadata.json", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "json_path", "op": "in", "values": ["firm_year_rows", "context_contract_repair.rows", "precomputed_ratio_materialization.ratio_rows"]}], "row_keys": ["json_path"], "columns": ["json_path", "value"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_EXACT_JSON_PATHS", "value_columns": ["value"], "row_count": {"min": 3, "max": 3}},
+        {"selector_id": "oracle_model_sample", "source_pattern": "data/final_freeze/stage1_oracle_backends/alpha/sample_filter_report.csv", "file_count": {"min": 1, "max": 1}, "filters": [], "row_keys": [], "columns": ["total_firm_years_before_filter", "excluded_by_eligibility_flag", "excluded_all_financial_missing_rows", "final_modeling_rows"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "ONE_ROW", "value_columns": ["total_firm_years_before_filter", "excluded_by_eligibility_flag", "excluded_all_financial_missing_rows", "final_modeling_rows"], "row_count": {"min": 1, "max": 1}}
+      ]
+    },
+    "T4-1": {
+      "status": "ACTIVE",
+      "paper_selector": "oracle_oot_validation",
+      "selectors": [
+        {"selector_id": "oracle_oot_validation", "source_pattern": "data/final_freeze/ledgers/stage1_substrate_validation_loopB1.json", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "json_path", "op": "in", "values": ["per_backend.alpha.all.level_validity_spearman_oriented", "per_backend.alpha.oot.n_movers", "per_backend.alpha.oot.lead_direction_agreement", "per_backend.alpha.oot.lead_direction_agreement_ci95[0]", "per_backend.alpha.oot.lead_direction_agreement_ci95[1]", "per_backend.alpha.oot.lead_spearman", "per_backend.alpha.oot.upgrade_vs_downgrade_auc", "per_backend.beta.all.level_validity_spearman_oriented", "per_backend.beta.oot.lead_direction_agreement", "per_backend.beta.oot.lead_direction_agreement_ci95[0]", "per_backend.beta.oot.lead_direction_agreement_ci95[1]", "per_backend.beta.oot.lead_spearman", "per_backend.beta.oot.upgrade_vs_downgrade_auc", "per_backend.gamma.all.level_validity_spearman_oriented", "per_backend.gamma.oot.lead_direction_agreement", "per_backend.gamma.oot.lead_direction_agreement_ci95[0]", "per_backend.gamma.oot.lead_direction_agreement_ci95[1]", "per_backend.gamma.oot.lead_spearman", "per_backend.gamma.oot.upgrade_vs_downgrade_auc"]}], "row_keys": ["json_path"], "columns": ["json_path", "value"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_EXACT_JSON_PATHS", "value_columns": ["value"], "row_count": {"min": 19, "max": 19}}
+      ]
+    },
+    "T4-2": {
+      "status": "ACTIVE",
+      "paper_selector": "test3_dev_oot_post",
+      "selectors": [
+        {"selector_id": "test3_dev_oot_post", "source_pattern": "data/analysis/paper_repro/01_substrate_validation/test3_counterfactual_fidelity/test3_property_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "property", "op": "in", "values": ["P1_wedge", "P2_rank", "P3_direction"]}, {"column": "metric", "op": "in", "values": ["median", "spearman", "agreement"]}, {"column": "split", "op": "in", "values": ["dev", "oot", "post"]}], "row_keys": ["property", "metric", "split"], "columns": ["property", "metric", "split", "value", "n", "ci95_lo", "ci95_hi"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["value", "n", "ci95_lo", "ci95_hi"], "row_count": {"min": 9, "max": 9}},
+        {"selector_id": "test3_wedge_share_positive", "source_pattern": "data/analysis/paper_repro/01_substrate_validation/test3_counterfactual_fidelity/test3_property_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "property", "op": "equals", "value": "P1_wedge"}, {"column": "metric", "op": "equals", "value": "share_positive"}, {"column": "split", "op": "equals", "value": "overall"}], "row_keys": ["property", "metric", "split"], "columns": ["property", "metric", "split", "value", "n"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["value", "n"], "row_count": {"min": 1, "max": 1}}
+      ]
+    },
+    "T4-3": {"status": "UNRESOLVED", "reason": "Registered sources do not contain the six firm/action heterogeneity and tie statistics as semantically keyed producer fields."},
+    "F4": {
+      "status": "ACTIVE",
+      "paper_selector": "stage6_policy_values",
+      "chart": {"status": "NATIVE_CHART", "selector_id": "stage6_policy_values", "x": "policy", "series": ["mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "chart_type": "bar"},
+      "selectors": [
+        {"selector_id": "stage6_policy_values", "source_pattern": "data/final_freeze/stage6_multi_oracle_eval/final_policy_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [], "row_keys": ["policy"], "columns": ["policy", "n", "mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG", "value_columns": ["n", "mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "row_count": {"min": 18, "max": 18}},
+        {"selector_id": "candidate_oracle_upper_bound", "source_pattern": "data/final_freeze/stage6_candidate_selector_eval/derived_comparators_runtime.json", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "json_path", "op": "equals", "value": "per_backend.alpha.oracle_best_mean_noop_adjusted_score"}], "row_keys": ["json_path"], "columns": ["json_path", "value"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_EXACT_JSON_PATHS", "value_columns": ["value"], "row_count": {"min": 1, "max": 1}}
+      ]
+    },
+    "T4-4": {
+      "status": "ACTIVE",
+      "paper_selector": "stage6_policy_values",
+      "selectors": [
+        {"selector_id": "stage6_policy_values", "source_pattern": "data/final_freeze/stage6_multi_oracle_eval/final_policy_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [], "row_keys": ["policy"], "columns": ["policy", "n", "mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG", "value_columns": ["n", "mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "row_count": {"min": 18, "max": 18}}
+      ]
+    },
+    "T4-5": {
+      "status": "ACTIVE",
+      "paper_selector": "stage6_paired_inference",
+      "selectors": [
+        {"selector_id": "stage6_paired_inference", "source_pattern": "data/final_freeze/stage6_multi_oracle_eval/policy_paired_inference_*.csv", "file_count": {"min": 3, "max": 3}, "filters": [{"column": "policy_a", "op": "equals", "value": "C3_candidate_iql"}, {"column": "policy_b", "op": "in", "values": ["C0_noop", "C2_weakest_component_rule"]}], "row_keys": ["source_file", "policy_a", "policy_b"], "columns": [{"name": "source_file", "kind": "logical_path"}, "policy_a", "policy_b", "n_pairs", "mean_diff", "cluster_se", "ci95_lo", "ci95_hi", "wilcoxon_p", "holm_adjusted_p"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG", "value_columns": ["n_pairs", "mean_diff", "cluster_se", "ci95_lo", "ci95_hi", "wilcoxon_p", "holm_adjusted_p"], "row_count": {"min": 6, "max": 6}}
+      ]
+    },
+    "T4-6": {"status": "UNRESOLVED", "reason": "The selected-run seed_sweep_summary contains training-selection diagnostics for one retained checkpoint, not seven seed-level downstream policy values and dominant actions."},
+    "T5-1": {
+      "status": "ACTIVE",
+      "paper_selector": "alpha_c4_c6_cells",
+      "selectors": [
+        {"selector_id": "alpha_c4_c6_cells", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/main_harness_backend_decomposition/main_harness_backend_cell_means.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}, {"column": "harness_cell", "op": "in", "values": ["C4__candidate_selection", "C4__free_form_10d", "C6__candidate_selection", "C6__free_form_10d"]}], "row_keys": ["backend_label", "harness_cell"], "columns": ["backend_label", "harness_cell", "n_firms", "mean_score", "median_score"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG_FOR_EXCEL_PIVOT", "value_columns": ["n_firms", "mean_score", "median_score"], "row_count": {"min": 12, "max": 12}}
+      ]
+    },
+    "F5": {
+      "status": "ACTIVE",
+      "paper_selector": "alpha_c4_c6_cells",
+      "chart": {"status": "EDITABLE_SPEC_ONLY", "selector_id": "alpha_c4_c6_cells", "x": ["backend_label", "harness_cell"], "series": ["mean_score"], "chart_type": "grouped_bar", "reason": "Two categorical axes require an editable Excel pivot/chart; no category is inferred from thesis values."},
+      "selectors": [
+        {"selector_id": "alpha_c4_c6_cells", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/main_harness_backend_decomposition/main_harness_backend_cell_means.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}, {"column": "harness_cell", "op": "in", "values": ["C4__candidate_selection", "C4__free_form_10d", "C6__candidate_selection", "C6__free_form_10d"]}], "row_keys": ["backend_label", "harness_cell"], "columns": ["backend_label", "harness_cell", "n_firms", "mean_score"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG_FOR_EXCEL_PIVOT", "value_columns": ["n_firms", "mean_score"], "row_count": {"min": 12, "max": 12}}
+      ]
+    },
+    "T5-2": {
+      "status": "ACTIVE",
+      "paper_selector": "h1_exact_contrasts",
+      "selectors": [
+        {"selector_id": "h1_exact_contrasts", "source_pattern": "data/analysis/paper_repro/02_llm_hypothesis_tests/holm_h1_h3/holm_H1_score.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "hypothesis", "op": "equals", "value": "H1_score"}], "row_keys": ["contrast", "mode", "backend_label"], "columns": ["contrast", "policy_a", "policy_b", "mode", "backend_label", "n_pairs", "mean_gap", "median_gap", "wilcoxon_p_raw", "wilcoxon_p_holm", "sig_holm"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["policy_a", "policy_b", "n_pairs", "mean_gap", "median_gap", "wilcoxon_p_raw", "wilcoxon_p_holm", "sig_holm"], "row_count": {"min": 9, "max": 9}}
+      ]
+    },
+    "T5-3": {"status": "UNRESOLVED", "reason": "The registered N5M dimension-overlap source is a later budget experiment and is not the H2 C4/C5 baseline comparison in this thesis table."},
+    "T5-4": {
+      "status": "ACTIVE",
+      "paper_selector": "h3_exact_contrasts",
+      "selectors": [
+        {"selector_id": "h3_exact_contrasts", "source_pattern": "data/analysis/paper_repro/02_llm_hypothesis_tests/holm_h1_h3/holm_H3_reference.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "hypothesis", "op": "equals", "value": "H3_reference"}], "row_keys": ["contrast", "mode", "backend_label"], "columns": ["contrast", "policy_a", "policy_b", "mode", "backend_label", "n_pairs", "mean_gap", "median_gap", "wilcoxon_p_raw", "wilcoxon_p_holm", "sig_holm"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["policy_a", "policy_b", "n_pairs", "mean_gap", "median_gap", "wilcoxon_p_raw", "wilcoxon_p_holm", "sig_holm"], "row_count": {"min": 6, "max": 6}}
+      ]
+    },
+    "T5-5": {
+      "status": "ACTIVE",
+      "paper_selector": "alpha_harness_cells",
+      "selectors": [
+        {"selector_id": "alpha_harness_cells", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/main_harness_backend_decomposition/main_harness_backend_cell_means.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}, {"column": "harness_cell", "op": "in", "values": ["C4__candidate_selection", "C5__candidate_selection", "C6__candidate_selection", "C6X__candidate_selection", "C7__candidate_selection", "C8__candidate_selection", "C6__free_form_10d", "C8__free_form_10d"]}], "row_keys": ["backend_label", "harness_cell"], "columns": ["backend_label", "harness_cell", "n_firms", "mean_score", "median_score"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG_FOR_EXCEL_PIVOT", "value_columns": ["n_firms", "mean_score", "median_score"], "row_count": {"min": 24, "max": 24}}
+      ]
+    },
+    "T5-6": {
+      "status": "ACTIVE",
+      "paper_selector": "n5_information_condition_summaries",
+      "selectors": [
+        {"selector_id": "n5_information_condition_summaries", "source_pattern": "data/final_freeze/llm_runs/N5_C6_L1_1p27_IC*_gpt54mini*/stage8_llm_multi_oracle_eval/llm_stage8_policy_summary.csv", "file_count": {"min": 3, "max": 6}, "filters": [{"column": "policy", "op": "in", "values": ["C4", "C6"]}], "row_keys": ["source_file", "policy"], "columns": [{"name": "source_file", "kind": "logical_path"}, "policy", "n_rows", "mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG_FOR_EXCEL_PIVOT", "value_columns": ["n_rows", "mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "row_count": {"min": 6, "max": 6}}
+      ]
+    },
+    "T5-7": {"status": "UNRESOLVED", "reason": "The summary producer snapshot/table is absent and recognized status is embedded inside raw JSON response text; parsing it here would require an undeclared semantic extractor."},
+    "F6": {"status": "UNRESOLVED", "reason": "Historical repeat-run producer snapshots are incomplete; preserved evidence is not fresh regeneration."},
+    "T5-8": {"status": "UNRESOLVED", "reason": "Historical repeat-run producer snapshots are incomplete; preserved evidence is not fresh regeneration."},
+    "T6-1": {"status": "UNRESOLVED", "reason": "The table combines several counterfactual action rewrites; the registered wildcard Stage8 summaries do not encode the rewrite taxonomy as exact keys."},
+    "F7": {
+      "status": "ACTIVE",
+      "paper_selector": "ablation_policy_values",
+      "chart": {"status": "EDITABLE_SPEC_ONLY", "selector_id": "ablation_policy_values", "x": ["source_file", "policy", "mode"], "series": ["mean_delta_R_score_alpha"], "chart_type": "line_or_grouped_bar", "reason": "The ablation identity is carried by the source path; Excel should pivot the three exact keys."},
+      "selectors": [
+        {"selector_id": "ablation_policy_values", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/ablation/**/ablation_policy_summary.csv", "file_count": {"min": 1, "max": 80}, "filters": [{"column": "policy", "op": "in", "values": ["C4", "C6"]}], "row_keys": ["source_file", "policy", "mode"], "columns": [{"name": "source_file", "kind": "logical_path"}, "policy", "mode", "n_rows", "mean_delta_R_score_alpha", "median_delta_R_score_alpha", "positive_fraction_alpha"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG_FOR_EXCEL_PIVOT", "max_rows": 500, "value_columns": ["n_rows", "mean_delta_R_score_alpha", "median_delta_R_score_alpha", "positive_fraction_alpha"], "row_count": {"min": 96, "max": 96}},
+        {"selector_id": "ablation_global_mean", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/ablation/IC-b/ICb_gpt54mini_p50_live_seed1/global_mean_vector_null_native/ablation_policy_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "policy", "op": "equals", "value": "C6"}, {"column": "mode", "op": "equals", "value": "free_form_10d"}], "row_keys": ["policy", "mode"], "columns": ["policy", "mode", "n_rows", "mean_delta_R_score_alpha"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "ONE_ROW", "value_columns": ["n_rows", "mean_delta_R_score_alpha"], "row_count": {"min": 1, "max": 1}},
+        {"selector_id": "ablation_shuffle_mean", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/ablation/IC-b/ICb_gpt54mini_p50_live_seed1/row_shuffle_vector_null_native/shuffle_permutation_ci.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "policy", "op": "equals", "value": "C6"}, {"column": "mode", "op": "equals", "value": "free_form_10d"}, {"column": "oracle_backend", "op": "equals", "value": "alpha"}, {"column": "shuffle_within", "op": "equals", "value": "none"}], "row_keys": ["policy", "mode", "oracle_backend", "shuffle_within"], "columns": ["policy", "mode", "oracle_backend", "shuffle_within", "n_shuffle_draws", "original_mean_score", "shuffle_null_mean_score"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "ONE_ROW", "value_columns": ["n_shuffle_draws", "original_mean_score", "shuffle_null_mean_score"], "row_count": {"min": 1, "max": 1}},
+        {"selector_id": "ablation_l1_rescale", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/ablation/IC-b/ICb_gpt54mini_p50_live_seed1/l1_rescale_same_policy_candidate_mean/ablation_policy_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "policy", "op": "equals", "value": "C6"}, {"column": "mode", "op": "equals", "value": "free_form_10d"}], "row_keys": ["policy", "mode"], "columns": ["policy", "mode", "n_rows", "mean_delta_R_score_alpha"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "ONE_ROW", "value_columns": ["n_rows", "mean_delta_R_score_alpha"], "row_count": {"min": 1, "max": 1}},
+        {"selector_id": "ablation_nearest_candidate", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/ablation/IC-b/ICb_gpt54mini_p50_live_seed1/nearest_candidate_projection_native/ablation_policy_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "policy", "op": "equals", "value": "C6"}, {"column": "mode", "op": "equals", "value": "free_form_10d"}], "row_keys": ["policy", "mode"], "columns": ["policy", "mode", "n_rows", "mean_delta_R_score_alpha"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "ONE_ROW", "value_columns": ["n_rows", "mean_delta_R_score_alpha"], "row_count": {"min": 1, "max": 1}}
+      ]
+    },
+    "F8": {
+      "status": "ACTIVE",
+      "paper_selector": "budget_operating_points",
+      "chart": {"status": "EDITABLE_SPEC_ONLY", "selector_id": "budget_operating_points", "x": ["budget_label", "policy"], "series": ["mean_delta_R_score_alpha", "mean_final_l1"], "chart_type": "line", "reason": "Budget and policy form a composite x key; chart data is formula-linked and ready for an Excel pivot."},
+      "selectors": [
+        {"selector_id": "budget_operating_points", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/n5m_posthoc/n5m_score_budget_auditability_operating_points.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "policy", "op": "in", "values": ["C4", "C6"]}], "row_keys": ["budget_label", "policy"], "columns": ["budget_label", "l1_budget", "policy", "n_firms", "mean_final_l1", "mean_projection_distance", "budget_violation_rate", "mean_delta_R_score_alpha"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG", "value_columns": ["l1_budget", "n_firms", "mean_final_l1", "mean_projection_distance", "budget_violation_rate", "mean_delta_R_score_alpha"], "row_count": {"min": 8, "max": 8}}
+      ]
+    },
+    "F9": {
+      "status": "ACTIVE",
+      "paper_selector": "c4r_alpha_contrasts",
+      "chart": {"status": "EDITABLE_SPEC_ONLY", "selector_id": "c4r_alpha_contrasts", "x": ["cohort_id", "budget_label", "contrast"], "series": ["mean_increment"], "chart_type": "line", "reason": "C4R and C6 are parallel children of C4; the exact contrast key must stay visible in an Excel pivot."},
+      "selectors": [
+        {"selector_id": "c4r_alpha_contrasts", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/v3_matched/c4r_matched_v3_contrasts.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}], "row_keys": ["cohort_id", "budget_label", "contrast"], "columns": ["cohort_id", "budget_label", "l1_budget", "contrast", "n_pairs", "mean_increment", "median_increment", "win_count", "tie_count", "loss_count", "wilcoxon_p_holm_across_budgets", "sig_holm_across_budgets"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["l1_budget", "n_pairs", "mean_increment", "median_increment", "win_count", "tie_count", "loss_count", "wilcoxon_p_holm_across_budgets", "sig_holm_across_budgets"], "row_count": {"min": 24, "max": 24}}
+      ]
+    },
+    "F10": {
+      "status": "ACTIVE",
+      "paper_selector": "parallel_branch_contrasts",
+      "chart": {"status": "EDITABLE_SPEC_ONLY", "selector_id": "parallel_branch_contrasts", "x": ["cohort_id", "budget_label", "contrast"], "series": ["mean_increment"], "chart_type": "branch_spec", "reason": "Diagram topology comes from code/config; empirical annotations come only from these exact contrast rows."},
+      "selectors": [
+        {"selector_id": "parallel_branch_contrasts", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/v3_matched/c4r_matched_v3_contrasts.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}, {"column": "contrast", "op": "in", "values": ["self_revision", "reference_content_conditional", "reference_plus_revision_package"]}], "row_keys": ["cohort_id", "budget_label", "contrast"], "columns": ["cohort_id", "budget_label", "contrast", "n_pairs", "mean_increment", "median_increment"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["n_pairs", "mean_increment", "median_increment"], "row_count": {"min": 24, "max": 24}}
+      ]
+    },
+    "T6-2": {"status": "UNRESOLVED", "reason": "The registered budget-frontier inference table does not contain proposed L1, applied per-variable clipping, and applied-L1 proximity rates as separate keyed columns."},
+    "F11": {"status": "UNRESOLVED", "reason": "The figure is a process diagram. Proposed/applied action and raw-L1/per-variable clipping need a declared audit aggregation not present in the current contract."},
+    "T6-3": {
+      "status": "ACTIVE",
+      "paper_selector": "feasibility_counts",
+      "selectors": [
+        {"selector_id": "feasibility_counts", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/n5m_posthoc/n5m_feasibility_by_budget_policy.csv", "file_count": {"min": 1, "max": 1}, "filters": [], "row_keys": ["budget_label", "policy"], "columns": ["budget_label", "l1_budget", "policy", "n_rows", "sustainability_critical_count", "sustainability_critical_rate", "feasibility_core_violation_count", "accounting_check_failure_count", "negative_balance_count", "preflight_failure_count"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["l1_budget", "n_rows", "sustainability_critical_count", "sustainability_critical_rate", "feasibility_core_violation_count", "accounting_check_failure_count", "negative_balance_count", "preflight_failure_count"], "row_count": {"min": 8, "max": 8}}
+      ]
+    },
+    "T6-4": {"status": "UNRESOLVED", "reason": "The registered feasibility source reports applied-action feasibility, not model-level generated-action raw-L1 compliance by C4/C4R/C6."},
+    "T6-5": {
+      "status": "ACTIVE",
+      "paper_selector": "c4r_three_contrasts",
+      "selectors": [
+        {"selector_id": "c4r_three_contrasts", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/v3_matched/c4r_matched_v3_contrasts.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}, {"column": "contrast", "op": "in", "values": ["self_revision", "reference_content_conditional", "reference_plus_revision_package"]}], "row_keys": ["cohort_id", "budget_label", "contrast"], "columns": ["cohort_id", "backend_id", "budget_label", "l1_budget", "contrast", "n_pairs", "mean_increment", "median_increment", "wilcoxon_p_holm_across_budgets", "sig_holm_across_budgets"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_FOR_EXCEL_PIVOT", "value_columns": ["backend_id", "l1_budget", "n_pairs", "mean_increment", "median_increment", "wilcoxon_p_holm_across_budgets", "sig_holm_across_budgets"], "row_count": {"min": 24, "max": 24}}
+      ]
+    },
+    "T6-6": {
+      "status": "ACTIVE",
+      "paper_selector": "within_arm_tost",
+      "selectors": [
+        {"selector_id": "within_arm_tost", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/tost_alpha/c4r_tost_within_arm_alpha.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle", "op": "equals", "value": "alpha"}], "row_keys": ["cohort_id", "budget_label", "component"], "columns": ["cohort_id", "budget_label", "component", "n_pairs", "mean_gap", "ci_low", "ci_high", "p_tost", "equivalent", "decision"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["n_pairs", "mean_gap", "ci_low", "ci_high", "p_tost", "equivalent", "decision"], "row_count": {"min": 24, "max": 24}},
+        {"selector_id": "interaction_tost", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/tost_alpha/c4r_tost_interactions_alpha.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle", "op": "equals", "value": "alpha"}], "row_keys": ["cohort_id", "budget_label", "component"], "columns": ["cohort_id", "budget_label", "reference_budget_label", "component", "n_pairs", "mean_gap", "ci_low", "ci_high", "p_tost", "equivalent", "decision"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["reference_budget_label", "n_pairs", "mean_gap", "ci_low", "ci_high", "p_tost", "equivalent", "decision"], "row_count": {"min": 18, "max": 18}}
+      ]
+    },
+    "T6-7": {
+      "status": "ACTIVE",
+      "paper_selector": "n5m_win_tie_loss",
+      "selectors": [
+        {"selector_id": "n5m_win_tie_loss", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/n5m_posthoc/n5m_win_tie_loss_by_budget_oracle.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}], "row_keys": ["budget_label", "oracle_backend"], "columns": ["budget_label", "l1_budget", "oracle_backend", "n_firms", "n_c6_win", "n_tie", "n_c6_loss", "mean_C6_minus_C4", "median_C6_minus_C4"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["l1_budget", "n_firms", "n_c6_win", "n_tie", "n_c6_loss", "mean_C6_minus_C4", "median_C6_minus_C4"], "row_count": {"min": 4, "max": 4}},
+        {"selector_id": "c4r_win_tie_loss", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/v3_matched/c4r_matched_v3_contrasts.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}, {"column": "contrast", "op": "in", "values": ["self_revision", "reference_content_conditional"]}], "row_keys": ["cohort_id", "budget_label", "contrast"], "columns": ["cohort_id", "budget_label", "contrast", "n_pairs", "win_count", "tie_count", "loss_count", "mean_increment"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["n_pairs", "win_count", "tie_count", "loss_count", "mean_increment"], "row_count": {"min": 16, "max": 16}}
+      ]
+    },
+    "T6-8": {
+      "status": "ACTIVE",
+      "paper_selector": "axis_contributions",
+      "selectors": [
+        {"selector_id": "axis_contributions", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/axis_summary/c4r_axis_shapley_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle", "op": "equals", "value": "alpha"}, {"column": "budget_label", "op": "in", "values": ["0p75", "unbounded"]}], "row_keys": ["cohort_id", "policy_pair", "budget_label", "axis"], "columns": ["cohort_id", "policy_pair", "budget_label", "axis", "oracle", "n_firms", "mean", "median", "std", "mean_abs"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_FOR_EXCEL_SORT_AND_PIVOT", "sort_by": [{"column": "mean_abs", "order": "desc"}], "max_rows": 500, "value_columns": ["oracle", "n_firms", "mean", "median", "std", "mean_abs"], "row_count": {"min": 80, "max": 80}}
+      ]
+    },
+    "T6-9": {"status": "UNRESOLVED", "reason": "The registered E3 contrast file does not contain the separately keyed E2 repeat required for a two-execution comparison."},
+    "T7-1": {
+      "status": "ACTIVE",
+      "paper_selector": "h1_evidence",
+      "selectors": [
+        {"selector_id": "h1_evidence", "source_pattern": "data/analysis/paper_repro/02_llm_hypothesis_tests/holm_h1_h3/holm_H1_score.csv", "file_count": {"min": 1, "max": 1}, "filters": [], "row_keys": ["contrast", "mode", "backend_label"], "columns": ["hypothesis", "contrast", "mode", "backend_label", "n_pairs", "mean_gap", "wilcoxon_p_holm", "sig_holm"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_SUPPORTING_EVIDENCE", "value_columns": ["hypothesis", "n_pairs", "mean_gap", "wilcoxon_p_holm", "sig_holm"], "row_count": {"min": 9, "max": 9}},
+        {"selector_id": "h3_evidence", "source_pattern": "data/analysis/paper_repro/02_llm_hypothesis_tests/holm_h1_h3/holm_H3_reference.csv", "file_count": {"min": 1, "max": 1}, "filters": [], "row_keys": ["contrast", "mode", "backend_label"], "columns": ["hypothesis", "contrast", "mode", "backend_label", "n_pairs", "mean_gap", "wilcoxon_p_holm", "sig_holm"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_SUPPORTING_EVIDENCE", "value_columns": ["hypothesis", "n_pairs", "mean_gap", "wilcoxon_p_holm", "sig_holm"], "row_count": {"min": 6, "max": 6}},
+        {"selector_id": "extension_evidence", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/v3_matched/c4r_matched_v3_contrasts.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}], "row_keys": ["cohort_id", "budget_label", "contrast"], "columns": ["cohort_id", "budget_label", "contrast", "n_pairs", "mean_increment", "wilcoxon_p_holm_across_budgets", "sig_holm_across_budgets"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_SUPPORTING_EVIDENCE", "value_columns": ["n_pairs", "mean_increment", "wilcoxon_p_holm_across_budgets", "sig_holm_across_budgets"], "row_count": {"min": 24, "max": 24}}
+      ]
+    },
+    "TB-3": {
+      "status": "ACTIVE",
+      "paper_selector": "oracle_alpha_dev_oot_metrics",
+      "selectors": [
+        {"selector_id": "oracle_alpha_dev_oot_metrics", "source_pattern": "data/final_freeze/stage1_oracle_backends/alpha/preliminary_dev_oot_metrics_alpha.csv", "file_count": {"min": 1, "max": 1}, "filters": [], "row_keys": ["split"], "columns": ["specification", "split", "n", "exact", "within1", "mae", "rho"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_FOR_EXCEL_PIVOT", "value_columns": ["specification", "n", "exact", "within1", "mae", "rho"], "row_count": {"min": 2, "max": 2}},
+        {"selector_id": "oracle_beta_dev_oot_metrics", "source_pattern": "data/final_freeze/stage1_oracle_backends/beta/preliminary_dev_oot_metrics_beta.csv", "file_count": {"min": 1, "max": 1}, "filters": [], "row_keys": ["split"], "columns": ["specification", "split", "n", "exact", "within1", "mae", "rho"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_FOR_EXCEL_PIVOT", "value_columns": ["specification", "n", "exact", "within1", "mae", "rho"], "row_count": {"min": 2, "max": 2}},
+        {"selector_id": "oracle_gamma_dev_oot_metrics", "source_pattern": "data/final_freeze/stage1_oracle_backends/gamma/preliminary_dev_oot_metrics_gamma.csv", "file_count": {"min": 1, "max": 1}, "filters": [], "row_keys": ["split"], "columns": ["specification", "split", "n", "exact", "within1", "mae_continuous", "rho"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_FOR_EXCEL_PIVOT", "value_columns": ["specification", "n", "exact", "within1", "mae_continuous", "rho"], "row_count": {"min": 2, "max": 2}}
+      ]
+    },
+    "TC-2": {"status": "UNRESOLVED", "reason": "The retained Stage5 seed-sweep summary does not contain seven downstream policy-evaluation rows."},
+    "TD-2": {"status": "UNRESOLVED", "reason": "The independent 36-condition producer output is absent from the selected preserved evidence."},
+    "TE-1": {
+      "status": "ACTIVE",
+      "paper_selector": "interaction_tost",
+      "selectors": [
+        {"selector_id": "interaction_tost", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/tost_alpha/c4r_tost_interactions_alpha.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle", "op": "equals", "value": "alpha"}], "row_keys": ["cohort_id", "budget_label", "component"], "columns": ["cohort_id", "budget_label", "reference_budget_label", "component", "n_pairs", "mean_gap", "ci_low", "ci_high", "p_tost", "equivalent", "decision"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["reference_budget_label", "n_pairs", "mean_gap", "ci_low", "ci_high", "p_tost", "equivalent", "decision"], "row_count": {"min": 18, "max": 18}}
+      ]
+    },
+    "TE-2": {
+      "status": "ACTIVE",
+      "paper_selector": "within_arm_tost",
+      "selectors": [
+        {"selector_id": "within_arm_tost", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/tost_alpha/c4r_tost_within_arm_alpha.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle", "op": "equals", "value": "alpha"}], "row_keys": ["cohort_id", "budget_label", "component"], "columns": ["cohort_id", "budget_label", "component", "n_pairs", "mean_gap", "ci_low", "ci_high", "p_tost", "equivalent", "decision"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["n_pairs", "mean_gap", "ci_low", "ci_high", "p_tost", "equivalent", "decision"], "row_count": {"min": 24, "max": 24}}
+      ]
+    },
+    "TE-3": {
+      "status": "ACTIVE",
+      "paper_selector": "axis_contributions",
+      "selectors": [
+        {"selector_id": "axis_contributions", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/axis_summary/c4r_axis_shapley_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle", "op": "equals", "value": "alpha"}, {"column": "budget_label", "op": "in", "values": ["0p75", "unbounded"]}], "row_keys": ["cohort_id", "policy_pair", "budget_label", "axis"], "columns": ["cohort_id", "policy_pair", "budget_label", "axis", "n_firms", "mean", "median", "std", "mean_abs"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG_FOR_EXCEL_SORT_AND_PIVOT", "sort_by": [{"column": "mean_abs", "order": "desc"}], "max_rows": 500, "value_columns": ["n_firms", "mean", "median", "std", "mean_abs"], "row_count": {"min": 80, "max": 80}}
+      ]
+    },
+    "TF-1": {
+      "status": "ACTIVE",
+      "paper_selector": "matched_budget_frontier",
+      "selectors": [
+        {"selector_id": "matched_budget_frontier", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/n5_matched_budget_frontier_holm/n5_budget_frontier_table_patch.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}, {"column": "design", "op": "equals", "value": "matched_c4_c6"}], "row_keys": ["budget_label"], "columns": ["budget_label", "l1_budget", "n_pairs", "mean_C4", "mean_C6", "mean_C6_minus_C4", "C6_minus_C4_p_holm", "C6_minus_C4_sig", "interaction_or_package_DID_gap", "interaction_or_package_DID_p_holm", "interaction_or_package_DID_sig"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["l1_budget", "n_pairs", "mean_C4", "mean_C6", "mean_C6_minus_C4", "C6_minus_C4_p_holm", "C6_minus_C4_sig", "interaction_or_package_DID_gap", "interaction_or_package_DID_p_holm", "interaction_or_package_DID_sig"], "row_count": {"min": 4, "max": 4}}
+      ]
+    },
+    "TF-2": {
+      "status": "ACTIVE",
+      "paper_selector": "c4_budget_operating_points",
+      "selectors": [
+        {"selector_id": "c4_budget_operating_points", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/n5m_posthoc/n5m_score_budget_auditability_operating_points.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "policy", "op": "equals", "value": "C4"}], "row_keys": ["budget_label"], "columns": ["budget_label", "l1_budget", "n_firms", "mean_final_l1", "mean_projection_distance", "budget_violation_rate", "mean_delta_R_score_alpha"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["l1_budget", "n_firms", "mean_final_l1", "mean_projection_distance", "budget_violation_rate", "mean_delta_R_score_alpha"], "row_count": {"min": 4, "max": 4}}
+      ]
+    },
+    "TF-3": {
+      "status": "ACTIVE",
+      "paper_selector": "reference_quality_alpha",
+      "selectors": [
+        {"selector_id": "reference_quality_alpha", "source_pattern": "data/analysis/paper_repro/02_llm_hypothesis_tests/reference_quality_acceptance/reference_quality_acceptance_summary.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}], "row_keys": ["information_condition", "revision_condition", "mode"], "columns": ["information_condition", "revision_condition", "mode", "oracle_backend", "n_rows", "reference_better_fraction", "mean_reference_advantage", "mean_adoption_reference_better", "mean_adoption_reference_not_better", "adoption_group_gap", "mean_revision_gain_reference_better", "mean_revision_gain_reference_not_better", "revision_gain_group_gap"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["oracle_backend", "n_rows", "reference_better_fraction", "mean_reference_advantage", "mean_adoption_reference_better", "mean_adoption_reference_not_better", "adoption_group_gap", "mean_revision_gain_reference_better", "mean_revision_gain_reference_not_better", "revision_gain_group_gap"], "row_count": {"min": 18, "max": 18}}
+      ]
+    },
+    "TG-1": {"status": "UNRESOLVED", "reason": "The registered extension reproduction manifest is absent from the selected-run analysis root; execution history must not be inferred from preserved paths."},
+    "TG-2": {
+      "status": "ACTIVE",
+      "paper_selector": "independent_repeat_contrasts",
+      "selectors": [
+        {"selector_id": "independent_repeat_contrasts", "source_pattern": "data/analysis/paper_repro/05_extension_e3_e4/e3_c4r_journal/v3_matched/c4r_matched_v3_contrasts.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}, {"column": "budget_label", "op": "in", "values": ["0p75", "unbounded"]}, {"column": "contrast", "op": "in", "values": ["self_revision", "reference_content_conditional", "reference_plus_revision_package"]}], "row_keys": ["cohort_id", "budget_label", "contrast"], "columns": ["cohort_id", "budget_label", "contrast", "n_pairs", "mean_increment", "median_increment", "wilcoxon_p_holm_across_budgets", "sig_holm_across_budgets"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["n_pairs", "mean_increment", "median_increment", "wilcoxon_p_holm_across_budgets", "sig_holm_across_budgets"], "row_count": {"min": 12, "max": 12}}
+      ]
+    },
+    "TH-1": {"status": "UNRESOLVED", "reason": "The registered Stage8 wildcard does not contain the post-hoc rewrite labels needed to identify mean-action, shuffled, rescaled, and nearest-candidate contrasts without value/text inference."},
+    "TH-2": {"status": "UNRESOLVED", "reason": "The leave-one-Oracle-out producer table is absent from the selected preserved evidence."},
+    "FH-1": {
+      "status": "ACTIVE",
+      "paper_selector": "variance_decomposition",
+      "chart": {"status": "NATIVE_CHART", "selector_id": "variance_decomposition", "x": "oracle_backend", "series": ["harness_main_effect_r2_within_firm", "backend_main_effect_r2_within_firm", "partial_backend_plus_interaction_given_harness_r2_within_firm"], "chart_type": "bar"},
+      "selectors": [
+        {"selector_id": "variance_decomposition", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/main_harness_backend_decomposition/main_harness_backend_decomposition.csv", "file_count": {"min": 1, "max": 1}, "filters": [], "row_keys": ["oracle_backend"], "columns": ["oracle_backend", "n_firms", "n_backends", "n_harness_cells", "n_observations", "firm_fe_r2_total_variance", "harness_main_effect_r2_within_firm", "backend_main_effect_r2_within_firm", "partial_backend_plus_interaction_given_harness_r2_within_firm"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["n_firms", "n_backends", "n_harness_cells", "n_observations", "firm_fe_r2_total_variance", "harness_main_effect_r2_within_firm", "backend_main_effect_r2_within_firm", "partial_backend_plus_interaction_given_harness_r2_within_firm"], "row_count": {"min": 3, "max": 3}}
+      ]
+    },
+    "FH-2": {
+      "status": "ACTIVE",
+      "paper_selector": "adoption_quartiles_alpha",
+      "chart": {"status": "EDITABLE_SPEC_ONLY", "selector_id": "adoption_quartiles_alpha", "x": ["budget_label", "adoption_quartile"], "series": ["mean_revision_gain", "mean_adoption_ratio"], "chart_type": "line", "reason": "Budget and quartile form a composite x key; the linked long table is ready for an Excel pivot."},
+      "selectors": [
+        {"selector_id": "adoption_quartiles_alpha", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/n5m_posthoc/n5m_adoption_quartiles.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}], "row_keys": ["budget_label", "adoption_quartile"], "columns": ["budget_label", "l1_budget", "adoption_quartile", "n_firms", "mean_adoption_ratio", "median_adoption_ratio", "mean_revision_gain", "median_revision_gain", "score_decline_fraction"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["l1_budget", "n_firms", "mean_adoption_ratio", "median_adoption_ratio", "mean_revision_gain", "median_revision_gain", "score_decline_fraction"], "row_count": {"min": 16, "max": 16}}
+      ]
+    },
+    "TI-1": {
+      "status": "ACTIVE",
+      "paper_selector": "n5_1p27_information_conditions",
+      "selectors": [
+        {"selector_id": "n5_1p27_information_conditions", "source_pattern": "data/final_freeze/llm_runs/N5_C6_L1_1p27_IC*_gpt54mini*/stage8_llm_multi_oracle_eval/llm_stage8_policy_summary.csv", "file_count": {"min": 3, "max": 6}, "filters": [{"column": "policy", "op": "in", "values": ["C4", "C6"]}], "row_keys": ["source_file", "policy"], "columns": [{"name": "source_file", "kind": "logical_path"}, "policy", "n_rows", "mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG_FOR_EXCEL_PIVOT", "value_columns": ["n_rows", "mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "row_count": {"min": 6, "max": 6}},
+        {"selector_id": "n5_budget_inference", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/n5_generation_budget_frontier_holm/n5_budget_frontier_table_patch.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "budget_label", "op": "equals", "value": "1p27"}, {"column": "oracle_backend", "op": "equals", "value": "alpha"}], "row_keys": ["design", "budget_label"], "columns": ["design", "budget_label", "l1_budget", "n_pairs", "mean_C4", "mean_C6", "mean_C6_minus_C4", "C6_minus_C4_p_holm", "C6_minus_C4_sig"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "ONE_ROW", "value_columns": ["l1_budget", "n_pairs", "mean_C4", "mean_C6", "mean_C6_minus_C4", "C6_minus_C4_p_holm", "C6_minus_C4_sig"], "row_count": {"min": 1, "max": 1}}
+      ]
+    },
+    "TI-2": {
+      "status": "ACTIVE",
+      "paper_selector": "n5f_budget_summaries",
+      "selectors": [
+        {"selector_id": "n5f_budget_summaries", "source_pattern": "data/final_freeze/llm_runs/N5F_C4C6_L1_*/stage8_llm_multi_oracle_eval/llm_stage8_policy_summary.csv", "file_count": {"min": 4, "max": 8}, "filters": [{"column": "policy", "op": "in", "values": ["C4", "C6"]}], "row_keys": ["source_file", "policy"], "columns": [{"name": "source_file", "kind": "logical_path"}, "policy", "n_rows", "mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "aggregation": "PRODUCER_MEAN_AFTER_SAME_FIRM_PAIRING_VERIFIED", "reshape": "LONG_FOR_EXCEL_PIVOT", "value_columns": ["n_rows", "mean_delta_R_score_alpha", "mean_delta_R_score_beta", "mean_delta_R_score_gamma"], "row_count": {"min": 8, "max": 8}},
+        {"selector_id": "n5f_budget_inference", "source_pattern": "data/analysis/paper_repro/03_output_contract_diagnostics/n5_generation_budget_frontier_holm/n5_budget_frontier_table_patch.csv", "file_count": {"min": 1, "max": 1}, "filters": [{"column": "oracle_backend", "op": "equals", "value": "alpha"}], "row_keys": ["design", "budget_label"], "columns": ["design", "budget_label", "l1_budget", "n_pairs", "mean_C4", "mean_C6", "mean_C6_minus_C4", "C6_minus_C4_p_holm", "C6_minus_C4_sig"], "aggregation": "PRODUCER_AGGREGATE_NO_REAGGREGATION", "reshape": "LONG", "value_columns": ["l1_budget", "n_pairs", "mean_C4", "mean_C6", "mean_C6_minus_C4", "C6_minus_C4_p_holm", "C6_minus_C4_sig"], "row_count": {"min": 4, "max": 4}}
+      ]
+    }
+  }
+}

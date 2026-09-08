@@ -1,0 +1,50 @@
+# Stage 2 temporal split — single source of truth.
+#
+# All RL pipeline stages (2, 3, 4, 5, 6) and substrate-validation loops
+# load this file. The values are frozen and registered in
+# 03_freeze_reproduction/09_FINAL_FREEZE_DECISION_REGISTER.md.
+#
+# Any run consuming different values is invalid
+# (08_INVALID_RUN_AND_LEDGER_REPORTING_PROTOCOL.md).
+
+schema_version: stage2_temporal_split_v1
+
+# The single base year on which Stage 6 evaluates policies.
+# phase_eval = rated firm-states at this fiscal_year (state-only).
+eval_base_year: 2024
+
+# Maximum fiscal_year for which (s_t, a_t, s_{t+1}, r_t) is a complete
+# train transition. eval_base_year - 1.
+train_transition_year_max: 2023
+
+# Inner-train sub-window upper bound. All train-time statistics
+# (sector-Phi CDF, magnitude quantiles, reward standardization,
+# AVS peer CDF, encoder normalization) are fit on fiscal_year <=
+# inner_train_year_max only. The IQL critic is fit on this window.
+inner_train_year_max: 2022
+
+# Inner-dev single-fold base year. Hyperparameter selection surface
+# (critic Q-mean) and secondary reference ladder (including C_obs)
+# read this year during the sweep. No train-time statistic is fit on
+# these rows before selection. After the Phase γ winner is selected,
+# Stage 4 and Stage 5 perform one final refit on the full train
+# transition window fiscal_year <= train_transition_year_max, so the
+# production checkpoint used by Stage 6 includes the 2023->2024
+# transition.
+inner_dev_year: 2023
+
+# Simulator rollout target year. Stage 6 produces predicted statements
+# at this fiscal_year by rolling (s_{eval_base_year}, a_{eval_base_year})
+# one year forward through the deterministic financial-statement
+# simulator. Raw fiscal_year coverage through eval_base_year only is
+# required; raw rollout_target_year statements are NOT required by the
+# design.
+rollout_target_year: 2025
+
+# Documentation cross-references
+references:
+  research_design: "01_methodology_design/RESEARCH_FINAL_METHODOLOGY_AND_DESIGN.md §2.2.1"
+  rl_methodology: "01_methodology_design/RL_FINAL_METHODOLOGY_AND_DESIGN_RATIONALE.md §6.4"
+  stage2_contract: "02_implementation_contract/03_RL_STAGE2_PROCESS_CONTRACT.md §9.1"
+  stage6_contract: "02_implementation_contract/05_RL_STAGE4_5_6_CONTRACT.md §Stage 6.4"
+  freeze_register: "03_freeze_reproduction/09_FINAL_FREEZE_DECISION_REGISTER.md"

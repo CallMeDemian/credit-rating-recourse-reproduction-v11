@@ -1,0 +1,19 @@
+selection_policy: final_freeze_stage00_04
+split_policy:
+  dev_end_year: 2019
+  oot_start_year: 2020
+guards:
+  forbid_global_statistics: true
+  require_10_grade_rating_scale: true
+weight_prior:
+  custom_floors:
+    R241: 0.02
+    ratio_missing_rate: 0.02
+  score_overrides:
+    R241: 0.0
+    ratio_missing_rate: 0.0
+  notes:
+    R241: 'R241: selected retained-earnings-growth alias-group variable; inherits
+      R185 weak-growth prior/floor at 0.02.'
+    ratio_missing_rate: 'ratio_missing_rate: inverse financial_data_completeness reliability
+      proxy; higher missingness is worse and prior is floor-reduced at 0.02.'

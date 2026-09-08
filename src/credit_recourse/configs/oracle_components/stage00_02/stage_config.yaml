@@ -1,0 +1,165 @@
+﻿# stage_config.yaml — Stage 2 정책
+# ----------------------------------------------------
+
+stage:
+  name: "Stage 2 v2 — Financial Ratio Engineering + Quality Filter + NICE Audit"
+  version: "v2"
+  run_date_reference: "2026-04-30"
+
+# ============================================================
+# Statement set (Stage 1B에서 받음)
+# ============================================================
+statements:
+  - 재무상태표
+  - 손익계산서
+  - 현금흐름표
+  - 자본변동표
+  - 이익잉여금처분계산서
+  - 재무비율
+
+# ============================================================
+# 평가항목 (산출 ratio의 카테고리)
+# ============================================================
+ratio_categories:
+  - 수익성
+  - 안정성
+  - 부채상환능력
+  - 유동성
+  - 활동성
+  - 성장성
+  - 기타  # 복합/기타
+
+# ============================================================
+# Quality filter 정책
+# ============================================================
+quality:
+  # quality-pass 기준
+  missing_rate_max: 0.30        # 결측률 30% 미만
+  zero_rate_max: 0.95           # 모두 0인 ratio 제외
+  variance_min: 1.0e-12         # 분산이 거의 0인 것 제외
+  required_eligible_coverage: 0.70  # eligible 4,746 중 70%+ 산출 가능해야 함
+
+# ============================================================
+# Growth ratio (성장성) policy
+# ============================================================
+growth_ratio:
+  base_year_offset: 1  # t-1 (직전년도)
+  positive_base_only: true     # base_value <= 0 이면 NaN (분모 부호 일관성)
+  cap_extreme: 100.0           # |growth| > 100배는 outlier로 NaN
+
+# ============================================================
+# Lag support 정책
+# ============================================================
+lag_support:
+  # eligible 4,746 firm-year 중 t-1 데이터가 panel에 없는 경우 raw에서 보충
+  # 보충 대상 statement: 손익계산서 (영업이익 등 lag 필요)
+  enable: true
+  required_statements:
+    - 손익계산서
+
+# ============================================================
+# Manual override — 핵심 항목 정확 매핑
+# (KIS-VALUE 코드 정확 매핑, 자동 매핑 실패 방지)
+#
+# [2026-05-01 검증 완료] statement_item_inventory.csv (6,423 rows) 기준
+# 전수 대조 후 아래 3개 코드 수정:
+#   부채총계: U01A500000000 → U01A800000000 (이전 코드는 inventory에 없음)
+#   유동자산: U01A110000000 → U01A111038600 (이전 코드는 '비유동자산' 항목)
+#   유동부채: U01A510000000 → U01A811026000 (이전 코드는 inventory에 없음)
+#
+# 주의: 현재 _task2_candidates.py는 이 yaml을 읽지 않고
+#       자체 MANUAL_OVERRIDE dict를 사용한다.
+#       이 파일은 코드와의 일관성 유지 및 향후 yaml 연결 시 정확성 보장 목적.
+# ============================================================
+manual_override:
+  매출액:
+    item_code: "U01B100000000"
+    item_name: "매출액(수익)"
+    statement: "손익계산서"
+  영업이익:
+    item_code: "U01B430000000"
+    item_name: "(정상)영업손익(계산수치)"
+    statement: "손익계산서"
+    note: "U01B420000000(보고서기재) 대신 계산수치 우선"
+  정상영업이익:
+    item_code: "U01B430000000"
+    item_name: "(정상)영업손익(계산수치)"
+    statement: "손익계산서"
+  계속사업이익:
+    item_code: "U01B800000000"
+    item_name: "계속영업이익(손실)"
+    statement: "손익계산서"
+  당기순이익:
+    item_code: "U01B840000000"
+    item_name: "당기순이익(손실)"
+    statement: "손익계산서"
+  자산총계:
+    item_code: "U01A100000000"
+    item_name: "자산"
+    statement: "재무상태표"
+  자본총계:
+    item_code: "U01A600000000"
+    item_name: "자본"
+    statement: "재무상태표"
+  자본금:
+    item_code: "U01A611000000"
+    item_name: "자본금"
+    statement: "재무상태표"
+  부채총계:
+    item_code: "U01A800000000"   # 수정: U01A500000000 → U01A800000000 (inventory: '부채')
+    item_name: "부채"
+    statement: "재무상태표"
+  유동자산:
+    item_code: "U01A111038600"   # 수정: U01A110000000 → U01A111038600 (이전 코드는 '비유동자산')
+    item_name: "유동자산"
+    statement: "재무상태표"
+  유동부채:
+    item_code: "U01A811026000"   # 수정: U01A510000000 → U01A811026000 (inventory: '유동부채')
+    item_name: "유동부채"
+    statement: "재무상태표"
+
+# ============================================================
+# NICE precomputed audit 정책
+# ============================================================
+nice_audit:
+  enable: true
+  source_statement: "재무비율"     # 재무비율_clean.parquet (NICE 사전계산)
+  tolerance:
+    pass: 0.01                    # |our - NICE| / |NICE| ≤ 1% → pass
+    pass_with_scale_adj: 0.05     # 5% 이내 + 단위 보정 가능 → pass_with_scale_adjustment
+  expected_minimum_matches: 25    # 최소 NICE 매칭 수
+
+# ============================================================
+# Acceptance criteria (Task 15)
+# ============================================================
+acceptance:
+  candidates_total_min: 150       # 후보 ratio
+  ratios_calculated_min: 150
+  quality_pass_total_min: 120
+  category_min_per_eval_axis: 1   # 각 카테고리 ≥ 1
+  lag_coverage_min: 0.95          # ≥ 95%
+
+# ============================================================
+# Task 9: Growth Candidate Audit + Expansion (v3.2)
+# ============================================================
+growth_audit:
+  # enabled: false로 설정하면 Task 9를 건너뜀 (기존 v2 동작 유지)
+  enabled: true
+
+  # 신규 GX 변수 품질 기준 (Task 8과 동일 원칙)
+  missing_rate_max: 0.30   # 결측률 < 30%
+  inf_rate_max: 0.01       # inf 발생률 < 1%
+  min_n_dev: 100           # Dev 표본 최소 100건
+  min_unique: 2            # unique값 > 2
+
+  # 3-year growth 계산 정책
+  # positive_base_only: true → val_{t-3} > 0 인 경우만 계산 (기존 growth_ratio 정책 동일)
+  positive_base_only: true
+  cap_extreme: 100.0       # |growth| > 100배 → NaN
+
+  # 산출물 위치: STAGE2_OUT/growth_audit/ (자동, 변경 불필요)
+  # 보호 파일 (절대 덮어쓰기 금지):
+  #   engineered_financial_ratios.parquet
+  #   candidate_ratio_pool_by_item.csv
+  #   ratio_quality_report.csv
+

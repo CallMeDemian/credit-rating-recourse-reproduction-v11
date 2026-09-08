@@ -1,0 +1,404 @@
+# ============================================================================
+# final_candidate_library_v32.yaml
+# Credit-Recourse Candidate Action Set — Controllability-Ladder Design
+# ----------------------------------------------------------------------------
+# Target file: data/final_freeze/configs/final_candidate_library.yaml
+#
+# This file is the SINGLE SOURCE OF TRUTH for the candidate label set.
+# `main_train_labels` below MUST be mirrored verbatim into
+#   final_action_contract.yaml -> candidate_label_rule.train_labels
+# and any hardcoded label list elsewhere (e.g. tools/99 ALLOWED_TRAIN,
+# stage6 selector) MUST be replaced by a read of this file.
+#
+# Simulator interface stays 10D continuous. RL policy = discrete Candidate IQL.
+# ============================================================================
+
+contract_version: final_candidate_library_v32_controllability_ladder
+source_of_truth: data/final_freeze/configs/final_candidate_library.yaml
+
+# --- Design philosophy -------------------------------------------------------
+# 1. Each candidate = a nameable, board-authorizable, one-fiscal-year program.
+# 2. Dimensions are ordered on a CONTROLLABILITY LADDER, not two clean bins:
+#      Level A  Financial & investment policy   (debt issue/repay, capex)
+#              -> firm signs these directly. Highest controllability.
+#      Level B  Operating & working-capital policy (turnover, cost ratios)
+#              -> firm sets a target; outcome carries execution risk and
+#                 partial exogeneity (input prices, customers, suppliers).
+#      Level C  Revenue growth
+#              -> largely exogenous (demand, price, macro). NOT a lever.
+#    Main RL action space = Level A + Level B. Level C is scenario robustness only.
+# 3. Magnitudes are fixed before the final run through an audit-or-calibration protocol
+#    using only the training-period pseudo-action distribution. The runnable
+#    defaults below may be replaced only when the calibration report supports it.
+# 4. Lean training label set (11). Finer / scenario / diagnostic candidates
+#    are Stage6-evaluated but NOT RL training labels.
+# 5. Sign conventions verified against financial_simulator.py:
+#      bp_eff.inv_turnover = bp.inv_turnover + inv_turnover_chg
+#      inv_t1 = cogs_t1 / inv_turnover   -> higher turnover => lower inventory
+#      ar_t1  = revenue_t1 / ar_turnover -> higher turnover => lower receivables
+#      ap_t1  = cogs_t1 / ap_turnover    -> lower  turnover => higher payables
+#      *_debt_pct / ppe_pct are fractional changes of the existing amount.
+#      cogs_ratio_chg / sga_ratio_chg are %pt changes to the ratio.
+
+action_columns:
+  - action__ppe_pct
+  - action__inv_turnover_chg
+  - action__ar_turnover_chg
+  - action__ap_turnover_chg
+  - action__short_debt_pct
+  - action__long_debt_pct
+  - action__bond_pct
+  - action__revenue_growth
+  - action__cogs_ratio_chg
+  - action__sga_ratio_chg
+
+# --- The 11 main RL training labels (projection targets + IQL action space) ---
+# Mirror this exact list into final_action_contract.yaml train_labels.
+main_train_labels:
+  - A0_noop
+  - DL1_deleverage_mild
+  - DL2_deleverage_moderate
+  - RF1_short_debt_refinance
+  - CX1_capex_discipline
+  - WC1_working_capital_tightening
+  - WC2_supplier_financing
+  - OE1_cost_efficiency_mild
+  - OE2_cost_efficiency_moderate
+  - MX1_cost_and_deleverage
+  - MX2_liquidity_rescue
+
+final_rl_label: C3_candidate_iql
+
+# ============================================================================
+# fixed_candidates — must equal main_train_labels exactly (load_action_space
+# enforces sorted(fixed) == sorted(train_labels)).
+# ============================================================================
+fixed_candidates:
+
+  A0_noop:
+    tier: baseline
+    paper_role: main
+    intent: "No managerial intervention. Counterfactual reference for every firm."
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+
+  # -- Level A: financial & investment policy ---------------------------------
+  DL1_deleverage_mild:
+    tier: A_financial_policy
+    paper_role: main
+    intent: "Repay across the debt stack, weighted to short-term borrowings."
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: -0.25
+    action__long_debt_pct: -0.10
+    action__bond_pct: -0.10
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+
+  DL2_deleverage_moderate:
+    tier: A_financial_policy
+    paper_role: main
+    intent: "Aggressive one-year deleveraging across short/long/bond debt."
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: -0.40
+    action__long_debt_pct: -0.20
+    action__bond_pct: -0.15
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+
+  RF1_short_debt_refinance:
+    tier: A_financial_policy
+    paper_role: main
+    intent: "Maturity restructuring: cut short-term debt, partly replace with
+             long-term debt and bonds. Net leverage roughly flat; reduces
+             rollover and coverage risk."
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: -0.30
+    action__long_debt_pct: 0.15
+    action__bond_pct: 0.10
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+
+  CX1_capex_discipline:
+    tier: A_investment_policy
+    paper_role: main
+    intent: "Defer / trim tangible investment to conserve cash."
+    action__ppe_pct: -0.10
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+
+  # -- Level B: operating & working-capital policy ----------------------------
+  WC1_working_capital_tightening:
+    tier: B_working_capital
+    paper_role: main
+    intent: "Faster inventory turnover and receivables collection. Frees cash."
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.50
+    action__ar_turnover_chg: 0.50
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+
+  WC2_supplier_financing:
+    tier: B_working_capital
+    paper_role: main
+    intent: "WC1 plus stretched supplier payment period (payables financing).
+             NOTE: simulator does not model supplier-relationship risk; treat
+             the AP component as a liquidity lever, not a free lunch."
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.50
+    action__ar_turnover_chg: 0.50
+    action__ap_turnover_chg: -0.50
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+
+  OE1_cost_efficiency_mild:
+    tier: B_operating_efficiency
+    paper_role: main
+    intent: "Mild bounded operating-efficiency plan: COGS -0.75pp, SG&A -0.50pp."
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: -0.0075
+    action__sga_ratio_chg: -0.005
+
+  OE2_cost_efficiency_moderate:
+    tier: B_operating_efficiency
+    paper_role: main
+    intent: "Moderate bounded operating-efficiency plan: COGS -1.5pp, SG&A -1.0pp."
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: -0.015
+    action__sga_ratio_chg: -0.010
+
+  # -- Multi-pronged playbooks (necessary because Candidate IQL picks one) ----
+  MX1_cost_and_deleverage:
+    tier: AB_combo
+    paper_role: main
+    intent: "Classic distressed-firm playbook: mild deleverage + mild cost cut."
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: -0.25
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: -0.0075
+    action__sga_ratio_chg: -0.005
+
+  MX2_liquidity_rescue:
+    tier: AB_combo
+    paper_role: main
+    intent: "Liquidity-crisis playbook: cut short debt + free working capital."
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.50
+    action__ar_turnover_chg: 0.50
+    action__ap_turnover_chg: -0.25
+    action__short_debt_pct: -0.25
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+
+# ============================================================================
+# scenario_candidates — Level C. NOT RL training labels. Stage6 robustness only.
+# Run as fixed policies to show how the recourse picture shifts under revenue
+# scenarios. Excluded from BC/IQL so reviewers cannot attack "revenue growth
+# as a managerial action".
+# ============================================================================
+scenario_candidates:
+  SC1_revenue_up_conservative:
+    tier: C_revenue_scenario
+    paper_role: scenario_robustness
+    action__revenue_growth: 0.025
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+  SC2_revenue_up_with_efficiency:
+    tier: C_revenue_scenario
+    paper_role: scenario_robustness
+    action__revenue_growth: 0.025
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__cogs_ratio_chg: -0.0075
+    action__sga_ratio_chg: -0.005
+  SC3_revenue_down_stress:
+    tier: C_revenue_scenario
+    paper_role: stress_robustness
+    action__revenue_growth: -0.025
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+
+# ============================================================================
+# diagnostic_candidates — Stage6-evaluated, NOT RL training labels.
+# AB1/AB2 decompose the cost axis (ablation).
+# AB3 is the anti-recourse anchor: shows the policy never recommends expansion
+# for distressed firms, and gives genuinely expansionary observed firm-years a
+# nearer projection reference IN DIAGNOSTICS ONLY.
+# ============================================================================
+diagnostic_candidates:
+  AB1_cogs_only:
+    tier: B_operating_efficiency
+    paper_role: axis_ablation
+    action__cogs_ratio_chg: -0.015
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__sga_ratio_chg: 0.0
+  AB2_sga_only:
+    tier: B_operating_efficiency
+    paper_role: axis_ablation
+    action__sga_ratio_chg: -0.010
+    action__ppe_pct: 0.0
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__short_debt_pct: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+  AB3_expansion_anchor:
+    tier: anti_recourse_anchor
+    paper_role: diagnostic_only
+    action__short_debt_pct: 0.20
+    action__ppe_pct: 0.10
+    action__inv_turnover_chg: 0.0
+    action__ar_turnover_chg: 0.0
+    action__ap_turnover_chg: 0.0
+    action__long_debt_pct: 0.0
+    action__bond_pct: 0.0
+    action__revenue_growth: 0.0
+    action__cogs_ratio_chg: 0.0
+    action__sga_ratio_chg: 0.0
+
+# ============================================================================
+# Row-conditional rule-based baseline. NOT a projection label, NOT an RL label.
+# ============================================================================
+row_conditional_baselines:
+  C2_weakest_component_rule:
+    generator: sector_phi_weakest_component_top1_rule
+    projection_label: false
+    # Maps the weakest sector-Phi component to ONE main candidate:
+    mapping:
+      derived__debt_to_assets: DL1_deleverage_mild
+      derived__financial_cost_to_revenue: DL1_deleverage_mild
+      derived__cogs_to_revenue: OE2_cost_efficiency_moderate
+      derived__sga_to_revenue: OE2_cost_efficiency_moderate
+      derived__operating_margin: OE2_cost_efficiency_moderate
+      derived__roa_proxy: OE2_cost_efficiency_moderate
+
+# ============================================================================
+# Magnitude audit/calibration recipe — run BEFORE the final paper run.
+# Uses train-period pseudo-actions to either confirm defaults or replace them with stable quantiles.
+# ============================================================================
+magnitude_audit_calibration:
+  source: stage2 input_splits observed pseudo-actions (favorable direction only)
+  rule:
+    default_policy: "Use runnable defaults unless train-period favorable-direction quantiles are stable and sufficiently supported."
+    mild_magnitude: "If recalibrated, use P65 of favorable-direction observed one-year changes."
+    moderate_magnitude: "If recalibrated, use P85 of favorable-direction observed one-year changes."
+  favorable_direction:
+    ppe_pct: negative          # capex discipline = lower PPE growth
+    inv_turnover_chg: positive
+    ar_turnover_chg: positive
+    ap_turnover_chg: negative  # longer payment period = liquidity release
+    short_debt_pct: negative
+    long_debt_pct: negative
+    bond_pct: negative
+    cogs_ratio_chg: negative
+    sga_ratio_chg: negative
+  clip_to_action_bounds: true
+  report: "appendix table of P50/P65/P85 and chosen magnitude per dimension"
+
+# ============================================================================
+# Contingency: lean-9 variant if the projection histogram shows any main
+# candidate with too few rows for stable soft-target BC (~<100).
+# Drop RF1_short_debt_refinance and MX2_liquidity_rescue; their roles are
+# partly covered by DL1 and the WC candidates. Re-run with 9 train labels.
+# ============================================================================
+lean_9_fallback_drop:
+  - RF1_short_debt_refinance
+  - MX2_liquidity_rescue
+
+# ============================================================================
+# Verifier semantic guards (add to tools/99).
+# ============================================================================
+verifier_guards:
+  - "fixed_candidates keys == main_train_labels (exact set equality)"
+  - "scenario_candidates and diagnostic_candidates keys MUST NOT appear in train_labels"
+  - "working-capital candidates (WCx, MX2, X-style): inv_turnover_chg >= 0 and ar_turnover_chg >= 0"
+  - "ap_turnover_chg < 0 allowed only for supplier-financing candidates (WC2, MX2)"
+  - "no active training candidate may use a deprecated prefix or row-conditional baseline prefix"
+  - "AB3_expansion_anchor MUST NOT appear in train_labels or in C2 mapping"
+  - "every projection label seen in Stage2 output must be in main_train_labels"

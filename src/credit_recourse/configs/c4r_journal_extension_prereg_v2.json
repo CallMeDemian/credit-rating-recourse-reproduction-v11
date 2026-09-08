@@ -1,0 +1,130 @@
+{
+  "schema_version": "c4r_journal_extension_prereg_v2",
+  "design_status": "LOCKED_AMENDMENT_BEFORE_REPLACEMENT_LIVE_API",
+  "public_timestamp_status": "PENDING_USER_PUBLIC_COMMIT_OR_OSF_REGISTRATION",
+  "amends": {
+    "schema_version": "c4r_journal_extension_prereg_v1",
+    "reason": "The preregistered Claude Haiku 4.5 0.75 arm completed provider calls but failed the pre-specified raw-budget and row-completeness gates. The failed arm remains an immutable provider-feasibility result and is not included in matched inference.",
+    "failed_cohort_id": "haiku45",
+    "failed_budget_label": "0p75",
+    "failed_run_label": "C4RXJ_C4C4RC6_L1_0p75_ICb_haiku45_p50_seed1_20260717_145222",
+    "observed_stage7_action_rows": 1721,
+    "expected_stage7_action_rows": 1725,
+    "observed_translational_failure_rows": 4,
+    "observed_aggregate_raw_budget_compliance": 0.18710052295177224,
+    "required_aggregate_raw_budget_compliance": 0.95,
+    "replacement_policy": "Replace the failed Anthropic replication cohort with a Google Gemini 3.5 Flash cohort while preserving all prompts, information conditions, budget definitions, row universe, parser, simulator, Oracle evaluators, quality gates, and multiplicity contracts. Reuse the four already completed GPT-5.4-mini archives without new OpenAI calls."
+  },
+  "primary_claim": "The sign and magnitude of reference-free self-revision and conditional reference-content increments vary with generation-time action capacity.",
+  "information_condition": "IC-b",
+  "conditions": [
+    "C4",
+    "C4R",
+    "C6"
+  ],
+  "mode": "free_form_10d",
+  "firm_count_per_arm": 575,
+  "candidate_library_quantile": 50,
+  "budgets": [
+    {
+      "label": "0p75",
+      "l1_budget": 0.75
+    },
+    {
+      "label": "1p27",
+      "l1_budget": 1.27
+    },
+    {
+      "label": "2p00",
+      "l1_budget": 2.0
+    },
+    {
+      "label": "unbounded",
+      "l1_budget": null
+    }
+  ],
+  "cohorts": [
+    {
+      "cohort_id": "gpt54mini",
+      "backend": "openai:gpt-5.4-mini",
+      "run_role": "paper_c4r_journal_ext_gpt54mini",
+      "execution_policy": "reuse_required",
+      "api_mode": "responses",
+      "reasoning_effort": "low",
+      "max_output_tokens": 1200,
+      "temperature": 0.0
+    },
+    {
+      "cohort_id": "gemini35flash",
+      "backend": "gemini:gemini-3.5-flash",
+      "run_role": "paper_c4r_journal_ext_gemini35flash",
+      "execution_policy": "generate",
+      "api_mode": "generateContent",
+      "thinking_level": "low",
+      "max_output_tokens": 1200,
+      "response_mime_type": "application/json",
+      "timeout_seconds": 180.0,
+      "temperature": null
+    }
+  ],
+  "seed_protocol": {
+    "run_contract_seed": 1,
+    "reference_draw_seed": 1,
+    "provider_generation_seed_passed": false,
+    "interpretation": "Seed fields identify run/reference metadata only; provider stochasticity remains residual."
+  },
+  "contrasts": [
+    "C4R-C4 reference-free self-revision",
+    "C6-C4R conditional Candidate-IQL reference-content increment",
+    "C6-C4 full reference-plus-revision package"
+  ],
+  "interaction_reference_arm": "unbounded",
+  "primary_multiplicity": {
+    "test": "two-sided Wilcoxon signed-rank, zero-discard",
+    "family": "within cohort x finite arm x component, Holm across alpha/beta/gamma",
+    "family_size": 3
+  },
+  "sensitivity_multiplicity": {
+    "family": "within cohort x component, Holm across 3 finite arms x 3 Oracles",
+    "family_size": 9
+  },
+  "equivalence": {
+    "primary_oracle": "alpha",
+    "method": "TOST",
+    "raw_score_margin": 0.109,
+    "basis": "frozen thesis alpha C3-vs-C2 firm-paired MDE80",
+    "boundary": "No beta/gamma equivalence claim is made until scale-specific margins are separately frozen."
+  },
+  "quality_gates": {
+    "stage7_stage8_stage9_boundary_verifiers": "PASS_REQUIRED",
+    "prompt_payload_archive_status": "FULL_PAYLOAD_ARCHIVED",
+    "expected_stage8_rows_per_arm": 1725,
+    "expected_stage9_revision_rows_per_arm": 1150,
+    "finite_arm_raw_budget_compliance_aggregate_min": 0.95,
+    "finite_arm_raw_budget_compliance_each_condition_min": 0.9,
+    "c4_c4r_c6_row_alignment": "HARD_FAIL",
+    "additive_identity_tolerance": 1e-12
+  },
+  "stopping_rule": "Stop before the next newly generated live arm if any required payload archive, row-alignment, candidate-library version, or finite-arm compliance gate fails. Reused archives must satisfy the same arm requirements before they enter the amended grid. Do not change prompts or exclusions after observing replacement outcomes; issue a new amendment instead.",
+  "pooling_policy": "Analyze each backend cohort separately. Cross-backend output is a replication table, not a pooled treatment estimate.",
+  "replacement_pilot_policy": {
+    "recommended_first_arm": "gemini35flash/0p75",
+    "pilot_may_run_as_partial_grid": true,
+    "pilot_pass_condition": "The existing arm QC verifier must PASS without relaxed thresholds.",
+    "completion_policy": "A later full amended grid may reuse the successful pilot archive and the four frozen GPT-5.4-mini archives; remaining Gemini arms are newly generated."
+  },
+  "planned_new_live_request_count": 6900,
+  "combined_matched_analysis_request_count": 13800,
+  "excluded_feasibility_cohorts": [
+    {
+      "cohort_id": "haiku45",
+      "reason": "Pre-specified 0.75 quality gate failure",
+      "analysis_status": "PROVIDER_FEASIBILITY_FAILURE_NOT_INCLUDED_IN_MATCHED_INFERENCE"
+    }
+  ],
+  "analysis_modules": {
+    "primary": "credit_recourse.analysis.c4r_matched_inference_v3",
+    "axis_attribution": "credit_recourse.analysis.n5m_axis_swap_intervention",
+    "equivalence": "credit_recourse.analysis.llm_tost_equivalence"
+  }
+}

@@ -1,0 +1,86 @@
+paths:
+  stage1b: stage1b
+  stage2: stage2
+  stage1c: stage1c
+split:
+  dev_start: 2002
+  dev_end: 2019
+  oot_start: 2020
+  oot_end: 2023
+direction_weak_threshold: 0.03
+collinearity:
+  threshold: 0.7
+  max_iterations: 10
+selection_score_weights:
+  spearman: 0.3
+  iv: 0.3
+  kw_eta2: 0.2
+  monotonicity: 0.2
+priority_order:
+  financial:
+  - 수익성
+  - 안정성
+  - 부채상환능력
+  - 유동성
+  - 활동성
+  - 성장성
+  nonfinancial:
+  - 산업위험
+  - 경영위험
+  - 영업위험
+  - 재무위험
+  - 신뢰도
+winsorization:
+  enabled: true
+  lower_percentile: 1
+  upper_percentile: 99
+outputs:
+  directory: outputs
+  create_latest_alias: true
+  create_backward_compat: true
+domain_filters:
+  liquidity_exclude_terms:
+  - 매출액
+  - 매출원가
+  - 매출총이익
+  - 영업수익
+  - 수익(매출액)
+  industry_allowlist:
+  - industry_avg_rating_lag1_self_excl
+  - industry_median_rating_lag1_self_excl
+  - industry_bad_grade_share_lag1_self_excl
+  - industry_b_or_lower_share_lag1_self_excl
+  - industry_downgrade_rate_lag1_self_excl
+  - industry_upgrade_rate_lag1_self_excl
+  - industry_net_downgrade_rate_lag1_self_excl
+  - industry_rating_std_lag1_self_excl
+  - industry_rating_iqr_lag1_self_excl
+  diagnostic_only_variables:
+  - kospi_dummy
+  - sector_7
+  - sector_year_rating_count
+  - sector_year_rating_count_lag1
+  - industry_avg_rating
+weight_prior:
+  cap: 0.3
+  default_floor: 0.05
+  custom_floors:
+    R185: 0.02
+    financial_data_completeness: 0.02
+    R241: 0.02
+    ratio_missing_rate: 0.02
+  score_overrides:
+    R185: 0.0
+    financial_data_completeness: 0.0
+    R241: 0.0
+    ratio_missing_rate: 0.0
+  notes:
+    R185: 'R185: weak growth signal + high non-random missing due to negative retained-earnings
+      denominator; prior pinned to 0.02. Stage 4 should treat negative-denominator
+      missing as risk or carry a diagnostic flag.'
+    financial_data_completeness: 'financial_data_completeness: Dev signal near zero
+      and OOT regime jump; retained only with floor-reduced diagnostic caveat at 0.02.'
+    R241: 'R241: selected retained-earnings-growth alias-group variable; inherits
+      R185 weak-growth prior/floor at 0.02.'
+    ratio_missing_rate: 'ratio_missing_rate: inverse financial_data_completeness reliability
+      proxy; higher missingness is worse and prior is floor-reduced at 0.02.'

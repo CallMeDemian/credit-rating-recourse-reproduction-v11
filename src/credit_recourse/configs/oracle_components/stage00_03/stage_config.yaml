@@ -1,0 +1,66 @@
+sector_7_mapping:
+  default_unknown: 미분류
+  priority_order:
+    - sector_name: 화학·소재
+      keywords: ["화학", "석유", "고무", "플라스틱", "비금속", "소재"]
+    - sector_name: 금속·기계·전자
+      keywords: ["금속", "기계", "전자", "전기", "반도체", "장비"]
+    - sector_name: 자동차·운송장비
+      keywords: ["자동차", "운송장비", "조선", "선박"]
+    - sector_name: 음식료·생활용품·기타
+      keywords: ["음식료", "식품", "섬유", "의복", "생활", "가구", "기타"]
+    - sector_name: 건설·부동산
+      keywords: ["건설", "부동산"]
+    - sector_name: 도소매·물류
+      keywords: ["도매", "소매", "유통", "운수", "창고", "물류"]
+    - sector_name: 정보통신·서비스
+      keywords: ["정보", "통신", "서비스", "전문", "과학", "교육", "사업시설"]
+
+event_windows:
+  operating_loss_window_years: 3
+  net_loss_window_years: 3
+  cap_change_window_years: 3
+  ma_window_years: 3
+  lawsuit_window_years: 3
+industry_avg_rating:
+  min_n_threshold: 10
+
+industry_risk_v3_2:
+  min_n_threshold: 10
+
+quality_filter:
+  missing_rate_max: 0.50
+  weak_signal_unique_count_threshold: 2
+  candidate_but_missingness_caveat_min_rate: 0.30
+
+acceptance:
+  industry_risk_min_candidates: 1
+  management_risk_min_candidates: 1
+  business_risk_min_candidates: 1
+  financial_risk_min_candidates: 1
+  reliability_min_candidates: 1
+  panel_total_rows: 4908
+  panel_total_rows_min: 4908
+  panel_total_rows_op: ge
+  panel_total_rows_description: firm-year rows retained or expanded after KONEX merge
+  eligible_min_coverage_pct: 0.95
+
+acceptance_v3_2:
+  industry_risk_min_eligible_v3_2: 1
+  management_risk_min_candidates: 1
+  business_risk_min_candidates: 1
+  financial_risk_min_candidates: 1
+  reliability_min_candidates: 1
+  panel_total_rows: 4908
+  panel_total_rows_min: 4908
+  panel_total_rows_op: ge
+  panel_total_rows_description: firm-year rows retained or expanded after KONEX merge
+  eligible_min_coverage_pct: 0.95
+
+konex_nonfinancial_policy:
+  enabled: true
+  general_info_required: false
+  missing_general_info_action: allow_missing_with_report
+  notes: KONEX general-info-based variables may be missing until KONEX general information raw files are added.
+
+

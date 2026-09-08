@@ -1,0 +1,22 @@
+﻿schema_version: compute_budget_profile_v1
+created_utc: null
+active_profile: local_laptop_rtx4060
+profiles:
+  local_laptop_rtx4060:
+    description: "Single RTX 4060 Laptop GPU (8GB VRAM), BF16 mixed precision, sequential sweep."
+    phase_alpha: {seeds: [0], epochs_sweep_cap: 30, batch_size: 128, amp_dtype: bf16}
+    stage4_sweep: {seeds: [0], epochs: 20, batch_size: 256, amp_dtype: bf16}
+    phase_gamma: {seeds: [0], epochs: 25, batch_size: 256, amp_dtype: bf16}
+    final_refit:
+      stage3: {seeds: [0], epochs_override: null, batch_size: 128, amp_dtype: bf16}
+      stage4: {seeds: [0, 1, 2], epochs: 30, batch_size: 256, amp_dtype: bf16}
+      stage5: {seeds: [0, 1, 2], epochs: 60, batch_size: 256, amp_dtype: bf16}
+  full_reference:
+    description: "Design-reference compute budget (FP32, full epochs, multi-seed)."
+    phase_alpha: {seeds: [0, 1, 2, 3, 4], epochs_sweep_cap: null, batch_size: 256, amp_dtype: null}
+    stage4_sweep: {seeds: [0, 1, 2, 3, 4], epochs: 30, batch_size: 512, amp_dtype: null}
+    phase_gamma: {seeds: [0, 1, 2, 3, 4], epochs: 60, batch_size: 256, amp_dtype: null}
+    final_refit:
+      stage3: {seeds: [0, 1, 2], epochs_override: null, batch_size: 256, amp_dtype: null}
+      stage4: {seeds: [0, 1, 2, 3, 4], epochs: 30, batch_size: 512, amp_dtype: null}
+      stage5: {seeds: [0, 1, 2, 3, 4], epochs: 60, batch_size: 256, amp_dtype: null}

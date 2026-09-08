@@ -1,0 +1,50 @@
+{
+  "contract_version": "final_oracle_rl_contract_v32_controllability_ladder",
+  "source_of_truth": "data/final_freeze/configs/final_oracle_rl_contract.json",
+  "data_root": "data/final_freeze",
+  "active_config_root": "data/final_freeze/configs",
+  "stage0_foundation": "data/final_freeze/stage0_oracle_foundation",
+  "stage1_oracle_inputs": "data/final_freeze/stage1_oracle_inputs",
+  "stage1_oracle_backends": "data/final_freeze/stage1_oracle_backends",
+  "stage2_candidate_projection": "data/final_freeze/stage2_candidate_projection",
+  "stage3_acd_ssl": "data/final_freeze/stage3_acd_ssl",
+  "stage4_candidate_bc": "data/final_freeze/stage4_candidate_bc",
+  "stage5_candidate_iql": "data/final_freeze/stage5_candidate_iql",
+  "stage6_candidate_selector_eval": "data/final_freeze/stage6_candidate_selector_eval",
+  "stage5_target_formula": "target = r + gamma * (1 - done) * V(s_next)",
+  "final_rl_policy_label": "C3_candidate_iql",
+  "stage1_policy": {
+    "stage0_is_read_only": true,
+    "no_hardcoded_selection_artifacts": true,
+    "no_placeholder_backends": true,
+    "dev_max_year_for_selection_and_fitting": 2023,
+    "score_end_year_default": 2023
+  },
+  "stage2_policy": {
+    "sector_phi_cdf_source": "rated_phase3_iql_inner_train_only",
+    "eval_distribution_used_for_phi_cdf": false,
+    "rho_main": 0.3,
+    "action_magnitude_audit_required": true,
+    "reward_column_contract": "v32_design_reward_train",
+    "sector_phi_cdf_policy_note": "Sector-Phi CDF is frozen from rated phase3_iql inner-train rows only; phase2_bc is broad/unrated and is not used to fit reward/phi CDFs."
+  },
+  "stage3_policy": {
+    "forbidden_feature_patterns": [
+      "next__",
+      "__next",
+      "reward",
+      "oracle",
+      "PV",
+      "R_score",
+      "policy"
+    ],
+    "feature_schema_hash_required": true,
+    "legacy_pv_like_columns_forbidden_as_model_features": true,
+    "forbidden_feature_patterns_policy_note": "Binding leakage enforcement is implemented in final_stage3_acd_ssl.is_leakage using exact active feature tokens and forbidden prefixes; stale generic tokens target/future/year_next are intentionally not binding because they are not active AVS256 feature names."
+  },
+  "stage6_policy": {
+    "intervention_mode": "full_financial_statement_simulator",
+    "full_statement_simulator_used": true,
+    "paper_wording_restriction": "Stage6 uses the full financial-statement simulator before Oracle scoring."
+  }
+}

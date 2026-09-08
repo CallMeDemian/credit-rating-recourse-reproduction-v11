@@ -1,0 +1,30 @@
+﻿schema_version: verification_package_profile_v4
+root: data/reproduction/verification_package
+directories:
+- 00_START_HERE
+- 01_CLAIM_EVIDENCE
+- 02_RESULTS_BY_CHAPTER
+- 03_CORE_TABLES
+- 04_CORE_FIGURES
+- 05_METHODS_AND_CONTRACTS
+- 06_PROVENANCE
+- 99_MACHINE_MANIFESTS
+required_start_files:
+- README.md
+- WHAT_WAS_REPRODUCED.md
+- WHAT_WAS_NOT_REPRODUCED.md
+- reproduction_modes.md
+- final_status.json
+- thesis_claim_index.md
+- thesis_claim_index.csv
+claim_card_sections:
+- Claim
+- Scope
+- Extracted values
+- Decision rule
+- Verdict
+- Allowed interpretation
+- Forbidden interpretation
+- Canonical evidence
+- Paper location
+- Reproduction tier

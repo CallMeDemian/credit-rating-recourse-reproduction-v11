@@ -1,0 +1,97 @@
+{
+  "schema_version": "c4r_journal_extension_prereg_v1",
+  "design_status": "LOCKED_FOR_FREEZE_BEFORE_LIVE_API",
+  "public_timestamp_status": "PENDING_USER_PUBLIC_COMMIT_OR_OSF_REGISTRATION",
+  "primary_claim": "The sign and magnitude of reference-free self-revision and conditional reference-content increments vary with generation-time action capacity.",
+  "information_condition": "IC-b",
+  "conditions": [
+    "C4",
+    "C4R",
+    "C6"
+  ],
+  "mode": "free_form_10d",
+  "firm_count_per_arm": 575,
+  "candidate_library_quantile": 50,
+  "budgets": [
+    {
+      "label": "0p75",
+      "l1_budget": 0.75
+    },
+    {
+      "label": "1p27",
+      "l1_budget": 1.27
+    },
+    {
+      "label": "2p00",
+      "l1_budget": 2.0
+    },
+    {
+      "label": "unbounded",
+      "l1_budget": null
+    }
+  ],
+  "cohorts": [
+    {
+      "cohort_id": "gpt54mini",
+      "backend": "openai:gpt-5.4-mini",
+      "run_role": "paper_c4r_journal_ext_gpt54mini",
+      "api_mode": "responses",
+      "reasoning_effort": "low",
+      "max_output_tokens": 1200,
+      "temperature": 0.0
+    },
+    {
+      "cohort_id": "haiku45",
+      "backend": "anthropic:claude-haiku-4-5-20251001",
+      "run_role": "paper_c4r_journal_ext_haiku45",
+      "max_output_tokens": 1200,
+      "temperature": 0.0
+    }
+  ],
+  "seed_protocol": {
+    "run_contract_seed": 1,
+    "reference_draw_seed": 1,
+    "provider_generation_seed_passed": false,
+    "interpretation": "Seed fields identify run/reference metadata only; provider stochasticity remains residual."
+  },
+  "contrasts": [
+    "C4R-C4 reference-free self-revision",
+    "C6-C4R conditional Candidate-IQL reference-content increment",
+    "C6-C4 full reference-plus-revision package"
+  ],
+  "interaction_reference_arm": "unbounded",
+  "primary_multiplicity": {
+    "test": "two-sided Wilcoxon signed-rank, zero-discard",
+    "family": "within cohort x finite arm x component, Holm across alpha/beta/gamma",
+    "family_size": 3
+  },
+  "sensitivity_multiplicity": {
+    "family": "within cohort x component, Holm across 3 finite arms x 3 Oracles",
+    "family_size": 9
+  },
+  "equivalence": {
+    "primary_oracle": "alpha",
+    "method": "TOST",
+    "raw_score_margin": 0.109,
+    "basis": "frozen thesis alpha C3-vs-C2 firm-paired MDE80",
+    "boundary": "No beta/gamma equivalence claim is made until scale-specific margins are separately frozen."
+  },
+  "quality_gates": {
+    "stage7_stage8_stage9_boundary_verifiers": "PASS_REQUIRED",
+    "prompt_payload_archive_status": "FULL_PAYLOAD_ARCHIVED",
+    "expected_stage8_rows_per_arm": 1725,
+    "expected_stage9_revision_rows_per_arm": 1150,
+    "finite_arm_raw_budget_compliance_aggregate_min": 0.95,
+    "finite_arm_raw_budget_compliance_each_condition_min": 0.9,
+    "c4_c4r_c6_row_alignment": "HARD_FAIL",
+    "additive_identity_tolerance": 1e-12
+  },
+  "stopping_rule": "Stop before the next live arm if any required payload archive, row-alignment, candidate-library version, or finite-arm compliance gate fails. Do not change prompts or exclusions after observing outcomes; issue a new preregistration version instead.",
+  "pooling_policy": "Analyze each backend cohort separately. Cross-backend output is a replication table, not a pooled treatment estimate.",
+  "planned_live_request_count": 13800,
+  "analysis_modules": {
+    "primary": "credit_recourse.analysis.c4r_matched_inference_v3",
+    "axis_attribution": "credit_recourse.analysis.n5m_axis_swap_intervention",
+    "equivalence": "credit_recourse.analysis.llm_tost_equivalence"
+  }
+}
