@@ -1,17 +1,17 @@
 # 논문 재현 패키지
 
-이 저장소는 원본 `thesis_repo`의 Oracle·RL·LLM Stage0–9 코드와 재현성 kit V10의 논문 확장 분석을 한 실행 구조로 묶은 최종 배포본입니다. 논문의 표·그림·본문 수치는 논문 파일에서 복사하지 않고, 선택한 실행의 실제 산출물에서 다시 계산합니다.
+이 저장소는 원본 `thesis_repo`의 Oracle·RL·LLM Stage0–9 코드와 재현성 kit V10의 논문 확장 분석을 한 실행 구조로 묶은 최종 배포본입니다. 논문의 표·그림·본문 수치를 선택한 실행의 실제 산출물에서 다시 계산합니다.
 
 ## GitHub에서 받은 뒤 준비
 
-저장소를 받은 뒤 [V11 데이터 Release](https://github.com/CallMeDemian/credit-rating-recourse-reproduction-v11/releases/tag/v11.0.0)에서 다음 ZIP 4개를 다운로드합니다. 이 파일들은 용량 때문에 Git 커밋에는 포함하지 않았습니다.
+저장소를 받은 뒤 [V11 데이터 Release](https://github.com/CallMeDemian/credit-rating-recourse-reproduction-v11/releases/tag/v11.0.0)에서 다음 ZIP 4개를 다운로드합니다.
 
 - `credit-rating-recourse-v11_raw-data.zip`
 - `credit-rating-recourse-v11_frozen-core.zip`
 - `credit-rating-recourse-v11_frozen-stage2-projection.zip`
 - `credit-rating-recourse-v11_frozen-llm-analysis.zip`
 
-다운로드한 파일을 저장소 루트의 `release_assets` 폴더에 넣고, 저장소 루트에서 다음 명령을 실행합니다. 각 ZIP에는 `data\raw` 또는 `frozen_outputs` 경로가 포함되어 있으므로 별도로 폴더 이름을 바꾸지 않습니다.
+다운로드한 파일을 저장소 루트의 `release_assets` 폴더에 넣고, 저장소 루트에서 다음 명령을 실행합니다. 각 ZIP에는 `data\raw` 또는 `frozen_outputs` 경로가 포함되어 있습니다.
 
 ```powershell
 Get-ChildItem .\release_assets\*.zip | ForEach-Object {
@@ -26,7 +26,7 @@ data\raw
 frozen_outputs
 ```
 
-그다음 Windows 64-bit Python 3.12로 저장소 자체의 가상환경을 만듭니다. 원본 연구 폴더의 가상환경은 필요하지 않습니다.
+그다음 Windows 64-bit Python 3.12로 저장소 자체의 가상환경을 만듭니다.
 
 ```powershell
 py -3.12 -m venv .venv
@@ -82,7 +82,7 @@ PowerShell에서 저장소 루트로 이동한 뒤 다음 두 runner만 사용�
 - `tables\TABLE_*.xlsx`: `README`, `SOURCE_DATA`, `ANALYSIS`, `FINAL_TABLE`
 - `figures\FIGURE_*.xlsx`: `README`, `SOURCE_DATA`, `CHART_DATA`, 편집 가능한 `CHART`
 
-계산 대상이 아닌 개념도·설계표는 억지로 Excel로 만들지 않습니다. 과거 LLM 실험 중 실제 생산 산출물이 보존되지 않은 항목은 새로 계산한 것처럼 표시하지 않고 `THESIS_OUTPUT_INDEX.xlsx`에 그 한계를 남깁니다.
+과거 LLM 실험 중 실제 생산 산출물이 보존되지 않은 항목은 새로 계산한 것처럼 표시하지 않고 `THESIS_OUTPUT_INDEX.xlsx`에 그 한계를 남깁니다.
 
 ## 폴더 역할
 
