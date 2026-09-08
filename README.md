@@ -4,7 +4,7 @@
 
 ## GitHub에서 받은 뒤 준비
 
-저장소를 받은 뒤 [V11 데이터 Release](https://github.com/CallMeDemian/credit-rating-recourse-reproduction-v11/releases/tag/v11.0.0)에서 다음 ZIP 4개와 `SHA256SUMS.txt`를 다운로드합니다. 이 파일들은 용량 때문에 Git 커밋에는 포함하지 않았습니다.
+저장소를 받은 뒤 [V11 데이터 Release](https://github.com/CallMeDemian/credit-rating-recourse-reproduction-v11/releases/tag/v11.0.0)에서 다음 ZIP 4개를 다운로드합니다. 이 파일들은 용량 때문에 Git 커밋에는 포함하지 않았습니다.
 
 - `credit-rating-recourse-v11_raw-data.zip`
 - `credit-rating-recourse-v11_frozen-core.zip`
@@ -14,15 +14,12 @@
 다운로드한 파일을 저장소 루트의 `release_assets` 폴더에 넣고, 저장소 루트에서 다음 명령을 실행합니다. 각 ZIP에는 `data\raw` 또는 `frozen_outputs` 경로가 포함되어 있으므로 별도로 폴더 이름을 바꾸지 않습니다.
 
 ```powershell
-Get-FileHash .\release_assets\*.zip -Algorithm SHA256
-Get-Content .\release_assets\SHA256SUMS.txt
-
 Get-ChildItem .\release_assets\*.zip | ForEach-Object {
     Expand-Archive -LiteralPath $_.FullName -DestinationPath . -Force
 }
 ```
 
-출력된 SHA256 값을 `SHA256SUMS.txt`와 비교한 뒤 아래 두 경로가 채워졌는지 확인합니다.
+압축을 푼 뒤 아래 두 경로가 채워졌는지 확인합니다.
 
 ```text
 data\raw
